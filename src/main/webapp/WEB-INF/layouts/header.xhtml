@@ -20,7 +20,11 @@
                     </li>
                     <li class="nav-item #{request.requestURI.contains('/views/inserieren.xhtml')?'active':''}">
                         <a class="nav-link text-uppercase" href="#{request.contextPath}/views/inserieren.xhtml"><span
-                                class="fa fa-plus-circle" aria-hidden="true"></span>Inserieren</a>
+                                class="sr-only" aria-hidden="true"></span>Inserieren</a>
+                    </li>
+                    <li class="nav-item #{request.requestURI.contains('/views/login.xhtml')?'active':''}">
+                        <a class="nav-link text-uppercase" href="#{request.contextPath}/views/login.xhtml"><span
+                                class="sr-only" aria-hidden="true"></span>Login</a>
                     </li>
                 </ul>
             </div>
