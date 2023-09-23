@@ -7,7 +7,7 @@
 <f:view contentType="text/html" encoding="UTF-8">
     <ui:insert name="metadata"></ui:insert>
     <h:head>
-        <title>Taskboard - A JakartaEE Faces Sample</title>
+        <title>Bude4U - Home sweet home</title>
         <!-- Required meta tags -->
         <meta charset="utf-8"></meta>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"></meta>
@@ -27,12 +27,12 @@
 
     <h:body styleClass="d-flex flex-column h-100 pt-5">
         <h:panelGroup layout="block" styleClass="header">
-            <ui:include src="/WEB-INF/layouts/header.xhtml"/>
+            <ui:include src="/WEB-INF/layouts/components/header.xhtml"/>
         </h:panelGroup>
 
         <main role="main" class="flex-shrink-0">
             <div class="container">
-                <ui:include src="/WEB-INF/layouts/alert.xhtml"/>
+
 
                 <h1 class="page-header display-3">
                     <ui:insert name="pageTitle"></ui:insert>
@@ -42,7 +42,7 @@
             </div>
         </main>
 
-        <ui:include src="/WEB-INF/layouts/footer.xhtml"/>
+        <ui:include src="/WEB-INF/layouts/components/footer.xhtml"/>
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
