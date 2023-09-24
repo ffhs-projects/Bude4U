@@ -1,9 +1,7 @@
 package ch.ffhs.bude4u.inserat;
-import lombok.Getter;
-import lombok.Setter;
 
-@Getter
-@Setter
+
+
 public interface InseratService {
     String name = null;
     String beschreibung = null;
