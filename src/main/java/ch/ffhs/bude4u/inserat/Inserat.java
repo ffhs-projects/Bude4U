@@ -1,9 +1,11 @@
-package ch.ffhs.bude4u;
+package ch.ffhs.bude4u.inserat;
 
 import lombok.Getter;
+import lombok.Setter;
 
 @Getter
-public class Inserat {
+@Setter
+public class Inserat implements InseratService{
 
     private String name;
     private String beschreibung;
@@ -15,8 +17,10 @@ public class Inserat {
     private String id;
     private String user;
 
-    public Inserat(String name, String beschreibung, String preis, String kategorie, String bild, String datum, String status, String id, String user) {
+    public Inserat() {
+    }
 
+    public Inserat(String name, String beschreibung, String preis, String kategorie, String bild, String datum, String status, String id, String user) {
         this.name = name;
         this.beschreibung = beschreibung;
         this.preis = preis;
@@ -27,5 +31,7 @@ public class Inserat {
         this.id = id;
         this.user = user;
     }
+
+
 
 }
