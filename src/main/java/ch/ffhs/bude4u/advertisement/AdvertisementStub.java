@@ -7,9 +7,7 @@ import java.util.Optional;
 
 public class AdvertisementStub implements GenericDAO<Advertisement> {
 
-    // TODO: Add Stub-logic here (in each method);
-
-    // TODO: Add mock-data here...
+    // TODO: Add mock-data into list...
     private List<Advertisement> mockData;
 
     @Override
