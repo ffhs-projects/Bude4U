@@ -34,6 +34,7 @@ public interface GenericDAO<T> {
     /**
      * delete provided entity in database
      * @param t entity to delete
+     * {@code @TODO:} Better to delete only by id
      */
     void delete(T t);
 

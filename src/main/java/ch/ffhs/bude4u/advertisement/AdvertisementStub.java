@@ -24,7 +24,7 @@ public class AdvertisementStub implements GenericDAO<Advertisement> {
 
     @Override
     public void create(Advertisement advertisement) {
-
+        mockData.add(advertisement);
     }
 
     @Override
@@ -34,6 +34,6 @@ public class AdvertisementStub implements GenericDAO<Advertisement> {
 
     @Override
     public void delete(Advertisement advertisement) {
-
+        mockData.remove(advertisement);
     }
 }
