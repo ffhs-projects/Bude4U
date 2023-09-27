@@ -23,8 +23,8 @@ public class AdvertisementService {
         return advertisementDao.getAll();
     }
 
-    public void deleteAdvertisement(Advertisement advertisement) {
-        advertisementDao.delete(advertisement);
+    public void delete(String advertisementId) {
+        advertisementDao.delete(advertisementId);
     }
 
     public void createAdvertisement(Advertisement advertisement) {

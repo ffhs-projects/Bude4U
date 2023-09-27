@@ -30,7 +30,7 @@ public class AdvertisementDAO implements GenericDAO<Advertisement> {
     }
 
     @Override
-    public void delete(Advertisement advertisement) {
+    public void delete(String advertisementId) {
 
     }
 }
