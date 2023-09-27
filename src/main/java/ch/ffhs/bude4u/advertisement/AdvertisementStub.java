@@ -14,12 +14,12 @@ public class AdvertisementStub implements GenericDAO<Advertisement> {
 
     @Override
     public Optional<Advertisement> get(String id) {
-        return Optional.empty();
+        return mockData.stream().filter(adv -> adv.id.equals(id)).findAny();
     }
 
     @Override
     public List<Advertisement> getAll() {
-        return null;
+        return mockData;
     }
 
     @Override
@@ -33,7 +33,7 @@ public class AdvertisementStub implements GenericDAO<Advertisement> {
     }
 
     @Override
-    public void delete(Advertisement advertisement) {
-        mockData.remove(advertisement);
+    public void delete(String advertisementId) {
+        mockData.removeIf(adv -> adv.id.equals(advertisementId));
     }
 }
