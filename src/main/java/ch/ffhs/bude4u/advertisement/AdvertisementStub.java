@@ -12,7 +12,7 @@ public class AdvertisementStub implements GenericDAO<Advertisement> {
 
     @Override
     public Optional<Advertisement> get(String id) {
-        return mockData.stream().filter(adv -> adv.id.equals(id)).findAny();
+        return mockData.stream().filter(adv -> adv.id.equals(id)).findFirst();
     }
 
     @Override
