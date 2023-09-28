@@ -4,33 +4,37 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <div class="container text-center">
-        <div class="row">
-            <ui:repeat value="#{inseratController.inserate}" var="inserat">
-                <div class="col-sm-4">
-                <h:graphicImage value="#{inserat.bild}" class="img-fluid" alt="header"/>
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
-                    <br/>
-                <h:outputText value="#{inserat.id}" />
-                <br/>
-                <h:outputText value="#{inserat.name}" />
-                <br/>
-                <h:outputText value="#{inserat.beschreibung}" />
-                <br/>
-                <h:outputText value="#{inserat.datum}" />
-                <br/>
-                <h:outputText value="#{inserat.kategorie}" />
-                <br/>
-                <h:outputText value="#{inserat.preis}" />
-                <br/>
-                <h:outputText value="#{inserat.status}" />
-                <br/>
-                <h:outputText value="#{inserat.user}" />
-                <br/>
-                <br/>
+        <ui:repeat value="#{inseratController.inserate}" var="inserat">
+            <div class="block border-solid font-bold text-center p-4 border-round mb-3 max-h-20rem">
+                <div class="overflow-hidden">
+                    <div class="grid">
+                        <div class="col-4">
+                            <h:graphicImage value="#{inserat.bild}" class="img-fluid" alt="header" style="max-width: 50%; height: auto;"/>
+                        </div>
+                        <div class="col-8">
+                            <h:outputText value="ID: #{inserat.id}" />
+                            <br/>
+                            <h:outputText value="Name: #{inserat.name}" />
+                            <br/>
+                            <h:outputText value="Beschreibung: #{inserat.beschreibung}" />
+                            <br/>
+                            <h:outputText value="Datum: #{inserat.datum}" />
+                            <br/>
+                            <h:outputText value="Kategorie: #{inserat.kategorie}" />
+                            <br/>
+                            <h:outputText value="Preis: #{inserat.preis}" />
+                            <br/>
+                            <h:outputText value="Status: #{inserat.status}" />
+                            <br/>
+                            <h:outputText value="User:  #{inserat.user}" />
+                            <br/>
+                            <br/>
+                        </div>
+                    </div>
                 </div>
-            </ui:repeat>
-        </div>
-    </div>
+            </div>
+        </ui:repeat>
 </html>
