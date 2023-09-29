@@ -1,0 +1,18 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="jakarta.faces.facelets"
+                xmlns:h="jakarta.faces.html"
+                template="/WEB-INF/layouts/template.xhtml">
+    <ui:define name="pageTitle">Advertisement</ui:define>
+    <ui:define name="image"><h:graphicImage value="#{inseratController.getInseratById(param.inserat).bild}" class="img-fluid" alt="header" style="max-width: 80%; height: auto;"/></ui:define>
+    <ui:define name="id"><h:outputText value="ID: #{inseratController.getInseratById(param.inserat).id}"/></ui:define>
+    <ui:define name="date"><h:outputText value="Einstelldatum: #{inseratController.getInseratById(param.inserat).datum}"/></ui:define>
+    <ui:define name="category"><h:outputText value="Kategorie: #{inseratController.getInseratById(param.inserat).kategorie}"/></ui:define>
+    <ui:define name="price"><h:outputText value="Preis: #{inseratController.getInseratById(param.inserat).preis} Chf"/></ui:define>
+    <ui:define name="status"><h:outputText value="Status: #{inseratController.getInseratById(param.inserat).status}"/></ui:define>
+    <ui:define name="user"><h:outputText value="Verkäufer: #{inseratController.getInseratById(param.inserat).user}"/></ui:define>
+    <ui:define name="name"><h:outputText value="Name: #{inseratController.getInseratById(param.inserat).name}"/></ui:define>
+    <ui:define name="description"><h:outputText value="Beschreibung: #{inseratController.getInseratById(param.inserat).beschreibung}"/></ui:define>
+    <ui:define name="content">
+        <ui:include src="/WEB-INF/layouts/advertisement.xhtml" />
+    </ui:define>
+</ui:composition>
