@@ -49,11 +49,11 @@ public class AdvertisementStub implements GenericDAO<Advertisement> {
 
     private List<Advertisement> CreateMockData() {
         List<Advertisement> mockAdvertisements = new ArrayList<Advertisement>();
-        mockAdvertisements.add(new Advertisement("1", "Haus 1", "Schön hier 1...", 1001, 5.5, 2003));
-        mockAdvertisements.add(new Advertisement("2", "Haus 2", "Schön hier 2...", 1002, 4.5, 2003));
-        mockAdvertisements.add(new Advertisement("3", "Haus 3", "Schön hier 3...", 1003, 3.5, 2002));
-        mockAdvertisements.add(new Advertisement("4", "Haus 4", "Schön hier 4...", 1004, 2.5, 2001));
-        mockAdvertisements.add(new Advertisement("5", "Haus 5", "Schön hier 5...", 1005, 1.5, 2000));
+        mockAdvertisements.add(new Advertisement("1", "Haus 1", "Schön hier 1...", 1001, 5.5, 2003, "https://cdn.pixabay.com/photo/2016/11/18/17/46/house-1836070_1280.jpg"));
+        mockAdvertisements.add(new Advertisement("2", "Haus 2", "Schön hier 2...", 1002, 4.5, 2003, "https://cdn.pixabay.com/photo/2016/11/18/17/46/house-1836070_1280.jpg"));
+        mockAdvertisements.add(new Advertisement("3", "Haus 3", "Schön hier 3...", 1003, 3.5, 2002, "https://cdn.pixabay.com/photo/2016/11/18/17/46/house-1836070_1280.jpg"));
+        mockAdvertisements.add(new Advertisement("4", "Haus 4", "Schön hier 4...", 1004, 2.5, 2001, "https://cdn.pixabay.com/photo/2016/11/18/17/46/house-1836070_1280.jpg"));
+        mockAdvertisements.add(new Advertisement("5", "Haus 5", "Schön hier 5...", 1005, 1.5, 2000, "https://cdn.pixabay.com/photo/2016/11/18/17/46/house-1836070_1280.jpg"));
         return mockAdvertisements;
     }
 }

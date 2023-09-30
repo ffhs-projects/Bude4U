@@ -5,32 +5,27 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <div class="container text-center">
-        <div class="row">
-            <ui:repeat value="#{inseratController.inserate}" var="inserat">
-                <div class="col-sm-4">
-                <h:graphicImage value="#{inserat.bild}" class="img-fluid" alt="header"/>
+<div class="container text-center">
+    <div class="row">
+        <ui:repeat value="#{advertisementService.getAllAdvertisements()}" var="advertisement">
+            <div class="col-sm-4">
+                <h:graphicImage value="#{advertisement.mainPictureUrl}" class="img-fluid" alt="header"/>
 
-                    <br/>
-                <h:outputText value="#{inserat.id}" />
                 <br/>
-                <h:outputText value="#{inserat.name}" />
+                <h:outputText value="#{advertisement.id}"/>
                 <br/>
-                <h:outputText value="#{inserat.beschreibung}" />
+                <h:outputText value="#{advertisement.advertisementTitle}"/>
                 <br/>
-                <h:outputText value="#{inserat.datum}" />
+                <h:outputText value="#{advertisement.mainDescription}"/>
                 <br/>
-                <h:outputText value="#{inserat.kategorie}" />
+                <h:outputText value="#{advertisement.buyPrice}"/>
                 <br/>
-                <h:outputText value="#{inserat.preis}" />
+                <h:outputText value="#{advertisement.numberRooms}"/>
                 <br/>
-                <h:outputText value="#{inserat.status}" />
+                <h:outputText value="#{advertisement.livingSpace}"/>
                 <br/>
-                <h:outputText value="#{inserat.user}" />
-                <br/>
-                <br/>
-                </div>
-            </ui:repeat>
-        </div>
+            </div>
+        </ui:repeat>
     </div>
+</div>
 </html>
