@@ -1,6 +1,6 @@
 package ch.ffhs.bude4u.user;
 
-public class user {
+public class User {
 
     private String id;
 

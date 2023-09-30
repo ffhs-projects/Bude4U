@@ -9,7 +9,7 @@ import java.util.Optional;
 public class AdvertisementStub implements GenericDAO<Advertisement> {
 
     // TODO: Add mock-data into list...
-    private List<Advertisement> mockData;
+    private final List<Advertisement> mockData;
 
     public AdvertisementStub() {
         mockData = CreateMockData();
