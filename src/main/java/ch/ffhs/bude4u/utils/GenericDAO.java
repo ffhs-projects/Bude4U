@@ -7,6 +7,7 @@ public interface GenericDAO<T> {
 
     /**
      * get entity with matching identifier
+     *
      * @param id the id to filter for
      * @return matching entity
      */
@@ -14,6 +15,7 @@ public interface GenericDAO<T> {
 
     /**
      * fetches list of all entities
+     *
      * @return list of Type <T>
      * {@code @TODO:} Maybe add pagination?!
      */
@@ -21,21 +23,33 @@ public interface GenericDAO<T> {
 
     /**
      * creates new entity in database
+     *
      * @param t entity to create
      */
     void create(T t);
 
     /**
      * update provided entity in database
+     *
      * @param t entity to update
      */
     void update(T t);
 
     /**
      * delete provided entity in database
-     * @param t entity to delete
-     * {@code @TODO:} Better to delete only by id
+     *
+     * @param id entity to delete
+     *           {@code @TODO:} Better to delete only by id
      */
     void delete(String id);
+
+    /**
+     * Requests a list of Data for with start & offset parameter for paginated views.
+     *
+     * @param start  start of first entry (included)
+     * @param length amount of values to return
+     * @return returns 0 to length entries.
+     */
+    List<T> getPaginatedItems(int start, int length);
 
 }

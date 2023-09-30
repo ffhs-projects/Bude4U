@@ -34,4 +34,8 @@ public class AdvertisementService {
     public void updateAdvertisement(Advertisement advertisement) {
         advertisementDao.update(advertisement);
     }
+
+    public List<Advertisement> getAdvertisementsFromRange(int startIndex, int length) {
+        return advertisementDao.getPaginatedItems(startIndex, length);
+    }
 }

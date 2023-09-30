@@ -33,4 +33,9 @@ public class AdvertisementDAO implements GenericDAO<Advertisement> {
     public void delete(String advertisementId) {
 
     }
+
+    @Override
+    public List<Advertisement> getPaginatedItems(int start, int length) {
+        return null;
+    }
 }

@@ -5,6 +5,15 @@ import java.util.List;
 
 public class Advertisement {
 
+    public Advertisement(String id, String title, String description, double price, double rooms, int space) {
+        id = id;
+        advertisementTitle = title;
+        mainDescription = description;
+        buyPrice = price;
+        numberRooms = rooms;
+        livingSpace = space;
+    }
+
     String id;
 
     private String advertisementTitle;
@@ -13,7 +22,7 @@ public class Advertisement {
 
     private double buyPrice;
 
-    private float numberRooms;
+    private double numberRooms;
 
     private int livingSpace;
 
