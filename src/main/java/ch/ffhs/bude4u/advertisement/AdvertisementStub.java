@@ -43,6 +43,8 @@ public class AdvertisementStub implements GenericDAO<Advertisement> {
 
     @Override
     public List<Advertisement> getPaginatedItems(int start, int length) {
+        start = Math.max(start, 0);
+        length = Math.max(length, 1);
         if (mockData.size() < start + length) return mockData.subList(start, mockData.size());
         return mockData.subList(start, start + length);
     }
