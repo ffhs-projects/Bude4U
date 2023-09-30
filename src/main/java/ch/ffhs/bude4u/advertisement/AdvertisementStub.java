@@ -1,11 +1,12 @@
 package ch.ffhs.bude4u.advertisement;
 
 import ch.ffhs.bude4u.utils.GenericDAO;
+import ch.ffhs.bude4u.utils.PaginationDAO;
 
 import java.util.List;
 import java.util.Optional;
 
-public class AdvertisementStub implements GenericDAO<Advertisement> {
+public class AdvertisementStub implements GenericDAO<Advertisement>, PaginationDAO<Advertisement> {
 
     // TODO: Add mock-data into list...
     private List<Advertisement> mockData;
@@ -33,5 +34,11 @@ public class AdvertisementStub implements GenericDAO<Advertisement> {
     @Override
     public void delete(String advertisementId) {
         mockData.removeIf(adv -> adv.id.equals(advertisementId));
+    }
+
+    @Override
+    public List<Advertisement> getPaginatedItems(int start, int length) {
+        if (mockData.size() < start + length) return mockData.subList(start, mockData.size());
+        return mockData.subList(start, start + length);
     }
 }
