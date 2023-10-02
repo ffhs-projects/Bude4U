@@ -8,8 +8,8 @@ import java.util.List;
 @Getter
 public class Advertisement {
 
-    public Advertisement(String id, String title, String description, String date, String category, String status, double price, double rooms, int space, String mainPicUrl) {
-        id = id;
+    public Advertisement(String advId, String title, String description, String date, String category, String status, double price, double rooms, int space, String mainPicUrl) {
+        id = advId;
         advertisementTitle = title;
         mainDescription = description;
         creationDate = date;
