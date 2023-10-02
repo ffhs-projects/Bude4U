@@ -1,33 +1,29 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="jakarta.faces.facelets"
+                xmlns:h="jakarta.faces.html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="jakarta.faces.core"
 >
 
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark" role="navigation">
-        <div class="container">
-            <a class="navbar-brand" href="#{request.contextPath}/">
-                <span class="text-uppercase">Bude4U</span>
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
-                    aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+    <div class="card pl-8 pr-8">
+        <h:form>
+            <p:growl id="messages"/>
+            <p:menubar>
+                <p:menuitem label="File" icon="pi pi-fw pi-file" url="#{request.contextPath}/">
+                    Home
+                </p:menuitem>
+                <p:menuitem label="File" icon="pi pi-fw pi-file" url="#{request.contextPath}/views/advertise.xhtml">
+                    Inserieren
+                </p:menuitem>
 
-            <div class="collapse navbar-collapse" id="navbarCollapse">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item #{request.requestURI.contains('/')?'active':''}">
-                        <a class="nav-link text-uppercase" href="#{request.contextPath}/">Home<span
-                                class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item #{request.requestURI.contains('/views/inserieren.xhtml')?'active':''}">
-                        <a class="nav-link text-uppercase" href="#{request.contextPath}/views/inserieren.xhtml"><span
-                                class="sr-only" aria-hidden="true"></span>Inserieren</a>
-                    </li>
-                    <li class="nav-item #{request.requestURI.contains('/views/login.xhtml')?'active':''}">
-                        <a class="nav-link text-uppercase" href="#{request.contextPath}/views/login.xhtml"><span
-                                class="sr-only" aria-hidden="true"></span>Login</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+                <p:divider layout="vertical"/>
+
+                <f:facet name="options">
+                    <p:button value="Login" icon="pi pi-fw pi-sign-out" styleClass="ui-button-info" url="#{request.contextPath}/views/login.xhtml"/>
+                </f:facet>
+
+
+            </p:menubar>
+        </h:form>
+    </div>
 </ui:composition>

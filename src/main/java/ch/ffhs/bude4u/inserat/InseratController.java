@@ -69,4 +69,8 @@ public class InseratController {
     public void removeInserat(Inserat inserat) {
         inserate.remove(inserat);
     }
+
+    public String selectInserat(Inserat inserat) {
+        return "advertisement.xhtml";
+    }
 }

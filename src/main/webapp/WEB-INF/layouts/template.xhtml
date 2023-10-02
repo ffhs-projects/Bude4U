@@ -3,43 +3,30 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="jakarta.faces.facelets"
       xmlns:f="jakarta.faces.core"
-      xmlns:h="jakarta.faces.html">
+      xmlns:h="jakarta.faces.html"
+      xmlns:p="http://primefaces.org/ui">
 <f:view contentType="text/html" encoding="UTF-8">
-    <ui:insert name="metadata"></ui:insert>
+    <ui:insert name="metadata"/>
+    <h:outputStylesheet library="webjars" name="primeflex/3.3.1/primeflex.min.css" />
     <h:head>
         <title>Bude4U - Home sweet home</title>
         <!-- Required meta tags -->
-        <meta charset="utf-8"></meta>
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"></meta>
-        <!-- styles -->
-        <link rel="stylesheet"
-              href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-              integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-              crossorigin="anonymous"/>
-        <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-              rel="stylesheet"
-              integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
-              crossorigin="anonymous"/>
-        <link href="#{request.contextPath}/resources/css/main.css" rel="stylesheet"/>
-        <!--            <h:outputStylesheet library="css" name="main.css"></h:outputStylesheet>-->
-        <ui:insert name="headIncludes"></ui:insert>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+        <ui:insert name="headIncludes"/>
     </h:head>
 
-    <h:body styleClass="d-flex flex-column h-100 pt-5">
-        <h:panelGroup layout="block" styleClass="header">
+    <h:body styleClass="d-flex flex-column h-100">
+
+        <h:panelGroup layout="block" styleClass="header sticky top-0 mb-3">
             <ui:include src="/WEB-INF/layouts/components/header.xhtml"/>
         </h:panelGroup>
 
-        <main role="main" class="flex-shrink-0">
-            <div class="container">
-
-
-                <h1 class="page-header display-3">
-                    <ui:insert name="pageTitle"></ui:insert>
+        <main role="main" class="pl-8 pr-8">
+                <h1 class="page-header display-3 pt-4">
+                    <ui:insert name="pageTitle"/>
                 </h1>
-
                 <ui:insert name="content"/>
-            </div>
         </main>
 
         <ui:include src="/WEB-INF/layouts/components/footer.xhtml"/>
@@ -60,7 +47,7 @@
                 crossorigin="anonymous">
             /** stop autoclosing **/
         </script>
-        <ui:insert name="bodyIncludes"></ui:insert>
+        <ui:insert name="bodyIncludes"/>
     </h:body>
 </f:view>
 </html>

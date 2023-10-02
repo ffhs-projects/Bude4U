@@ -4,28 +4,49 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-<div class="container text-center">
-    <div class="row">
-        <ui:repeat value="#{advertisementService.getAllAdvertisements()}" var="advertisement">
-            <div class="col-sm-4">
-                <h:graphicImage value="#{advertisement.mainPictureUrl}" class="img-fluid" alt="header"/>
-
-                <br/>
-                <h:outputText value="#{advertisement.id}"/>
-                <br/>
-                <h:outputText value="#{advertisement.advertisementTitle}"/>
-                <br/>
-                <h:outputText value="#{advertisement.mainDescription}"/>
-                <br/>
-                <h:outputText value="#{advertisement.buyPrice}"/>
-                <br/>
-                <h:outputText value="#{advertisement.numberRooms}"/>
-                <br/>
-                <h:outputText value="#{advertisement.livingSpace}"/>
-                <br/>
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+        <ui:repeat value="#{inseratController.inserate}" var="inserat">
+            <div class="grid pb-5">
+                <div class="col-3 border-solid border-round">
+                    <h:graphicImage value="#{inserat.bild}" class="img-fluid" alt="header" style="max-width: 70%; height: auto;"/>
+                </div>
+                <div class="col-9 border-solid">
+                    <div class="grid">
+                        <div class="col-2 border-solid border-round">
+                            <h:outputText value="ID: #{inserat.id}" />
+                        </div>
+                        <div class="col-2 border-solid border-round">
+                            <h:outputText value="Name: #{inserat.name}" />
+                        </div>
+                        <div class="col-2 border-solid border-round">
+                            <h:outputText value="Beschreibung: #{inserat.beschreibung}" />
+                        </div>
+                        <div class="col-2 border-solid border-round">
+                            <h:outputText value="Datum: #{inserat.datum}" />
+                        </div>
+                        <div class="col-2 border-solid border-round">
+                            <h:outputText value="Kategorie: #{inserat.kategorie}" />
+                        </div>
+                        <div class="col-2 border-solid border-round">
+                            <h:outputText value="Preis: #{inserat.preis}" />
+                        </div>
+                        <div class="col-2 border-solid border-round">
+                            <h:outputText value="Status: #{inserat.status}" />
+                        </div>
+                        <div class="col-2 border-solid border-round">
+                            <h:outputText value="User:  #{inserat.user}" />
+                        </div>
+                        <div class="col-2 border-solid border-round">
+                            <p:menubar style="background-color: white; border-style: none">
+                                <p:menuitem style="background-color: lightblue;" label="Inserat" icon="pi pi-fw pi-file" url="#{request.contextPath}/views/advertisement.xhtml">
+                                    <f:param name="inserat" value="#{inserat.id}"/>
+                                    Inserat anzeigen
+                                </p:menuitem>
+                            </p:menubar>
+                        </div>
+                    </div>
+                </div>
             </div>
         </ui:repeat>
-    </div>
-</div>
 </html>
