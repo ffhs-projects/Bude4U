@@ -1,5 +1,8 @@
 package ch.ffhs.bude4u.user;
 
+import lombok.Getter;
+
+@Getter
 public class User {
 
     private String id;
