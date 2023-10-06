@@ -1,10 +1,14 @@
 package ch.ffhs.bude4u.advertisement;
 
 import ch.ffhs.bude4u.utils.GenericDAO;
+import jakarta.enterprise.context.RequestScoped;
+import jakarta.inject.Named;
 
 import java.util.List;
 import java.util.Optional;
 
+@Named
+@RequestScoped
 public class AdvertisementService {
 
     private final GenericDAO<Advertisement> advertisementDao;
@@ -33,5 +37,9 @@ public class AdvertisementService {
 
     public void updateAdvertisement(Advertisement advertisement) {
         advertisementDao.update(advertisement);
+    }
+
+    public List<Advertisement> getAdvertisementsFromRange(int startIndex, int length) {
+        return advertisementDao.getPaginatedItems(startIndex, length);
     }
 }
