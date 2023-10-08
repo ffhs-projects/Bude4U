@@ -2,16 +2,16 @@
                 xmlns:ui="jakarta.faces.facelets"
                 xmlns:h="jakarta.faces.html"
                 template="/WEB-INF/layouts/template.xhtml">
-    <ui:define name="pageTitle">Advertisement</ui:define>
+    <ui:define name="pageTitle">#{advertisementService.getAdvertisement(param.advertisement).get().advertisementTitle}</ui:define>
     <ui:define name="image"><h:graphicImage value="#{advertisementService.getAdvertisement(param.advertisement).get().getMainImage()}" class="img-fluid" alt="header" style="max-width: 80%; height: auto;"/></ui:define>
-    <ui:define name="id"><h:outputText value="ID: #{advertisementService.getAdvertisement(param.advertisement).get().id}"/></ui:define>
-    <ui:define name="creationDate"><h:outputText value="Einstelldatum: #{advertisementService.getAdvertisement(param.advertisement).get().creationDate}"/></ui:define>
+    <ui:define name="creationDate"><h:outputText value="Veröffentlichung: #{advertisementService.getAdvertisement(param.advertisement).get().creationDate}"/></ui:define>
     <ui:define name="advCategory"><h:outputText value="Kategorie: #{advertisementService.getAdvertisement(param.advertisement).get().advCategory}"/></ui:define>
-    <ui:define name="buyPrice"><h:outputText value="Preis: CHF #{advertisementService.getAdvertisement(param.advertisement).get().buyPrice}"/></ui:define>
+    <ui:define name="buyPrice"><h:outputText value="Preis: CHF #{advertisementService.getAdvertisement(param.advertisement).get().buyPrice}" class="text-2xl font-bold"/></ui:define>
     <ui:define name="advStatus"><h:outputText value="Status: #{advertisementService.getAdvertisement(param.advertisement).get().advStatus}"/></ui:define>
     <ui:define name="advertiser"><h:outputText value="Verkäufer: #{advertisementService.getAdvertisement(param.advertisement).get().id}"/></ui:define>
-    <ui:define name="advertisementTitle"><h:outputText value="Name: #{advertisementService.getAdvertisement(param.advertisement).get().advertisementTitle}"/></ui:define>
     <ui:define name="mainDescription"><h:outputText value="Beschreibung: #{advertisementService.getAdvertisement(param.advertisement).get().mainDescription}"/></ui:define>
+    <ui:define name="numberRooms"><h:outputText value="Zimmer: #{advertisementService.getAdvertisement(param.advertisement).get().numberRooms}" class="mt-0 text-3xl font-bold"/></ui:define>
+    <ui:define name="livingSpace"><h:outputText value="Wohnfläche: #{advertisementService.getAdvertisement(param.advertisement).get().livingSpace}"/></ui:define>
     <ui:define name="content">
         <ui:include src="/WEB-INF/layouts/advertisement.xhtml" />
     </ui:define>
