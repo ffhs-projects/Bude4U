@@ -24,6 +24,20 @@ public class Advertisement {
         advertisementImages.add(mainPicUrl);
     }
 
+    public Advertisement(String title, String description, String date, String category, String status, double price, double rooms, int space, String mainPicUrl) {
+        id = UUID.randomUUID();
+        advertisementTitle = title;
+        mainDescription = description;
+        creationDate = date;
+        buyPrice = price;
+        numberRooms = rooms;
+        livingSpace = space;
+        advCategory = category;
+        advStatus = status;
+        advertisementImages = new ArrayList<>();
+        advertisementImages.add(mainPicUrl);
+    }
+
     UUID id;
 
     private String advertisementTitle;

@@ -1,6 +1,8 @@
 package ch.ffhs.bude4u.advertisement;
 
+import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.context.RequestScoped;
+import jakarta.enterprise.context.SessionScoped;
 import jakarta.inject.Named;
 import jakarta.inject.Inject;
 import jakarta.persistence.GeneratedValue;
@@ -18,8 +20,7 @@ public class AdvertisementBean {
     @Inject
     private AdvertisementService advertisementService;
 
-    @Id
-    private UUID advertisementId = UUID.randomUUID();
+    private UUID advertisementId;
     private String advertisementTitle;
     private String mainDescription;
     private String creationDate;
@@ -38,9 +39,10 @@ public class AdvertisementBean {
 
     public String createAdvertisement() {
         try {
-            Advertisement newAd = new Advertisement(advertisementId, advertisementTitle, mainDescription, creationDate, advCategory, status, buyPrice, numberRooms, livingSpace, mainPicUrl);
+            Advertisement newAd = new Advertisement(advertisementTitle, mainDescription, creationDate, advCategory, status, buyPrice, numberRooms, livingSpace, mainPicUrl);
             advertisementService.createAdvertisement(newAd);
-            return "/views/advertisement.xhtml?advertisement=" + advertisementId + "&faces-redirect=true";
+            advertisementId = newAd.getId();
+            return "/views/advertisement.xhtml?advertisement=" + newAd.getId() + "&faces-redirect=true";
         } catch (Exception e) {
             return "/views/fail.xhtml";
         }
