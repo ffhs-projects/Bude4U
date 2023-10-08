@@ -1,14 +1,16 @@
 package ch.ffhs.bude4u.advertisement;
 
+import jakarta.annotation.ManagedBean;
 import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Getter
 public class Advertisement {
 
-    public Advertisement(String advId, String title, String description, String date, String category, String status, double price, double rooms, int space, String mainPicUrl) {
+    public Advertisement(UUID advId, String title, String description, String date, String category, String status, double price, double rooms, int space, String mainPicUrl) {
         id = advId;
         advertisementTitle = title;
         mainDescription = description;
@@ -22,7 +24,7 @@ public class Advertisement {
         advertisementImages.add(mainPicUrl);
     }
 
-    String id;
+    UUID id;
 
     private String advertisementTitle;
 
@@ -54,7 +56,7 @@ public class Advertisement {
     // Unique-Selling-Features (like Basement, Garage, Minergy...)
     private List<String> features;
 
-    private String advertiserId;
+    private UUID advertiserId;
 
     public String getMainImage() {
         return !advertisementImages.isEmpty() ? advertisementImages.get(0) : "";

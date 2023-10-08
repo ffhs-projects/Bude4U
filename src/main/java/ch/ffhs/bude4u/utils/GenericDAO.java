@@ -2,6 +2,7 @@ package ch.ffhs.bude4u.utils;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 public interface GenericDAO<T> {
 
@@ -11,7 +12,7 @@ public interface GenericDAO<T> {
      * @param id the id to filter for
      * @return matching entity
      */
-    Optional<T> get(String id);
+    Optional<T> get(UUID id);
 
     /**
      * fetches list of all entities
@@ -41,7 +42,7 @@ public interface GenericDAO<T> {
      * @param id entity to delete
      *           {@code @TODO:} Better to delete only by id
      */
-    void delete(String id);
+    void delete(UUID id);
 
     /**
      * Requests a list of Data for with start & offset parameter for paginated views.

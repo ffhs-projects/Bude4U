@@ -19,9 +19,12 @@
                 <p:divider layout="vertical"/>
 
                 <f:facet name="options">
-                    <p:button value="Login" icon="pi pi-fw pi-sign-out" styleClass="ui-button-info" url="#{request.contextPath}/views/login.xhtml"/>
+                    <p:menubar style="background-color: transparent; border-style: none; padding: 0" >
+                        <p:menuitem label="File" icon="pi pi-fw pi-file" url="#{request.contextPath}/views/login.xhtml">
+                            Login
+                        </p:menuitem>
+                    </p:menubar>
                 </f:facet>
-
 
             </p:menubar>
         </h:form>

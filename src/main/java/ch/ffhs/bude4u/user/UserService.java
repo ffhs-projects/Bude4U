@@ -4,6 +4,7 @@ import ch.ffhs.bude4u.utils.GenericDAO;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 public class UserService {
 
@@ -13,7 +14,7 @@ public class UserService {
         userDao = new UserDAO();
     }
 
-    public Optional<User> getUserById(String userId) {
+    public Optional<User> getUserById(UUID userId) {
         return userDao.get(userId);
     }
 
@@ -21,7 +22,7 @@ public class UserService {
         return userDao.getAll();
     }
 
-    public void delete(String userId) {
+    public void delete(UUID userId) {
         userDao.delete(userId);
     }
 

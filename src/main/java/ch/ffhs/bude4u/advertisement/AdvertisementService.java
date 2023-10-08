@@ -6,6 +6,7 @@ import jakarta.inject.Named;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Named
 @RequestScoped
@@ -19,15 +20,20 @@ public class AdvertisementService {
         advertisementDao = new AdvertisementStub();
     }
 
-    public Optional<Advertisement> getAdvertisement(String advId) {
+    public Optional<Advertisement> getAdvertisement(UUID advId) {
         return advertisementDao.get(advId);
+    }
+
+    public Optional<Advertisement> getAdvertisement(String advId) {
+        UUID uuid = UUID.fromString(advId);
+        return advertisementDao.get(uuid);
     }
 
     public List<Advertisement> getAllAdvertisements() {
         return advertisementDao.getAll();
     }
 
-    public void delete(String advertisementId) {
+    public void delete(UUID advertisementId) {
         advertisementDao.delete(advertisementId);
     }
 
