@@ -19,11 +19,9 @@ import java.util.UUID;
 public class AdvertisementBean {
     @Inject
     private AdvertisementService advertisementService;
-
     private UUID advertisementId;
     private String advertisementTitle;
     private String mainDescription;
-    private String creationDate;
     private double buyPrice;
     private double numberRooms;
     private int livingSpace;
@@ -35,13 +33,11 @@ public class AdvertisementBean {
     private String city;
     private int postalCode;
     private String mainPicUrl;
-    private String status = "offen";
 
     public String createAdvertisement() {
         try {
-            Advertisement newAd = new Advertisement(advertisementTitle, mainDescription, creationDate, advCategory, status, buyPrice, numberRooms, livingSpace, mainPicUrl);
+            Advertisement newAd = new Advertisement(advertisementTitle, mainDescription, advCategory, buyPrice, numberRooms, livingSpace, mainPicUrl);
             advertisementService.createAdvertisement(newAd);
-            advertisementId = newAd.getId();
             return "/views/advertisement.xhtml?advertisement=" + newAd.getId() + "&faces-redirect=true";
         } catch (Exception e) {
             return "/views/fail.xhtml";

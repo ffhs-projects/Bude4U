@@ -3,12 +3,16 @@ package ch.ffhs.bude4u.advertisement;
 import jakarta.annotation.ManagedBean;
 import lombok.Getter;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 @Getter
 public class Advertisement {
+    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd.MM.uuuu");
+    LocalDateTime now = LocalDateTime.now();
 
     public Advertisement(UUID advId, String title, String description, String date, String category, String status, double price, double rooms, int space, String mainPicUrl) {
         id = advId;
@@ -24,16 +28,16 @@ public class Advertisement {
         advertisementImages.add(mainPicUrl);
     }
 
-    public Advertisement(String title, String description, String date, String category, String status, double price, double rooms, int space, String mainPicUrl) {
+    public Advertisement(String title, String description, String category, double price, double rooms, int space, String mainPicUrl) {
         id = UUID.randomUUID();
         advertisementTitle = title;
         mainDescription = description;
-        creationDate = date;
+        creationDate = dtf.format(now);
         buyPrice = price;
         numberRooms = rooms;
         livingSpace = space;
         advCategory = category;
-        advStatus = status;
+        advStatus = "offen";
         advertisementImages = new ArrayList<>();
         advertisementImages.add(mainPicUrl);
     }
