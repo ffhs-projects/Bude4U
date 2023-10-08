@@ -4,13 +4,14 @@ import ch.ffhs.bude4u.utils.GenericDAO;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 public class AdvertisementDAO implements GenericDAO<Advertisement> {
 
     // TODO: Add DB-Logic here (in each method)...
 
     @Override
-    public Optional<Advertisement> get(String id) {
+    public Optional<Advertisement> get(UUID id) {
         return Optional.empty();
     }
 
@@ -30,7 +31,7 @@ public class AdvertisementDAO implements GenericDAO<Advertisement> {
     }
 
     @Override
-    public void delete(String advertisementId) {
+    public void delete(UUID advertisementId) {
 
     }
 
