@@ -3,8 +3,13 @@
                 xmlns:f="jakarta.faces.core"
                 xmlns:h="jakarta.faces.html"
                 template="/WEB-INF/layouts/template.xhtml">
-    <ui:define name="pageTitle">Login</ui:define>
+    <ui:define name="createAccountLabel">Hast du noch keinen Account</ui:define>
+    <ui:define name="createAccountLink">Account erstellen</ui:define>
+    <ui:define name="emailLabel">Email</ui:define>
+    <ui:define name="passwordLabel">Passwort</ui:define>
+    <ui:define name="forgotPasswordLink">Passwort vergessen?</ui:define>
     <ui:define name="content">
         <ui:include src="/WEB-INF/layouts/forms/login.xhtml" />
     </ui:define>
+
 </ui:composition>

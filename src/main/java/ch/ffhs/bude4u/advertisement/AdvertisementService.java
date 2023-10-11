@@ -2,14 +2,17 @@ package ch.ffhs.bude4u.advertisement;
 
 import ch.ffhs.bude4u.utils.GenericDAO;
 import jakarta.enterprise.context.RequestScoped;
+import jakarta.enterprise.context.SessionScoped;
 import jakarta.inject.Named;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Named
-@RequestScoped
-public class AdvertisementService {
+@SessionScoped
+public class AdvertisementService implements Serializable {
 
     private final GenericDAO<Advertisement> advertisementDao;
 
@@ -19,15 +22,20 @@ public class AdvertisementService {
         advertisementDao = new AdvertisementStub();
     }
 
-    public Optional<Advertisement> getAdvertisement(String advId) {
+    public Optional<Advertisement> getAdvertisement(UUID advId) {
         return advertisementDao.get(advId);
+    }
+
+    public Optional<Advertisement> getAdvertisement(String advId) {
+        UUID uuid = UUID.fromString(advId);
+        return advertisementDao.get(uuid);
     }
 
     public List<Advertisement> getAllAdvertisements() {
         return advertisementDao.getAll();
     }
 
-    public void delete(String advertisementId) {
+    public void delete(UUID advertisementId) {
         advertisementDao.delete(advertisementId);
     }
 

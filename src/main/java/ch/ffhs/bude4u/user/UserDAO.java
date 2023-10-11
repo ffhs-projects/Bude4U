@@ -4,10 +4,11 @@ import ch.ffhs.bude4u.utils.GenericDAO;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 public class UserDAO implements GenericDAO<User> {
     @Override
-    public Optional<User> get(String id) {
+    public Optional<User> get(UUID id) {
         return Optional.empty();
     }
 
@@ -27,7 +28,7 @@ public class UserDAO implements GenericDAO<User> {
     }
 
     @Override
-    public void delete(String id) {
+    public void delete(UUID id) {
 
     }
 
