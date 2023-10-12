@@ -1,13 +1,8 @@
 package ch.ffhs.bude4u.advertisement;
 
-import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.context.RequestScoped;
-import jakarta.enterprise.context.SessionScoped;
 import jakarta.inject.Named;
 import jakarta.inject.Inject;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.Setter;
 import java.util.UUID;
@@ -33,10 +28,15 @@ public class AdvertisementBean {
     private String city;
     private int postalCode;
     private String mainPicUrl;
-
+    private boolean test;
+    Advertisement newAd;
     public String createAdvertisement() {
         try {
-            Advertisement newAd = new Advertisement(advertisementTitle, mainDescription, advCategory, buyPrice, numberRooms, livingSpace, mainPicUrl);
+            if(test) {
+                newAd = new Advertisement(advertisementId ,advertisementTitle, mainDescription,"01.01.2001", advCategory,"offen", buyPrice, numberRooms, livingSpace, mainPicUrl);
+            } else {
+                newAd = new Advertisement(advertisementTitle, mainDescription, advCategory, buyPrice, numberRooms, livingSpace, mainPicUrl);
+           }
             advertisementService.createAdvertisement(newAd);
             return "/views/advertisement.xhtml?advertisement=" + newAd.getId() + "&faces-redirect=true";
         } catch (Exception e) {
