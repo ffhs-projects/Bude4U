@@ -1,7 +1,6 @@
 package ch.ffhs.bude4u.advertisement;
 
 import ch.ffhs.bude4u.utils.GenericDAO;
-import jakarta.enterprise.context.RequestScoped;
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.inject.Named;
 
@@ -9,9 +8,11 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import lombok.Getter;
 
 @Named
 @SessionScoped
+@Getter
 public class AdvertisementService implements Serializable {
 
     private final GenericDAO<Advertisement> advertisementDao;
