@@ -1,12 +1,14 @@
 package ch.ffhs.bude4u.advertisement;
 
 import jakarta.enterprise.context.RequestScoped;
+import jakarta.faces.context.FacesContext;
 import jakarta.inject.Named;
 import jakarta.inject.Inject;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.UUID;
 
 @Named
@@ -48,8 +50,10 @@ public class AdvertisementBean {
     }
 
     public String updateAdvertisement() {
+        System.out.println("updateAdvertisement");
         try {
-            Advertisement advertisement = advertisementService.getAdvertisement(advertisementId).get();
+            Map<String,String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+            Advertisement advertisement = advertisementService.getAdvertisement(params.get("paramID")).get();
             advertisement.setAdvertisementTitle(advertisementTitle);
             advertisement.setMainDescription(mainDescription);
             advertisement.setBuyPrice(buyPrice);

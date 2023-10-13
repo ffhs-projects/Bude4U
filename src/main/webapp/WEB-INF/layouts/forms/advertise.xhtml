@@ -56,8 +56,10 @@
                     <p:fileUpload listener="#{fileUploadView.handleFileUpload}" mode="advanced" dragDropSupport="true"
                                   update="messages" sizeLimit="100000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" style="height: auto" class="border-2 border-dashed surface-border"/>
                 </div>
+
                 <p:growl id="messages" showDetail="true"/>
                 <ui:insert name="sendButton"/>
+
             </div>
         </h:form>
     </div>
