@@ -5,6 +5,8 @@ import jakarta.inject.Named;
 import jakarta.inject.Inject;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.ArrayList;
 import java.util.UUID;
 
 @Named
@@ -32,6 +34,7 @@ public class AdvertisementBean {
     Advertisement newAd;
     public String createAdvertisement() {
         try {
+            // Required for unit tests
             if(test) {
                 newAd = new Advertisement(advertisementId ,advertisementTitle, mainDescription,"01.01.2001", advCategory,"offen", buyPrice, numberRooms, livingSpace, mainPicUrl);
             } else {
@@ -40,7 +43,31 @@ public class AdvertisementBean {
             advertisementService.createAdvertisement(newAd);
             return "/views/advertisement.xhtml?advertisement=" + newAd.getId() + "&faces-redirect=true";
         } catch (Exception e) {
-            return "/views/fail.xhtml";
+            return "/views/advertisementFailed.xhtml";
+        }
+    }
+
+    public String updateAdvertisement() {
+        try {
+            Advertisement advertisement = advertisementService.getAdvertisement(advertisementId).get();
+            advertisement.setAdvertisementTitle(advertisementTitle);
+            advertisement.setMainDescription(mainDescription);
+            advertisement.setBuyPrice(buyPrice);
+            advertisement.setNumberRooms(numberRooms);
+            advertisement.setLivingSpace(livingSpace);
+            advertisement.setAdvCategory(advCategory);
+            advertisement.setAdvStatus(advStatus);
+            advertisement.setLandArea(landArea);
+            advertisement.setStreet(street);
+            advertisement.setCity(city);
+            advertisement.setPostalCode(postalCode);
+            advertisement.setAdvertisementImages(new ArrayList<>());
+            advertisement.getAdvertisementImages().add(mainPicUrl);
+            advertisementService.updateAdvertisement(advertisement);
+            return "/views/advertisement.xhtml?advertisement=" + advertisement.getId() + "&faces-redirect=true";
+        } catch (Exception e) {
+            return "/views/advertisementFailed.xhtml";
         }
     }
 }
+

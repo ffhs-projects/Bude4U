@@ -2,6 +2,7 @@ package ch.ffhs.bude4u.advertisement;
 
 import jakarta.annotation.ManagedBean;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -10,6 +11,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Getter
+@Setter
 public class Advertisement {
     DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd.MM.uuuu");
     LocalDateTime now = LocalDateTime.now();

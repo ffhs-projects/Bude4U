@@ -5,17 +5,16 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
                 xmlns:p="http://primefaces.org/ui">
 
-
     <ui:define name="title">
         <p:outputLabel for="advertisementTitle" value="Titel"/>
         <div class="ui-inputgroup pb-3">
-            <p:inputText id="advertisementTitle" placeholder="Titel" value="#{advertisementBean.advertisementTitle}" required="true" requiredMessage="Title is required"/>
+            <p:inputText id="advertisementTitle" placeholder="#{advertisementService.getAdvertisement(param.advertisement).get().advertisementTitle}" value="${advertisementBean.advertisementTitle}" required="true" requiredMessage="Title is required"/>
         </div>
     </ui:define>
 
     <ui:define name="numberRooms">
         <p:outputLabel for="numberRooms" value="Zimmer"/>
-        <p:selectOneMenu id="numberRooms" value="#{advertisementBean.numberRooms}" required="true" requiredMessage="Number of rooms is required">
+        <p:selectOneMenu id="numberRooms" value="#{advertisementService.getAdvertisement(param.advertisement).get().numberRooms}" required="true" requiredMessage="Number of rooms is required">
             <f:selectItem itemLabel="Bitte auswählen" itemValue=""/>
             <f:selectItem itemLabel="1" itemValue="1"/>
             <f:selectItem itemLabel="1.5" itemValue="1.5"/>
@@ -38,7 +37,7 @@
     <ui:define name="livingSpace">
         <p:outputLabel for="livingSpace" value="Wohnfläche"/>
         <div class="ui-inputgroup">
-            <p:inputNumber id="livingSpace" value="#{advertisementBean.livingSpace}" required="true" requiredMessage="Living space is required"/>
+            <p:inputNumber id="livingSpace" value="#{advertisementService.getAdvertisement(param.advertisement).get().livingSpace}" required="true" requiredMessage="Living space is required"/>
             <div class="ui-inputgroup-addon">m²</div>
         </div>
     </ui:define>
@@ -47,13 +46,13 @@
         <p:outputLabel for="mainDescription" value="Beschreibung"/>
         <div class="ui-inputgroup">
             <div class="ui-inputgroup-addon"><i class="pi pi-user"></i></div>
-            <p:inputTextarea id="mainDescription" rows="12" cols="90" placeholder="Beschreibung" value="#{advertisementBean.mainDescription}" required="true" requiredMessage="Description is required"/>
+            <p:inputTextarea id="mainDescription" rows="12" cols="90" placeholder="Beschreibung" value="#{advertisementService.getAdvertisement(param.advertisement).get().mainDescription}" required="true" requiredMessage="Description is required"/>
         </div>
     </ui:define>
 
     <ui:define name="advCategory">
         <p:outputLabel for="advCategory" value="Kategorie"/>
-        <p:selectOneMenu id="advCategory" value="#{advertisementBean.advCategory}" required="true" requiredMessage="Category is required">
+        <p:selectOneMenu id="advCategory" value="#{advertisementService.getAdvertisement(param.advertisement).get().advCategory}" required="true" requiredMessage="Category is required">
             <f:selectItem itemLabel="Beliebig" itemValue=""/>
             <f:selectItem itemLabel="Wohnung" itemValue="Wohnung"/>
             <f:selectItem itemLabel="Haus" itemValue="Haus"/>
@@ -61,24 +60,23 @@
             <f:selectItem itemLabel="Garagenplatz" itemValue="Garagenplatz"/>
             <f:selectItem itemLabel="Lager" itemValue="Lager"/>
         </p:selectOneMenu>
-
     </ui:define>
 
     <ui:define name="buyprice">
         <p:outputLabel for="buyPrice" value="Preis"/>
         <div class="ui-inputgroup">
             <div class="ui-inputgroup-addon">CHF</div>
-            <p:inputNumber id="buyPrice" value="#{advertisementBean.buyPrice}" required="true" requiredMessage="Buy price is required" />
+            <p:inputNumber id="buyPrice" value="#{advertisementService.getAdvertisement(param.advertisement).get().buyPrice}" required="true" requiredMessage="Buy price is required" />
         </div>
     </ui:define>
 
     <ui:define name="date">
         <p:outputLabel for="datumDescription" value="Datum"/>
-        <p:inputTextarea id="datumDescription" value="Heute" disabled="true"/>
+        <p:inputTextarea id="datumDescription" value="#{advertisementService.getAdvertisement(param.advertisement).get().creationDate}" disabled="true"/>
     </ui:define>
 
     <ui:define name="sendButton">
-        <p:commandButton id="submit-button" value="Submit" action="#{advertisementBean.createAdvertisement}"/>
+        <p:commandButton id="submit-button" value="Submit" action="${advertisementBean.updateAdvertisement}"/>
     </ui:define>
 
     <ui:define name="content">
