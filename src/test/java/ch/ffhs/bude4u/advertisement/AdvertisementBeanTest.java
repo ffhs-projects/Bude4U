@@ -29,7 +29,6 @@ public class AdvertisementBeanTest {
 
         // Set the properties of the AdvertisementBean
         advertisementBean.setTest(true);
-        advertisementBean.setAdvertisementId(newAdvertisementId);
         advertisementBean.setAdvertisementTitle("Test Title");
         advertisementBean.setMainDescription("Test Description");
         advertisementBean.setAdvCategory("Category");

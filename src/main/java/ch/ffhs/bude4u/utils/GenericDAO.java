@@ -18,7 +18,6 @@ public interface GenericDAO<T> {
      * fetches list of all entities
      *
      * @return list of Type <T>
-     * {@code @TODO:} Maybe add pagination?!
      */
     List<T> getAll();
 
