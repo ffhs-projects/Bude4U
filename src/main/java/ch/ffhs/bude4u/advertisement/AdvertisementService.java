@@ -16,8 +16,8 @@ public class AdvertisementService implements Serializable {
 
     public AdvertisementService() {
         // Inject advertisementDAO or Stub...
-//        advertisementDao = new AdvertisementDAO();
-        advertisementDao = new AdvertisementStub();
+        advertisementDao = new AdvertisementDAO();
+//        advertisementDao = new AdvertisementStub();
     }
 
     public Optional<Advertisement> getAdvertisement(UUID advId) {
