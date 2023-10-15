@@ -11,7 +11,6 @@ import java.util.UUID;
 @ApplicationScoped
 public class AdvertisementStub implements GenericDAO<Advertisement> {
 
-    // TODO: Add mock-data into list...
     private final List<Advertisement> mockData;
 
     public AdvertisementStub() {

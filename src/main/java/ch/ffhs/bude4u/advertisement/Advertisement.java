@@ -1,14 +1,11 @@
 package ch.ffhs.bude4u.advertisement;
 
-import ch.ffhs.bude4u.utils.StringListConverter;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
 @Getter
@@ -28,7 +25,6 @@ public class Advertisement {
     }
 
     public Advertisement(String title, String description, String date, String category, String status, double price, double rooms, int space, String mainPicUrl) {
-//        id = UUID.randomUUID();
         advertisementTitle = title;
         mainDescription = description;
         creationDate = date;
@@ -39,17 +35,14 @@ public class Advertisement {
         advStatus = status;
         advertiserId = UUID.randomUUID();
         advertisementImages = mainPicUrl;
+        // TODO: Add list for images
 //        advertisementImages = new ArrayList<>();
 //        advertisementImages.add("1");
 //        advertisementImages.add("2");
 //        advertisementImages.add(mainPicUrl);
-//        features = new ArrayList<>();
-//        features.add("1");
-//        features.add("2");
     }
 
     public Advertisement(String title, String description, String category, double price, double rooms, int space, String mainPicUrl) {
-//        id = UUID.randomUUID();
         advertisementTitle = title;
         mainDescription = description;
         creationDate = dtf.format(now);
