@@ -45,7 +45,7 @@ public class AdvertisementService implements Serializable {
         advertisementDao.update(advertisement);
     }
 
-    public List<Advertisement> getAdvertisementsFromRange(int startIndex, int length) {
-        return advertisementDao.getPaginatedItems(startIndex, length);
+    public List<Advertisement> getAdvertisementsFromRange(int pageNumber, int pageSize) {
+        return advertisementDao.getPaginatedItems(pageNumber, pageSize);
     }
 }

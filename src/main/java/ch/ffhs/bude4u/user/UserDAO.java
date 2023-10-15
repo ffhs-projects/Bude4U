@@ -33,7 +33,7 @@ public class UserDAO implements GenericDAO<User> {
     }
 
     @Override
-    public List<User> getPaginatedItems(int start, int length) {
+    public List<User> getPaginatedItems(int pageNumber, int pageSize) {
         return null;
     }
 }

@@ -4,8 +4,7 @@ import ch.ffhs.bude4u.utils.GenericDAO;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
-
-import java.util.ArrayList;
+import jakarta.persistence.Query;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -23,11 +22,6 @@ public class AdvertisementDAO implements GenericDAO<Advertisement> {
     public AdvertisementDAO(String pu) {
         this.emf = Persistence.createEntityManagerFactory(pu);
         this.entityManager = this.emf.createEntityManager();
-    }
-
-    public void createOne() {
-        var adv = new Advertisement("Haus 1", "Schön hier 1...", "01.01.2023", "Haus", "offen", 100000, 5.5, 142, "https://cdn.pixabay.com/photo/2016/11/18/17/46/house-1836070_1280.jpg");
-        create(adv);
     }
 
     @Override
@@ -72,7 +66,12 @@ public class AdvertisementDAO implements GenericDAO<Advertisement> {
     }
 
     @Override
-    public List<Advertisement> getPaginatedItems(int start, int length) {
-        return null;
+    public List<Advertisement> getPaginatedItems(int pageNumber, int pageSize) {
+        pageNumber = Math.max(pageNumber, 0);
+        pageSize = Math.max(pageSize, 1);
+        Query query = entityManager.createQuery("SELECT adv FROM Advertisement adv");
+        query.setFirstResult((pageNumber - 1) * pageSize);
+        query.setMaxResults(pageSize);
+        return query.getResultList();
     }
 }
