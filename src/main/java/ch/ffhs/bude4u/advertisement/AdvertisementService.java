@@ -1,10 +1,8 @@
 package ch.ffhs.bude4u.advertisement;
 
 import ch.ffhs.bude4u.utils.GenericDAO;
-import jakarta.enterprise.context.RequestScoped;
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.inject.Named;
-
 import java.io.Serializable;
 import java.util.List;
 import java.util.Optional;
@@ -18,7 +16,7 @@ public class AdvertisementService implements Serializable {
 
     public AdvertisementService() {
         // Inject advertisementDAO or Stub...
-        //advertisementDao = new AdvertisementDAO();
+//        advertisementDao = new AdvertisementDAO();
         advertisementDao = new AdvertisementStub();
     }
 

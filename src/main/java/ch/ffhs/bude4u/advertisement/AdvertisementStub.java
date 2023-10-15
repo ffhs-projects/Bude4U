@@ -20,7 +20,7 @@ public class AdvertisementStub implements GenericDAO<Advertisement> {
 
     @Override
     public Optional<Advertisement> get(UUID id) {
-        return mockData.stream().filter(adv -> adv.id.equals(id)).findFirst();
+        return mockData.stream().filter(adv -> adv.getId().equals(id)).findFirst();
     }
 
     @Override
@@ -35,13 +35,13 @@ public class AdvertisementStub implements GenericDAO<Advertisement> {
 
     @Override
     public void update(Advertisement advertisement) {
-        var successfulRemoval = mockData.removeIf(adv -> adv.id.equals(advertisement.id));
+        var successfulRemoval = mockData.removeIf(adv -> adv.getId().equals(advertisement.getId()));
         if (successfulRemoval) mockData.add(advertisement);
     }
 
     @Override
     public void delete(UUID advertisementId) {
-        mockData.removeIf(adv -> adv.id.equals(advertisementId));
+        mockData.removeIf(adv -> adv.getId().equals(advertisementId));
     }
 
     @Override
