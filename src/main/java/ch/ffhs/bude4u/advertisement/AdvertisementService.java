@@ -3,7 +3,6 @@ package ch.ffhs.bude4u.advertisement;
 import ch.ffhs.bude4u.utils.GenericDAO;
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.inject.Named;
-
 import java.io.Serializable;
 import java.util.List;
 import java.util.Optional;
@@ -19,8 +18,8 @@ public class AdvertisementService implements Serializable {
 
     public AdvertisementService() {
         // Inject advertisementDAO or Stub...
-        //advertisementDao = new AdvertisementDAO();
-        advertisementDao = new AdvertisementStub();
+        advertisementDao = new AdvertisementDAO();
+//        advertisementDao = new AdvertisementStub();
     }
 
     public Optional<Advertisement> getAdvertisement(UUID advId) {
@@ -48,7 +47,7 @@ public class AdvertisementService implements Serializable {
         advertisementDao.update(advertisement);
     }
 
-    public List<Advertisement> getAdvertisementsFromRange(int startIndex, int length) {
-        return advertisementDao.getPaginatedItems(startIndex, length);
+    public List<Advertisement> getAdvertisementsFromRange(int pageNumber, int pageSize) {
+        return advertisementDao.getPaginatedItems(pageNumber, pageSize);
     }
 }
