@@ -7,9 +7,11 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import lombok.Getter;
 
 @Named
 @SessionScoped
+@Getter
 public class AdvertisementService implements Serializable {
 
     private final GenericDAO<Advertisement> advertisementDao;

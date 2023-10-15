@@ -1,14 +1,18 @@
 package ch.ffhs.bude4u.user;
 
 import ch.ffhs.bude4u.utils.GenericDAO;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+@Getter
+@Setter
 public class UserService {
 
-    private final GenericDAO<User> userDao;
+    GenericDAO userDao;
 
     public UserService() {
         userDao = new UserDAO();
