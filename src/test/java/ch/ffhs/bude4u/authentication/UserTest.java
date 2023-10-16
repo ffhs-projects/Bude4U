@@ -1,4 +1,4 @@
-package ch.ffhs.bude4u.user;
+package ch.ffhs.bude4u.authentication;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

@@ -1,4 +1,4 @@
-package ch.ffhs.bude4u.user;
+package ch.ffhs.bude4u.authentication;
 
 import ch.ffhs.bude4u.utils.GenericDAO;
 import lombok.Getter;

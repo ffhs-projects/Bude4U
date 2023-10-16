@@ -1,4 +1,4 @@
-package ch.ffhs.bude4u.user;
+package ch.ffhs.bude4u.authentication;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
