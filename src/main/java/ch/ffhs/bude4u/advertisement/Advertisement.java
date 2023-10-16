@@ -6,6 +6,8 @@ import lombok.Setter;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Getter
@@ -34,12 +36,12 @@ public class Advertisement {
         advCategory = category;
         advStatus = status;
         advertiserId = UUID.randomUUID();
-        advertisementImages = mainPicUrl;
+//        advertisementImages = mainPicUrl;
         // TODO: Add list for images
-//        advertisementImages = new ArrayList<>();
+        advertisementImages = new ArrayList<>();
 //        advertisementImages.add("1");
 //        advertisementImages.add("2");
-//        advertisementImages.add(mainPicUrl);
+        advertisementImages.add(mainPicUrl);
     }
 
     public Advertisement(String title, String description, String category, double price, double rooms, int space, String mainPicUrl) {
@@ -52,12 +54,12 @@ public class Advertisement {
         advCategory = category;
         advStatus = "offen";
         advertiserId = UUID.randomUUID();
-        advertisementImages = mainPicUrl;
+//        advertisementImages = mainPicUrl;
 
-//        advertisementImages = new ArrayList<>();
+        advertisementImages = new ArrayList<>();
 //        advertisementImages.add("1");
 //        advertisementImages.add("2");
-//        advertisementImages.add(mainPicUrl);
+        advertisementImages.add(mainPicUrl);
 //        features = new ArrayList<>();
 //        features.add("1");
 //        features.add("2");
@@ -116,16 +118,17 @@ public class Advertisement {
     @Column(name = "postalCode")
     private Integer postalCode;
 
-    @Basic
-    @Column(name = "advertisementImages")
-    private String advertisementImages;
+    @ElementCollection(targetClass = String.class, fetch = FetchType.EAGER)
+    @CollectionTable(name = "bude_images", joinColumns = @JoinColumn(name = "id"))
+    @Column(name = "advertisementImage")
+    private List<String> advertisementImages;
 
     @Basic
     @Column(name = "advertiserId")
     private UUID advertiserId;
 
     public String getMainImage() {
-        return advertisementImages;
+        return advertisementImages.isEmpty() ? "" : advertisementImages.get(0);
     }
 
 }
