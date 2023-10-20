@@ -1,14 +1,15 @@
 package ch.ffhs.bude4u.authentication;
 
 import jakarta.persistence.*;
+import lombok.Getter;
 
 import java.io.Serializable;
 import java.util.UUID;
 
 @Entity
 @Table(name="user")
+@Getter
 public class User implements Serializable {
-
 
     @Id
     @Column(name = "user_id", nullable = false)
@@ -20,24 +21,13 @@ public class User implements Serializable {
     @Column(name = "security_role")
     private String securityRole;
 
-    public UUID getUserId() {
-        return userId;
-    }
-
     public void setUserId(UUID userId) {
         this.userId = userId;
     }
 
-    public String getUsername() {
-        return username;
-    }
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public String getSecurityRole() {
-        return securityRole;
     }
 
     public void setSecurityRole(String securityRole) {

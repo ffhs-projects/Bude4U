@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -15,7 +16,7 @@ import java.util.UUID;
 @Entity
 @Table(name = "advertisement")
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public class Advertisement {
+public class Advertisement implements Serializable {
     @Transient
     DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd.MM.uuuu");
 
