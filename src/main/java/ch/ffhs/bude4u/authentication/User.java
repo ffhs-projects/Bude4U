@@ -39,9 +39,7 @@ public class User implements Serializable {
     }
 
     private String CreatePBKDF2Hash(String password) {
-        SecureRandom random = new SecureRandom();
-        byte[] salt = new byte[16];
-        random.nextBytes(salt);
+        byte[] salt = "12345678".getBytes();
 
         try {
             KeySpec spec = new PBEKeySpec(password.toCharArray(), salt, 65536, 128);
