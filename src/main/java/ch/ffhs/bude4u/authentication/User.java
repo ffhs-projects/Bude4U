@@ -2,8 +2,14 @@ package ch.ffhs.bude4u.authentication;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.Setter;
 
+import javax.crypto.SecretKeyFactory;
+import javax.crypto.spec.PBEKeySpec;
 import java.io.Serializable;
+import java.security.SecureRandom;
+import java.security.spec.KeySpec;
+import java.util.Arrays;
 import java.util.UUID;
 
 @Entity
@@ -13,25 +19,45 @@ public class User implements Serializable {
 
     @Id
     @Column(name = "user_id", nullable = false)
+    @Setter
     private UUID userId;
 
     @Column(name = "username")
+    @Setter
     private String username;
 
     @Column(name = "security_role")
+    @Setter
     private String securityRole;
 
-    public void setUserId(UUID userId) {
-        this.userId = userId;
+    @Column(name = "password")
+    private String password;
+
+    public void setPassword(String password) {
+        this.password = CreatePBKDF2Hash(password);
+        //this.password = password;
     }
 
+    private String CreatePBKDF2Hash(String password) {
+        SecureRandom random = new SecureRandom();
+        byte[] salt = new byte[16];
+        random.nextBytes(salt);
 
-    public void setUsername(String username) {
-        this.username = username;
+        try {
+            KeySpec spec = new PBEKeySpec(password.toCharArray(), salt, 65536, 128);
+            SecretKeyFactory factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
+            byte[] hash = factory.generateSecret(spec).getEncoded();
+            return Arrays.toString(hash);
+        }
+        catch (Exception ignored) {
+            // TODO: what happens if pw could not be encrypted?
+        }
+        throw new IllegalArgumentException();
     }
 
-    public void setSecurityRole(String securityRole) {
-        this.securityRole = securityRole;
+    public boolean CheckPassword(String password) {
+        String hashInsertedPassword = CreatePBKDF2Hash(password);
+        return hashInsertedPassword.equals(getPassword());
     }
 
     @Override
