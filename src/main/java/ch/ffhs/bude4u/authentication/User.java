@@ -10,6 +10,7 @@ import java.io.Serializable;
 import java.security.SecureRandom;
 import java.security.spec.KeySpec;
 import java.util.Arrays;
+import java.util.Base64;
 import java.util.UUID;
 
 @Entity
@@ -45,7 +46,7 @@ public class User implements Serializable {
             KeySpec spec = new PBEKeySpec(password.toCharArray(), salt, 65536, 128);
             SecretKeyFactory factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
             byte[] hash = factory.generateSecret(spec).getEncoded();
-            return Arrays.toString(hash);
+            return Base64.getEncoder().encodeToString(hash);
         }
         catch (Exception ignored) {
             // TODO: what happens if pw could not be encrypted?
