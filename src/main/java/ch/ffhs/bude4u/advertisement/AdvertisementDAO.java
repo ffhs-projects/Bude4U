@@ -46,7 +46,7 @@ public class AdvertisementDAO implements GenericDAO<Advertisement> {
         Optional<Advertisement> advToUpdate = get(advertisement.getId());
         if (advToUpdate.isPresent()) {
             entityManager.getTransaction().begin();
-            entityManager.persist(advertisement);
+            entityManager.merge(advertisement);
             // TODO: maybe better solution: check each property that can be overwritten...
             // advToUpdate.setProperty1(advertisement.getProperty1());
             // advToUpdate.setProperty2(advertisement.getProperty2());
