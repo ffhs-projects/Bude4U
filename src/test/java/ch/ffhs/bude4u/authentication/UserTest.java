@@ -2,6 +2,9 @@ package ch.ffhs.bude4u.authentication;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.util.UUID;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
@@ -16,22 +19,20 @@ public class UserTest {
 
     @Test
     public void testDefaultConstructor() {
-        assertNull(user.getId());
-        assertNull(user.getUserRole());
-        assertNull(user.getFirstName());
-        assertNull(user.getLastName());
+        assertNull(user.getUserId());
+        assertNull(user.getSecurityRole());
+        assertNull(user.getUsername());
     }
 
     @Test
     public void testSetterAndGetters() {
-        user.setId("123");
-        user.setUserRole(Userroles.ADMIN);
-        user.setFirstName("John");
-        user.setLastName("Doe");
+        UUID newId = UUID.randomUUID();
+        user.setUserId(newId);
+        user.setSecurityRole("admin");
+        user.setUsername("John Doe");
 
-        assertEquals("123", user.getId());
-        assertEquals(Userroles.ADMIN, user.getUserRole());
-        assertEquals("John", user.getFirstName());
-        assertEquals("Doe", user.getLastName());
+        assertEquals(newId, user.getUserId());
+        assertEquals("admin", user.getSecurityRole());
+        assertEquals("John Doe", user.getUsername());
     }
 }

@@ -30,14 +30,14 @@ public class UserServiceTest {
     public void testGetUserById() {
         UUID userId = UUID.randomUUID();
         User user = new User();
-        user.setId(userId.toString());
+        user.setUserId(userId);
 
         when(userDao.get(userId)).thenReturn(Optional.of(user));
 
         Optional<User> retrievedUser = userService.getUserById(userId);
 
         assertTrue(retrievedUser.isPresent());
-        assertEquals(userId.toString(), retrievedUser.get().getId());
+        assertEquals(userId.toString(), retrievedUser.get().getUserId());
     }
 
     @Test
