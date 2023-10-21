@@ -14,7 +14,7 @@ import java.io.Serializable;
 @Stateless
 public class AuthenticationBean implements Serializable {
 
-    @PersistenceContext(unitName = "JakartaEERecipes_PU")
+    //@PersistenceContext(unitName = "JakartaEERecipes_PU")
     private EntityManager em;
 
     private boolean authenticated = false;
