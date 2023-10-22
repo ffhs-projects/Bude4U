@@ -4,33 +4,71 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
     <div class="container">
         <h:form id="user-form">
-            <ui:insert name="validation"/>
+
             <div class="surface-card p-4 shadow-2 border-round">
                 <div class="grid ui-fluid">
-                    <h:messages />
+
                     <div class="surface-card p-4 ">
                         <div class="grid ui-fluid">
                             <div class="col-12 md:col-12">
-                                <ui:insert name="title" id="title"/>
+                                <p:outputLabel for="advertisementTitle" value="Titel"/>
+                                <div class="ui-inputgroup pb-3">
+                                    <p:inputText id="advertisementTitle" placeholder="Titel" value="${advertisementBean.advertisementTitle}" required="true" requiredMessage="Title is required"/>
+                                </div>
                             </div>
 
                             <div class="col-12 md:col-6">
-                                <ui:insert name="buyprice"/>
+                                <p:outputLabel for="buyPrice" value="Preis"/>
+                                <div class="ui-inputgroup">
+                                    <div class="ui-inputgroup-addon">CHF</div>
+                                    <p:inputNumber id="buyPrice" value="${advertisementBean.buyPrice}" required="true" requiredMessage="Buy price is required" />
+                                </div>
                             </div>
 
                             <div class="col-12 md:col-6">
-                                <ui:insert name="numberRooms"/>
+                                <p:outputLabel for="numberRooms" value="Zimmer"/>
+                                <p:selectOneMenu id="numberRooms" value="${advertisementBean.numberRooms}" required="true" requiredMessage="Number of rooms is required">
+                                    <f:selectItem itemLabel="Bitte auswählen" itemValue=""/>
+                                    <f:selectItem itemLabel="1" itemValue="1"/>
+                                    <f:selectItem itemLabel="1.5" itemValue="1.5"/>
+                                    <f:selectItem itemLabel="2" itemValue="2"/>
+                                    <f:selectItem itemLabel="2.5" itemValue="2.5"/>
+                                    <f:selectItem itemLabel="3" itemValue="3"/>
+                                    <f:selectItem itemLabel="3.5" itemValue="3.5"/>
+                                    <f:selectItem itemLabel="4" itemValue="4"/>
+                                    <f:selectItem itemLabel="4.5" itemValue="4.5"/>
+                                    <f:selectItem itemLabel="5" itemValue="5"/>
+                                    <f:selectItem itemLabel="5.5" itemValue="5.5"/>
+                                    <f:selectItem itemLabel="6" itemValue="6"/>
+                                    <f:selectItem itemLabel="6.5" itemValue="6.5"/>
+                                    <f:selectItem itemLabel="7" itemValue="7"/>
+                                    <f:selectItem itemLabel="7.5" itemValue="7.5"/>
+                                    <f:selectItem itemLabel="8" itemValue="8"/>
+                                </p:selectOneMenu>
                             </div>
 
                             <div class="col-12 md:col-6">
-                                <ui:insert name="livingSpace"/>
+                                <p:outputLabel for="livingSpace" value="Wohnfläche"/>
+                                <div class="ui-inputgroup">
+                                    <p:inputNumber id="livingSpace" value="${advertisementBean.livingSpace}" required="true" requiredMessage="Living space is required"/>
+                                    <div class="ui-inputgroup-addon">m²</div>
+                                </div>
                             </div>
 
                             <div class="col-12 md:col-6">
-                                <ui:insert name="advCategory"/>
+                                <p:outputLabel for="advCategory" value="Kategorie"/>
+                                <p:selectOneMenu id="advCategory" value="${advertisementBean.advCategory}" required="true" requiredMessage="Category is required">
+                                    <f:selectItem itemLabel="Beliebig" itemValue=""/>
+                                    <f:selectItem itemLabel="Wohnung" itemValue="Wohnung"/>
+                                    <f:selectItem itemLabel="Haus" itemValue="Haus"/>
+                                    <f:selectItem itemLabel="Hobbyraum" itemValue="Hobbyraum"/>
+                                    <f:selectItem itemLabel="Garagenplatz" itemValue="Garagenplatz"/>
+                                    <f:selectItem itemLabel="Lager" itemValue="Lager"/>
+                                </p:selectOneMenu>
                             </div>
                         </div>
                     </div>
@@ -38,12 +76,11 @@
                     <div class="surface-card p-4 ">
                         <div class="grid ui-fluid">
                             <div class="col-12 md:col-12">
-                                <ui:insert name="date"/>
-                            </div>
-                        </div>
-                        <div class="grid ui-fluid">
-                            <div class="col-12 md:col-12">
-                                <ui:insert name="description"/>
+                                <p:outputLabel for="mainDescription" value="Beschreibung"/>
+                                <div class="ui-inputgroup">
+                                    <div class="ui-inputgroup-addon"><i class="pi pi-user"></i></div>
+                                    <p:inputTextarea id="mainDescription" rows="12" cols="90" placeholder="Beschreibung" value="${advertisementBean.mainDescription}" required="true" requiredMessage="Description is required"/>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -55,11 +92,10 @@
                     <p:fileUpload listener="#{fileUploadView.handleFileUpload}" mode="advanced" dragDropSupport="true"
                                   update="messages" sizeLimit="100000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" style="height: auto" class="border-2 border-dashed surface-border"/>
                 </div>
+
                 <p:growl id="messages" showDetail="true"/>
+                <p:commandButton id="submit-button" value="Submit" action="${advertisementBean.createAdvertisement}"/>
             </div>
         </h:form>
-        <div class="surface-card p-4 shadow-2 border-round">
-                <ui:insert name="sendButton"/>
-        </div>
     </div>
 </html>

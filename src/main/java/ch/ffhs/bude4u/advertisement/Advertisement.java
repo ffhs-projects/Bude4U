@@ -1,9 +1,6 @@
 package ch.ffhs.bude4u.advertisement;
 
-import jakarta.annotation.ManagedBean;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.*;
-
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,13 +10,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-@Entity
 @Getter
 @Setter
 @Entity
 @Table(name = "advertisement")
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-
 public class Advertisement {
     @Transient
     DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd.MM.uuuu");
@@ -28,11 +23,10 @@ public class Advertisement {
     LocalDateTime now = LocalDateTime.now();
 
     public Advertisement() {
-			advertiserId = UUID.randomUUID();
+        advertiserId = UUID.randomUUID();
     }
 
-    public Advertisement(UUID advId, String title, String description, String date, String category, String status, double price, double rooms, int space, String mainPicUrl) {
-        advertiserId = advId;
+    public Advertisement(String title, String description, String date, String category, String status, double price, double rooms, int space, String mainPicUrl) {
         advertisementTitle = title;
         mainDescription = description;
         creationDate = date;
@@ -96,14 +90,12 @@ public class Advertisement {
     @Column(name = "numberRooms")
     private Double numberRooms;
 
-
     @Basic
     @Column(name = "livingSpace")
     private Integer livingSpace;
 
     @Basic
     @Column(name = "advCategory")
-
     private String advCategory;
 
     @Basic
