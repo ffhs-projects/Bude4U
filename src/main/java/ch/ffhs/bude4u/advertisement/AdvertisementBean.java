@@ -57,7 +57,6 @@ public class AdvertisementBean {
     }
 
     public String updateAdvertisement() {
-        Advertisement updateAd;
         try {
             Map<String,String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
             UUID adId = advertisementService.getAdvertisement(params.get("advertisement")).get().id;
@@ -74,7 +73,8 @@ public class AdvertisementBean {
             advertisement.setCity(advertisement.getCity());
             advertisement.setPostalCode(advertisement.getPostalCode());
             advertisement.setAdvertisementImages(new ArrayList<>());
-            advertisement.getAdvertisementImages().add(advertisement.getAdvertisementImages().get(0));
+            //Todo: add all images
+            /*advertisement.getAdvertisementImages().add(advertisement.getMainImage());*/
             advertisementService.updateAdvertisement(advertisement);
             return "/views/advertisement.xhtml?advertisement=" + advertisement.getId() + "&faces-redirect=true";
         } catch (Exception e) {
