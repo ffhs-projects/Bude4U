@@ -16,7 +16,6 @@ import java.util.UUID;
 @Entity
 @Getter
 @Setter
-@Entity
 @Table(name = "advertisement")
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 
@@ -31,8 +30,7 @@ public class Advertisement {
 			advertiserId = UUID.randomUUID();
     }
 
-    public Advertisement(UUID advId, String title, String description, String date, String category, String status, double price, double rooms, int space, String mainPicUrl) {
-        advertiserId = advId;
+    public Advertisement(String title, String description, String date, String category, String status, double price, double rooms, int space, String mainPicUrl) {
         advertisementTitle = title;
         mainDescription = description;
         creationDate = date;

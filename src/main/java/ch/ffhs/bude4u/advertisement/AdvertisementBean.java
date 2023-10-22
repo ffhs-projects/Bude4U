@@ -45,7 +45,7 @@ public class AdvertisementBean {
         try {
             // Required for unit tests
             if(test) {
-                newAd = new Advertisement(advertisementId ,advertisementTitle, mainDescription,"01.01.2001", advCategory,"offen", buyPrice, numberRooms, livingSpace, mainPicUrl);
+                newAd = new Advertisement(advertisementTitle, mainDescription,"01.01.2001", advCategory,"offen", buyPrice, numberRooms, livingSpace, mainPicUrl);
             } else {
                 newAd = new Advertisement(advertisementTitle, mainDescription, advCategory, buyPrice, numberRooms, livingSpace, mainPicUrl);
            }
@@ -59,7 +59,7 @@ public class AdvertisementBean {
     public String updateAdvertisement() {
         try {
             Map<String,String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
-            UUID adId = advertisementService.getAdvertisement(params.get("advertisement")).get().id;
+            UUID adId = advertisementService.getAdvertisement(params.get("advertisement")).get().getId();
             Advertisement advertisement = advertisementService.getAdvertisement(adId.toString()).get();
             advertisement.setAdvertisementTitle(advertisement.getAdvertisementTitle());
             advertisement.setMainDescription(advertisement.getMainDescription());
