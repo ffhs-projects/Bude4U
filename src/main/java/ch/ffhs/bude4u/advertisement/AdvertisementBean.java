@@ -1,6 +1,7 @@
 package ch.ffhs.bude4u.advertisement;
 
 import jakarta.enterprise.context.RequestScoped;
+import jakarta.faces.context.FacesContext;
 import jakarta.inject.Named;
 import jakarta.inject.Inject;
 import lombok.Getter;

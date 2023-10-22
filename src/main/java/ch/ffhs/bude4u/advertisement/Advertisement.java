@@ -12,6 +12,7 @@ import java.util.UUID;
 
 @Getter
 @Setter
+@Entity
 @Table(name = "advertisement")
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Advertisement {
