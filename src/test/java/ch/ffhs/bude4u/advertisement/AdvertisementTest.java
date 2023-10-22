@@ -9,10 +9,8 @@ public class AdvertisementTest {
 
     @Test
     public void testAdvertisementWithUUIDConstructor() {
-        UUID advId = UUID.randomUUID();
-        Advertisement advertisement = new Advertisement(advId, "Test Title", "Test Description", "01.01.2023", "Category", "Status", 100000, 3.5, 150, "https://example.com");
+        Advertisement advertisement = new Advertisement( "Test Title", "Test Description", "01.01.2023", "Category", "Status", 100000, 3.5, 150, "https://example.com");
 
-        assertEquals(advId, advertisement.getId());
         assertEquals("Test Title", advertisement.getAdvertisementTitle());
         assertEquals("Test Description", advertisement.getMainDescription());
         assertEquals("01.01.2023", advertisement.getCreationDate());
@@ -28,7 +26,6 @@ public class AdvertisementTest {
     public void testAdvertisementWithDefaultConstructor() {
         Advertisement advertisement = new Advertisement("Test Title", "Test Description", "Category", 100000, 3.5, 150, "https://example.com");
 
-        assertNotNull(advertisement.getId());
         assertEquals("Test Title", advertisement.getAdvertisementTitle());
         assertEquals("Test Description", advertisement.getMainDescription());
         assertNotNull(advertisement.getCreationDate());

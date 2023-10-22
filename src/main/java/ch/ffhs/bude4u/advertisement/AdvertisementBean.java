@@ -12,9 +12,11 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
+
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.UUID;
+
 
 @Named
 @RequestScoped
@@ -23,7 +25,6 @@ import java.util.UUID;
 public class AdvertisementBean {
     @Inject
     private AdvertisementService advertisementService;
-    private UUID advertisementId;
     private String advertisementTitle;
     private String mainDescription;
     private double buyPrice;
@@ -39,16 +40,17 @@ public class AdvertisementBean {
     private int postalCode;
     private String mainPicUrl;
     private boolean test;
+	  Advertisement newAd;
 
     public String createAdvertisement() {
-        Advertisement newAd;
+
         try {
             // Required for unit tests
             if(test) {
                 newAd = new Advertisement(advertisementId ,advertisementTitle, mainDescription,"01.01.2001", advCategory,"offen", buyPrice, numberRooms, livingSpace, mainPicUrl);
             } else {
                 newAd = new Advertisement(advertisementTitle, mainDescription, advCategory, buyPrice, numberRooms, livingSpace, mainPicUrl);
-           }
+            }
             advertisementService.createAdvertisement(newAd);
             return "/views/advertisement.xhtml?advertisement=" + newAd.getId() + "&faces-redirect=true";
         } catch (Exception e) {
