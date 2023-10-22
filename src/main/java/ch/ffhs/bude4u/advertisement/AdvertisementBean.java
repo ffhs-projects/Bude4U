@@ -39,9 +39,9 @@ public class AdvertisementBean {
     private int postalCode;
     private String mainPicUrl;
     private boolean test;
-
+    Advertisement newAd;
     public String createAdvertisement() {
-        Advertisement newAd;
+
         try {
             // Required for unit tests
             if(test) {
@@ -61,26 +61,22 @@ public class AdvertisementBean {
         try {
             Map<String,String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
             UUID adId = advertisementService.getAdvertisement(params.get("advertisement")).get().id;
-
-
-            updateAd = new Advertisement(adId ,advertisementTitle, mainDescription,creationDate, advCategory,advStatus, buyPrice, numberRooms, livingSpace, mainPicUrl);
-
-
-/*            advertisement.setAdvertisementTitle(advertisementTitle == null ? advertisement.getAdvertisementTitle() : advertisementTitle);
-            advertisement.setMainDescription(mainDescription == null ? advertisement.getMainDescription() : mainDescription);
-            advertisement.setBuyPrice(buyPrice == 0 ? advertisement.getBuyPrice() : buyPrice);
-            advertisement.setNumberRooms(numberRooms == 0 ? advertisement.getNumberRooms() : numberRooms);
-            advertisement.setLivingSpace(livingSpace == 0 ? advertisement.getLivingSpace() : livingSpace);
-            advertisement.setAdvCategory(advCategory == null ? advertisement.getAdvCategory() : advCategory);
-            advertisement.setAdvStatus(advStatus == null ? advertisement.getAdvStatus() : advStatus);
-            advertisement.setLandArea(landArea == 0 ? advertisement.getLandArea() : landArea);
-            advertisement.setStreet(street == null ? advertisement.getStreet() : street);
-            advertisement.setCity(city == null ? advertisement.getCity() : city);
-            advertisement.setPostalCode(postalCode == 0 ? advertisement.getPostalCode() : postalCode);
+            Advertisement advertisement = advertisementService.getAdvertisement(adId.toString()).get();
+            advertisement.setAdvertisementTitle(advertisement.getAdvertisementTitle());
+            advertisement.setMainDescription(advertisement.getMainDescription());
+            advertisement.setBuyPrice(advertisement.getBuyPrice());
+            advertisement.setNumberRooms(advertisement.getNumberRooms());
+            advertisement.setLivingSpace(advertisement.getLivingSpace());
+            advertisement.setAdvCategory(advertisement.getAdvCategory());
+            advertisement.setAdvStatus(advertisement.getAdvStatus());
+            advertisement.setLandArea(advertisement.getLandArea());
+            advertisement.setStreet(advertisement.getStreet());
+            advertisement.setCity(advertisement.getCity());
+            advertisement.setPostalCode(advertisement.getPostalCode());
             advertisement.setAdvertisementImages(new ArrayList<>());
-            advertisement.getAdvertisementImages().add(mainPicUrl);*/
-            advertisementService.updateAdvertisement(updateAd);
-            return "/views/advertisement.xhtml?advertisement=" + updateAd.getId() + "&faces-redirect=true";
+            advertisement.getAdvertisementImages().add(advertisement.getAdvertisementImages().get(0));
+            advertisementService.updateAdvertisement(advertisement);
+            return "/views/advertisement.xhtml?advertisement=" + advertisement.getId() + "&faces-redirect=true";
         } catch (Exception e) {
             return "/views/advertisementFailed.xhtml";
         }
