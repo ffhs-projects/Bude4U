@@ -18,7 +18,6 @@ public interface GenericDAO<T> {
      * fetches list of all entities
      *
      * @return list of Type <T>
-     * {@code @TODO:} Maybe add pagination?!
      */
     List<T> getAll();
 
@@ -45,12 +44,12 @@ public interface GenericDAO<T> {
     void delete(UUID id);
 
     /**
-     * Requests a list of Data for with start & offset parameter for paginated views.
+     * Requests a list of Data for with pageNumber & offset parameter for paginated views.
      *
-     * @param start  start of first entry (included)
-     * @param length amount of values to return
-     * @return returns 0 to length entries.
+     * @param pageNumber  pageNumber of first page (included)
+     * @param pageSize amount of values to return
+     * @return returns 0 to pageSize entries.
      */
-    List<T> getPaginatedItems(int start, int length);
+    List<T> getPaginatedItems(int pageNumber, int pageSize);
 
 }
