@@ -1,20 +1,14 @@
 package ch.ffhs.bude4u.advertisement;
 
-import jakarta.annotation.ManagedBean;
 import jakarta.enterprise.context.RequestScoped;
-import jakarta.faces.context.FacesContext;
 import jakarta.inject.Named;
 import jakarta.inject.Inject;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
-
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.UUID;
+
 
 @Named
 @RequestScoped
@@ -29,7 +23,6 @@ public class AdvertisementBean {
     private double buyPrice;
     private double numberRooms;
     private int livingSpace;
-    private String creationDate;
     // TODO: Wechsel auf Enum für Filter
     private String advCategory;
     private String advStatus;
@@ -40,8 +33,8 @@ public class AdvertisementBean {
     private String mainPicUrl;
     private boolean test;
     Advertisement newAd;
-    public String createAdvertisement() {
 
+    public String createAdvertisement() {
         try {
             // Required for unit tests
             if(test) {
@@ -52,6 +45,7 @@ public class AdvertisementBean {
             advertisementService.createAdvertisement(newAd);
             return "/views/advertisement.xhtml?advertisement=" + newAd.getId() + "&faces-redirect=true";
         } catch (Exception e) {
+
             return "/views/advertisementFailed.xhtml";
         }
     }
@@ -99,4 +93,3 @@ public class AdvertisementBean {
         }
     }
 }
-
