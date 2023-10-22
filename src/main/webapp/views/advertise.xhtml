@@ -5,11 +5,10 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
                 xmlns:p="http://primefaces.org/ui">
 
-
     <ui:define name="title">
         <p:outputLabel for="advertisementTitle" value="Titel"/>
         <div class="ui-inputgroup pb-3">
-            <p:inputText id="advertisementTitle" placeholder="Titel" value="#{advertisementBean.advertisementTitle}" required="true" requiredMessage="Title is required"/>
+            <p:inputText id="advertisementTitle" placeholder="Titel" value="#{advertisementBean.advertisementTitle}" required="true" requiredMessage="Title is required" />
         </div>
     </ui:define>
 
@@ -47,8 +46,9 @@
         <p:outputLabel for="mainDescription" value="Beschreibung"/>
         <div class="ui-inputgroup">
             <div class="ui-inputgroup-addon"><i class="pi pi-user"></i></div>
-            <p:inputTextarea id="mainDescription" rows="12" cols="90" placeholder="Beschreibung" value="#{advertisementBean.mainDescription}" required="true" requiredMessage="Description is required"/>
+            <p:inputTextarea id="mainDescription" rows="12" cols="90" placeholder="Beschreibung" value="#{advertisementBean.mainDescription}" required="true" requiredMessage="Beschreibung darf nicht leer sein"/>
         </div>
+        <h:message id="mainDescriptionError" for="mainDescription" errorStyle="color:red"/>
     </ui:define>
 
     <ui:define name="advCategory">
@@ -84,4 +84,5 @@
     <ui:define name="content">
         <ui:include src="/WEB-INF/layouts/forms/advertise.xhtml" />
     </ui:define>
+
 </ui:composition>

@@ -4,6 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
+      xmlns:h="jakarta.faces.html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <div class="surface-card p-4 shadow-2 border-round">
         <div class="grid ui-fluid">
@@ -48,15 +49,11 @@
                 <div class="grid ui-fluid">
                     <div class="col-12 md:col-12">
                         <div class="col-12 md:col-12">
-                            <p:menubar style="background-color: white; border-style: none">
-                                <p:menuitem style="background-color: lightblue;" label="Inserat" icon="pi pi-fw pi-file" url="#{request.contextPath}/views/advertisementEdit.xhtml">
-                                    <f:param name="advertisement" value="#{advertisementService.getAdvertisement(param.advertisement).get().id}"/>
-                                    Editieren
-                                </p:menuitem>
-                            </p:menubar>
+                            <ui:insert name="editButton"/>
                         </div>
-
-                        <p:commandButton type="button" value="Löschen" icon="pi pi-user" styleClass="ui-button-raised ui-button-danger"/>
+                        <div class="col-12 md:col-12">
+                            <ui:insert name="deleteButton"/>
+                        </div>
                     </div>
                 </div>
             </div>
