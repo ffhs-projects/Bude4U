@@ -1,13 +1,18 @@
 package ch.ffhs.bude4u.authentication;
 
 import jakarta.ejb.EJB;
+import jakarta.enterprise.context.RequestScoped;
 import jakarta.faces.context.ExternalContext;
 import jakarta.faces.context.FacesContext;
+import jakarta.faces.view.ViewScoped;
+import jakarta.inject.Named;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
 import java.io.Serializable;
 
+@RequestScoped
+@Named
 public class AuthenticationController implements Serializable {
 
     @EJB
