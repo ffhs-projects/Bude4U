@@ -79,6 +79,8 @@ public class AuthenticationController implements Serializable {
     }
 
     public String login() {
+        String userNameInput = getUsername();
+        String passwordInput = getPassword();
         authenticationFacade.setUser(getUser());
         boolean authResult = authenticationFacade.login();
 
