@@ -42,7 +42,7 @@ public class AdvertisementServiceTest {
 
     @Test
     public void testGetAllAdvertisements() {
-        List<Advertisement> allAdvertisements = advertisementService.getAllAdvertisements();
+        Optional<List<Advertisement>> allAdvertisements = advertisementService.getAllAdvertisements();
         assertNotNull(allAdvertisements);
         assertFalse(allAdvertisements.isEmpty());
     }
@@ -51,8 +51,8 @@ public class AdvertisementServiceTest {
     public void testCreateAdvertisement() {
         Advertisement newAdvertisement = new Advertisement("New House", "Description", "01.01.2023", "Haus", "offen", 100000, 5.5, 142, "https://example.com");
         advertisementService.createAdvertisement(newAdvertisement);
-        List<Advertisement> allAdvertisements = advertisementService.getAllAdvertisements();
-        assertTrue(allAdvertisements.contains(newAdvertisement));
+        Optional<List<Advertisement>> allAdvertisements = advertisementService.getAllAdvertisements();
+        assertTrue(allAdvertisements.stream().anyMatch(x -> x.contains(newAdvertisement)));
     }
 
     @Test

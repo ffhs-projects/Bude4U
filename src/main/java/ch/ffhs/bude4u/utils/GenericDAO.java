@@ -1,5 +1,7 @@
 package ch.ffhs.bude4u.utils;
 
+import ch.ffhs.bude4u.authentication.User;
+
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -19,7 +21,7 @@ public interface GenericDAO<T> {
      *
      * @return list of Type <T>
      */
-    List<T> getAll();
+    Optional<List<T>> getAll();
 
     /**
      * creates new entity in database

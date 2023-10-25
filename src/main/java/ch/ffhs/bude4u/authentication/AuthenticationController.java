@@ -5,11 +5,13 @@ import jakarta.enterprise.context.RequestScoped;
 import jakarta.faces.context.ExternalContext;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.view.ViewScoped;
+import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
 import java.io.Serializable;
+import java.util.Optional;
 
 @RequestScoped
 @Named
@@ -22,9 +24,11 @@ public class AuthenticationController implements Serializable {
     private boolean authenticated = false;
     private HttpSession session = null;
     private String userAgent;
+    private UserService userService = null;
 
 
     public AuthenticationController() {
+        this.userService = new UserService();
     }
     public HttpSession getSession() {
         // if(session == null){
@@ -81,6 +85,8 @@ public class AuthenticationController implements Serializable {
     public String login() {
         String userNameInput = getUsername();
         String passwordInput = getPassword();
+        HttpSession session = getSession();
+        Optional<User> user = userService.getUserByName("a.b@c.d");
         authenticationFacade.setUser(getUser());
         boolean authResult = authenticationFacade.login();
 

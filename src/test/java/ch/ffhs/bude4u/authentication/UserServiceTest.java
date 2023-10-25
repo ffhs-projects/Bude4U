@@ -21,9 +21,8 @@ public class UserServiceTest {
 
     @BeforeEach
     public void setUp() {
-        userDao = mock(GenericDAO.class);
+        userDao = mock(UserDAO.class);
         userService = new UserService();
-        userService.userDao = userDao;
     }
 
     @Test
@@ -53,10 +52,10 @@ public class UserServiceTest {
 
     @Test
     public void testGetAllUsers() {
-        List<User> userList = new ArrayList<>();
+        Optional<List<User>> userList = Optional.of(new ArrayList<>());
         when(userDao.getAll()).thenReturn(userList);
 
-        List<User> retrievedUsers = userService.getAllUsers();
+        Optional<List<User>> retrievedUsers = userService.getAllUsers();
 
         assertEquals(userList, retrievedUsers);
     }

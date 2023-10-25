@@ -30,8 +30,16 @@ public class AdvertisementDAO implements GenericDAO<Advertisement> {
     }
 
     @Override
-    public List<Advertisement> getAll() {
-        return entityManager.createQuery("SELECT adv FROM Advertisement adv").getResultList();
+    public Optional<List<Advertisement>> getAll() {
+        String jpql = "SELECT adv FROM Advertisement adv";
+        Query query = entityManager.createQuery(jpql);
+
+        List<Advertisement> advertisements = query.getResultList();
+        if (advertisements.isEmpty()) {
+            return Optional.empty();
+        } else {
+            return Optional.of(advertisements );
+        }
     }
 
     @Override

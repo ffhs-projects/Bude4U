@@ -1,5 +1,6 @@
 package ch.ffhs.bude4u.advertisement;
 
+import ch.ffhs.bude4u.authentication.User;
 import ch.ffhs.bude4u.utils.GenericDAO;
 import jakarta.enterprise.context.ApplicationScoped;
 
@@ -23,8 +24,8 @@ public class AdvertisementStub implements GenericDAO<Advertisement> {
     }
 
     @Override
-    public List<Advertisement> getAll() {
-        return mockData;
+    public Optional<List<Advertisement>> getAll() {
+        return Optional.of(mockData);
     }
 
     @Override

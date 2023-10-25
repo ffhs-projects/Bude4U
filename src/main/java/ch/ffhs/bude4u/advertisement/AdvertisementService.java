@@ -31,7 +31,7 @@ public class AdvertisementService implements Serializable {
         return advertisementDao.get(uuid);
     }
 
-    public List<Advertisement> getAllAdvertisements() {
+    public Optional<List<Advertisement>> getAllAdvertisements() {
         return advertisementDao.getAll();
     }
 

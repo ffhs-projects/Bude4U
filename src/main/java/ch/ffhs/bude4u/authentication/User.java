@@ -1,16 +1,11 @@
 package ch.ffhs.bude4u.authentication;
 
+import ch.ffhs.bude4u.utils.PBKDF2Hash;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.crypto.SecretKeyFactory;
-import javax.crypto.spec.PBEKeySpec;
 import java.io.Serializable;
-import java.security.SecureRandom;
-import java.security.spec.KeySpec;
-import java.util.Arrays;
-import java.util.Base64;
 import java.util.UUID;
 
 @Entity
@@ -35,28 +30,8 @@ public class User implements Serializable {
     private String password;
 
     public void setPassword(String password) {
-        this.password = CreatePBKDF2Hash(password);
+        this.password = PBKDF2Hash.CreateHash(password);
         //this.password = password;
-    }
-
-    private String CreatePBKDF2Hash(String password) {
-        byte[] salt = "12345678".getBytes();
-
-        try {
-            KeySpec spec = new PBEKeySpec(password.toCharArray(), salt, 65536, 128);
-            SecretKeyFactory factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
-            byte[] hash = factory.generateSecret(spec).getEncoded();
-            return Base64.getEncoder().encodeToString(hash);
-        }
-        catch (Exception ignored) {
-            // TODO: what happens if pw could not be encrypted?
-        }
-        throw new IllegalArgumentException();
-    }
-
-    public boolean CheckPassword(String password) {
-        String hashInsertedPassword = CreatePBKDF2Hash(password);
-        return hashInsertedPassword.equals(getPassword());
     }
 
     @Override
