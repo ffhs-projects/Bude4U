@@ -60,7 +60,7 @@ public class AdvertisementDAO implements GenericDAO<Advertisement> {
         Optional<Advertisement> advToDelete = get(advertisementId);
         if (advToDelete.isPresent()) {
             entityManager.getTransaction().begin();
-            entityManager.remove(advToDelete);
+            entityManager.remove(advToDelete.get());
             entityManager.getTransaction().commit();
         }
     }
