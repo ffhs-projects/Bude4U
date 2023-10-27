@@ -1,14 +1,13 @@
 package ch.ffhs.bude4u.authentication;
 
-import jakarta.ejb.EJB;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.faces.context.ExternalContext;
 import jakarta.faces.context.FacesContext;
-import jakarta.faces.view.ViewScoped;
-import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.io.Serializable;
 import java.util.Optional;
@@ -17,9 +16,13 @@ import java.util.Optional;
 @Named
 public class AuthenticationController implements Serializable {
 
-    @EJB
-    private AuthenticationBean authenticationFacade;
+    @Getter
+    @Setter
     private String username;
+
+    @Getter
+    @Setter
+    private String password;
     private User user;
     private boolean authenticated = false;
     private HttpSession session = null;
@@ -39,44 +42,6 @@ public class AuthenticationController implements Serializable {
         return session;
     }
 
-    /**
-     * @return the username
-     */
-    public String getUsername() {
-        this.username = getUser().getUsername();
-        return this.username;
-    }
-
-    /**
-     * @param username the username to set
-     */
-    public void setUsername(String username) {
-        this.username = username;
-        getUser().setUsername(username);
-    }
-
-    /**
-     * @return the password
-     */
-    public String getPassword() {
-        return authenticationFacade.getPassword();
-    }
-
-    /**
-     * @param password the password to set
-     */
-    public void setPassword(String password) {
-        authenticationFacade.setPassword(password);
-    }
-
-    public User getUser() {
-        if (this.user == null) {
-            user = new User();
-            setUser(authenticationFacade.getUser());
-        }
-
-        return user;
-    }
 
     public void setUser(User user) {
         this.user = user;
@@ -87,22 +52,20 @@ public class AuthenticationController implements Serializable {
         String passwordInput = getPassword();
         HttpSession session = getSession();
         Optional<User> user = userService.getUserByName("a.b@c.d");
-        authenticationFacade.setUser(getUser());
-        boolean authResult = authenticationFacade.login();
 
-        if (authResult) {
-            this.authenticated = true;
-
-            setUser(authenticationFacade.getUser());
-
-
-            return "SUCCESS_LOGIN";
-        } else {
-            this.authenticated = false;
-            setUser(null);
-            return "BAD_LOGIN";
-        }
-
+//        if (authResult) {
+//            this.authenticated = true;
+//
+//            setUser(authenticationFacade.getUser());
+//
+//
+//            return "SUCCESS_LOGIN";
+//        } else {
+//            this.authenticated = false;
+//            setUser(null);
+//            return "BAD_LOGIN";
+//        }
+return "huhu";
     }
 
     public String logout() {

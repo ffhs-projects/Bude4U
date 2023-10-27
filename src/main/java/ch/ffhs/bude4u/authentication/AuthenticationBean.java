@@ -1,188 +1,104 @@
 package ch.ffhs.bude4u.authentication;
 
-import jakarta.ejb.Remove;
+import ch.ffhs.bude4u.utils.PBKDF2Hash;
 import jakarta.ejb.Stateless;
-import jakarta.faces.application.FacesMessage;
+import jakarta.faces.context.ExternalContext;
 import jakarta.faces.context.FacesContext;
-import jakarta.persistence.*;
-import jakarta.servlet.ServletException;
+import jakarta.inject.Inject;
+import jakarta.inject.Named;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.io.Serializable;
+import java.util.Optional;
 
 @Stateless
+@Named
+@Getter
+@Setter
 public class AuthenticationBean implements Serializable {
 
-    //@PersistenceContext(unitName = "JakartaEERecipes_PU")
-    private EntityManager em;
+    @Inject
+    private UserService userService;
+
+    private HttpSession session = null;
 
     private boolean authenticated = false;
     private String username = null;
     private String password = null;
-    HttpSession session = null;
+    private String firstName = null;
+    private String lastName = null;
+
     User user;
 
-    public void findUser() {
-        try {
-            em.flush();
-            getUser();
-            Query userQry = em.createQuery(
-                    "select object(u) from User u "
-                            + "where u.username = :username").setParameter("username", getUser().getUsername().toUpperCase());
 
-            // Enable forced database query
-            userQry.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
-            setUser((User) userQry.getSingleResult());
+    public String register() {
+        String firstName = getFirstName();
+        String lastName = getLastName();
+        String userName = getUsername();
+        String password = getPassword();
 
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Successfully Authenticated", ""));
-        } catch (Exception e) {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Invalid username/password", ""));
-            setUser(null);
+        // Check if user with specific username is not in db.
+        Optional<User> user = userService.getUserByName(userName);
+        if (user.isPresent()) {
+            // This means user is already registered, navigate back to login page.
+            return "ALREADY REGISTERED, NAVIGATE BACK TO LOGIN PAGE";
         }
-
+        // Create new user
+        User newuser = new User(firstName, lastName, username, password);
+        userService.createUser(newuser);
+        return "REGISTER_SUCCESSFULL, SWITCH BACK TO LOGIN PAGE";
     }
 
     public HttpSession getSession() {
+        // if(session == null){
         FacesContext context = FacesContext.getCurrentInstance();
         HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
-        session = request.getSession(false);
+        session = request.getSession();
+
         return session;
     }
 
-    public boolean login() {
-
+    public String login() {
+        String userNameInput = getUsername();
+        String passwordInput = getPassword();
         HttpSession session = getSession();
-        HttpServletRequest request = null;
-        Query userQry = null;
-        System.out.println("In the login method..." + getUser().getUsername());
-        try {
-            FacesContext context = FacesContext.getCurrentInstance();
-            request = (HttpServletRequest) context.getExternalContext().getRequest();
-            request.login(getUser().getUsername(), this.password);
+        Optional<User> user = userService.getUserByName(userNameInput);
 
-            session.setMaxInactiveInterval(1800);
-            session.setAttribute("authenticated", true);
+        if (user.isEmpty()) return "USER NOT FOUND";
 
+        String hashedPw = user.get().getPassword();
+        boolean pwMatch = PBKDF2Hash.CheckPassword(hashedPw, passwordInput);
 
-            em.flush();
-
-            userQry = em.createQuery(
-                    "select count(u) from User u "
-                            + "where u.username = :username").setParameter("username", getUser().getUsername().toUpperCase());
-            userQry.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
-            Long count = (Long)userQry.getSingleResult();
-            if (count > 0){
-
-                userQry = em.createQuery(
-                        "select object(u) from User u "
-                                + "where u.username = :username").setParameter("username", getUser().getUsername().toUpperCase());
-
-                // Enable forced database query
-                userQry.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
-                setUser((User) userQry.getSingleResult());
-                System.out.println("Setting  User, user exists in database with role ->" + user.getSecurityRole());
-                setAuthenticated(true);
-            } else {
-                // User cannot authenticate successfully...do something
-            }
-
-
-
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Successfully Authenticated", ""));
-
-
-
-            return authenticated;
-        } catch (NoResultException | ServletException ex) {
-            setUser(null);
-            setAuthenticated(false);
-            session = getSession();
-            session.setAttribute("authenticated", false);
-            if(request != null){
-                try {
-                    request.logout();
-                } catch (ServletException ex1) {
-                    System.out.println("AuthBean#login Error: " + ex);
-                }
-            }
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Invalid username/password", ""));
-            return false;
-
-        } finally {
-            setPassword(null);
+        if (pwMatch) {
+            this.authenticated = true;
+            setUser(user.get());
+            return "SUCCESS_LOGIN";
         }
-    }
-
-    public EntityManager getEm() {
-        return em;
-    }
-
-    public void setEm(EntityManager em) {
-        this.em = em;
-    }
-
-    /**
-     * @return the isAuthenticated
-     */
-    public boolean isAuthenticated() {
-
-        if (getSession().getAttribute("authenticated") != null) {
-            boolean auth = (Boolean) getSession().getAttribute("authenticated");
-            if (auth) {
-                authenticated = true;
-            }
-        } else {
-            authenticated = false;
-        }
-        return authenticated;
-    }
-
-    public void setAuthenticated(boolean authenticated) {
-        this.authenticated = authenticated;
-    }
-
-    public String getUsername() {
-        try {
-            System.out.println("The current username is: " + user.getUsername());
-            username = getUser().getUsername();
-        } catch (NullPointerException ex) {
-        }
-        return username;
-    }
-
-    public void setUsername(String username) {
-        getUser().setUsername(username);
-        System.out.println("Just set the username to : " + getUser().getUsername());
-        this.username = null;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public void setSession(HttpSession session) {
-        this.session = session;
-    }
-
-    public User getUser() {
-        if (this.user == null) {
-            user = new User();
-        }
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    @Remove
-    public void remove() {
-        System.out.println("Being removed from session...");
+        this.authenticated = false;
         setUser(null);
+        return "PW INVALID";
+    }
+
+
+    public String logout() {
+        user = null;
+        this.authenticated = false;
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        ExternalContext externalContext = facesContext.getExternalContext();
+        externalContext.invalidateSession();
+        return "SUCCESS_LOGOUT";
+    }
+
+    public boolean isAuthenticated() {
+        try {
+            this.authenticated = (boolean) getSession().getAttribute("authenticated");
+        } catch (Exception e) {
+            this.authenticated = false;
+        }
+
+        return authenticated;
     }
 }
