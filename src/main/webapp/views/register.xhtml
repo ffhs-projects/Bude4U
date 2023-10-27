@@ -1,0 +1,14 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="jakarta.faces.facelets"
+                xmlns:f="jakarta.faces.core"
+                xmlns:h="jakarta.faces.html"
+                template="/WEB-INF/layouts/template.xhtml">
+    <ui:define name="firstnameLabel">Vorname</ui:define>
+    <ui:define name="lastnameLabel">Nachname</ui:define>
+    <ui:define name="emailLabel">Email</ui:define>
+    <ui:define name="passwordLabel">Passwort</ui:define>
+    <ui:define name="alreadySignedUp">Bereits Registriert? Wechsel zum Login</ui:define>
+    <ui:define name="content">
+        <ui:include src="/WEB-INF/layouts/forms/register.xhtml"/>
+    </ui:define>
+</ui:composition>
