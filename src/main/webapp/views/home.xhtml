@@ -6,49 +6,51 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
-        <ui:repeat value="#{advertisementService.getAllAdvertisements() }" var="advertisement">
+<ui:repeat value="#{advertisementService.getAllAdvertisements() }" var="advertisement">
 
-            <div class="surface-card p-4 shadow-2 border-round mb-4 ">
-                <div class="grid ui-fluid">
+    <div class="surface-card p-4 shadow-2 border-round mb-4 ">
+        <div class="grid ui-fluid">
 
-                    <div class="p-4 col-4 md:col-4">
-                        <h:graphicImage value="#{ advertisement.getMainImage()}" class="img-fluid" alt="header" style="max-width: 100%; height: auto;"/>
-                    </div>
+            <div class="p-4 col-4 md:col-4">
+                <h:graphicImage value="#{ advertisement.getMainImage()}" class="img-fluid" alt="header"
+                                style="max-width: 100%; height: auto;"/>
+            </div>
 
-                    <div class="p-4 col-6 md:col-4">
-                        <div class="col-12 md:col-12">
-                            <h:outputText class="mt-0 text-2xl font-bold" value="#{advertisement.advertisementTitle}" />
-                        </div>
-                        <div class="col-12 md:col-12">
-                            <h:outputText class="mt-0 text-3xl font-bold" value="Zimmer: #{advertisement.numberRooms}" />
-                        </div>
-
-                        <div class="col-12 md:col-12">
-                            <h:outputText class="text-2xl font-bold" value="Preis: #{advertisement.buyPrice}" />
-                        </div>
-
-                        <div class="col-12 md:col-12">
-                            <h:outputText value="Beschreibung: #{advertisement.mainDescription}" />
-                        </div>
-                    </div>
-
-                    <div class="p-3 col-2 md:col-2">
-                        <div class="col-12 md:col-12">
-                            <h:outputText value="Veröffentlichung: #{advertisement.creationDate}" />
-                        </div>
-                        <div class="col-12 md:col-12">
-                            <h:outputText value="Kategorie: #{advertisement.advCategory}" />
-                        </div>
-                        <div class="col-12 md:col-12">
-                            <h:outputText value="Wohnfläche: #{advertisement.livingSpace}" />
-                        </div>
-                    </div>
+            <div class="p-4 col-6 md:col-4">
+                <div class="col-12 md:col-12">
+                    <h:outputText class="mt-0 text-2xl font-bold" value="#{advertisement.advertisementTitle}"/>
                 </div>
                 <div class="col-12 md:col-12">
-                    <p:commandButton id="submit-button" action="#{navigationController.showAdvertisement()}" value="Inserat anzeigen">
-                        <f:param name="advertisement" value="#{advertisement.id}"/>
-                    </p:commandButton>
+                    <h:outputText class="mt-0 text-3xl font-bold" value="Zimmer: #{advertisement.numberRooms}"/>
+                </div>
+
+                <div class="col-12 md:col-12">
+                    <h:outputText class="text-2xl font-bold" value="Preis: #{advertisement.buyPrice}"/>
+                </div>
+
+                <div class="col-12 md:col-12">
+                    <h:outputText value="Beschreibung: #{advertisement.mainDescription}"/>
                 </div>
             </div>
-        </ui:repeat>
+
+            <div class="p-3 col-2 md:col-2">
+                <div class="col-12 md:col-12">
+                    <h:outputText value="Veröffentlichung: #{advertisement.creationDate}"/>
+                </div>
+                <div class="col-12 md:col-12">
+                    <h:outputText value="Kategorie: #{advertisement.advCategory}"/>
+                </div>
+                <div class="col-12 md:col-12">
+                    <h:outputText value="Wohnfläche: #{advertisement.livingSpace}"/>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 md:col-12">
+            <p:commandButton id="submit-button" action="#{navigationController.showAdvertisement()}"
+                             value="Inserat anzeigen">
+                <f:param name="advertisement" value="#{advertisement.id}"/>
+            </p:commandButton>
+        </div>
+    </div>
+</ui:repeat>
 </html>
