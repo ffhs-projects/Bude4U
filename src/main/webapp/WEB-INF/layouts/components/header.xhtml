@@ -2,30 +2,19 @@
                 xmlns:ui="jakarta.faces.facelets"
                 xmlns:h="jakarta.faces.html"
                 xmlns:p="http://primefaces.org/ui"
-                xmlns:f="jakarta.faces.core"
->
-
+                xmlns:f="jakarta.faces.core">
     <div class="card pl-8 pr-8">
         <h:form>
             <p:growl id="messages"/>
             <p:menubar>
-                <p:menuitem label="File" icon="pi pi-fw pi-file" url="#{request.contextPath}/">
-                    Home
-                </p:menuitem>
-                <p:menuitem label="File" icon="pi pi-fw pi-file" url="#{request.contextPath}/views/advertise.xhtml">
-                    Inserieren
-                </p:menuitem>
-
+                <p:menuitem value="Home" icon="pi pi-fw pi-home" action="#{navigationController.showHome()}"/>
+                <p:menuitem value="Inserieren" label="File" icon="pi pi-fw pi-file" action="#{navigationController.createAdvertisement()}"/>
                 <p:divider layout="vertical"/>
-
                 <f:facet name="options">
                     <p:menubar style="background-color: transparent; border-style: none; padding: 0" >
-                        <p:menuitem label="File" icon="pi pi-fw pi-file" url="#{request.contextPath}/views/login.xhtml">
-                            Login
-                        </p:menuitem>
+                        <p:menuitem value="Login" label="File" icon="pi pi-fw pi-file" action="#{navigationController.showLogin()}"/>
                     </p:menubar>
                 </f:facet>
-
             </p:menubar>
         </h:form>
     </div>

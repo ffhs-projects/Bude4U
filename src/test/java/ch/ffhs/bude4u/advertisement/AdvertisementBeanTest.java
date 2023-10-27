@@ -64,7 +64,7 @@ public class AdvertisementBeanTest {
 
         String result = advertisementBean.createAdvertisement();
 
-        assertEquals("/views/fail.xhtml", result);
+        assertEquals("/views/advertisementFailed.xhtml", result);
         verify(advertisementService, times(1)).createAdvertisement(any(Advertisement.class));
     }
 }
