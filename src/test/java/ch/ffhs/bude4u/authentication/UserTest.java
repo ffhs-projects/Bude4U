@@ -20,7 +20,6 @@ public class UserTest {
     @Test
     public void testDefaultConstructor() {
         assertNull(user.getUserId());
-        assertNull(user.getSecurityRole());
         assertNull(user.getUsername());
     }
 
@@ -28,11 +27,9 @@ public class UserTest {
     public void testSetterAndGetters() {
         UUID newId = UUID.randomUUID();
         user.setUserId(newId);
-        user.setSecurityRole("admin");
         user.setUsername("John Doe");
 
         assertEquals(newId, user.getUserId());
-        assertEquals("admin", user.getSecurityRole());
         assertEquals("John Doe", user.getUsername());
     }
 }

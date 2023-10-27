@@ -3,6 +3,7 @@ package ch.ffhs.bude4u.authentication;
 import ch.ffhs.bude4u.utils.GenericDAO;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.context.SessionScoped;
+import jakarta.inject.Named;
 import lombok.Getter;
 import lombok.Setter;
 
