@@ -1,9 +1,6 @@
 package ch.ffhs.bude4u.advertisement;
 
-import jakarta.annotation.ManagedBean;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.*;
-
 import lombok.Getter;
 import lombok.Setter;
 
@@ -41,11 +38,7 @@ public class Advertisement implements Serializable {
         advCategory = category;
         advStatus = status;
         advertiserId = UUID.randomUUID();
-//        advertisementImages = mainPicUrl;
-        // TODO: Add list for images
         advertisementImages = new ArrayList<>();
-//        advertisementImages.add("1");
-//        advertisementImages.add("2");
         advertisementImages.add(mainPicUrl);
     }
 
@@ -59,15 +52,8 @@ public class Advertisement implements Serializable {
         advCategory = category;
         advStatus = "offen";
         advertiserId = UUID.randomUUID();
-//        advertisementImages = mainPicUrl;
-
         advertisementImages = new ArrayList<>();
-//        advertisementImages.add("1");
-//        advertisementImages.add("2");
         advertisementImages.add(mainPicUrl);
-//        features = new ArrayList<>();
-//        features.add("1");
-//        features.add("2");
     }
 
     @Id
