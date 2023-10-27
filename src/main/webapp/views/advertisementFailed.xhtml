@@ -1,10 +1,10 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="jakarta.faces.facelets"
-                xmlns:f="jakarta.faces.core"
                 xmlns:h="jakarta.faces.html"
                 template="/WEB-INF/layouts/template.xhtml">
     <ui:define name="pageTitle">Inserieren</ui:define>
+    <ui:define name="status"><h:outputText value="Status: Failed"/></ui:define>
     <ui:define name="content">
-        <ui:include src="/WEB-INF/layouts/inserieren.xhtml" />
+        <ui:include src="/WEB-INF/layouts/advertiseFailed.xhtml" />
     </ui:define>
 </ui:composition>
