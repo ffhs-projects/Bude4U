@@ -2,9 +2,12 @@
                 xmlns:ui="jakarta.faces.facelets"
                 xmlns:f="jakarta.faces.core"
                 xmlns:h="jakarta.faces.html"
+                xmlns:p="http://primefaces.org/ui"
                 template="/WEB-INF/layouts/template.xhtml">
     <ui:define name="createAccountLabel">Hast du noch keinen Account</ui:define>
-    <ui:define name="createAccountLink">Account erstellen</ui:define>
+    <ui:define name="createAccountLink">
+        <p:commandLink value="Account erstellen" id="createAccountLink" action="#{navigationController.showRegister()}"/>
+    </ui:define>
     <ui:define name="emailLabel">Email</ui:define>
     <ui:define name="passwordLabel">Passwort</ui:define>
     <ui:define name="forgotPasswordLink">Passwort vergessen?</ui:define>

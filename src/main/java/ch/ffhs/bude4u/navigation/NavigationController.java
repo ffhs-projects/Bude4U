@@ -45,6 +45,11 @@ public class NavigationController implements Serializable{
         return "/views/advertisement.xhtml?advertisement=" + advertisementId;
     }
 
+    public String showRegister(){
+        return "/views/register.xhtml";
+    }
+
+
 
     //TODO: Demonstrates the use of conditional navigation
     public void login(){
