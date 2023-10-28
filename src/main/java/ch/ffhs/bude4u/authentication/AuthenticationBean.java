@@ -8,6 +8,7 @@ import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -25,6 +26,7 @@ public class AuthenticationBean implements Serializable {
 
     private HttpSession session = null;
 
+    @Setter(AccessLevel.PRIVATE)
     private boolean authenticated = false;
     private String username = null;
     private String password = null;
@@ -67,7 +69,7 @@ public class AuthenticationBean implements Serializable {
         HttpSession session = getSession();
         Optional<User> user = userService.getUserByName(userNameInput);
 
-        if (user.isEmpty()) return "USER NOT FOUND";
+        if (user.isEmpty()) return "USER NOT FOUND PAGE";
 
         String hashedPw = user.get().getPassword();
         boolean pwMatch = PBKDF2Hash.CheckPassword(hashedPw, passwordInput);
@@ -75,11 +77,11 @@ public class AuthenticationBean implements Serializable {
         if (pwMatch) {
             this.authenticated = true;
             setUser(user.get());
-            return "SUCCESS_LOGIN";
+            return "SUCCESS_LOGIN PAGE";
         }
         this.authenticated = false;
         setUser(null);
-        return "PW INVALID";
+        return "PW INVALID PAGE";
     }
 
 
