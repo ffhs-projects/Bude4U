@@ -9,14 +9,14 @@ import java.io.Serializable;
 import java.util.UUID;
 
 @Entity
-@Table(name = "user")
 @Getter
+@Table(name = "users")
 public class User implements Serializable {
 
     @Id
-    @Column(name = "user_id", nullable = false)
+    @GeneratedValue
     @Setter
-    private UUID userId;
+    private UUID id;
 
     @Column(name = "username")
     @Setter
@@ -26,26 +26,24 @@ public class User implements Serializable {
     private String password;
 
     @Column(name = "firstname")
-    private String firstName;
+    private String firstname;
 
     @Column(name = "lastname")
-    private String lastName;
+    private String lastname;
 
     public User() {
     }
 
-    public User(String firstname, String lastname, String username, String password) {
-        this.userId = UUID.randomUUID();
-        this.firstName = firstname;
-        this.lastName = lastname;
+    public User(String first, String last, String username, String password) {
+        this.firstname = first;
+        this.lastname = last;
         this.username = username;
         this.password = password;
     }
 
     public User(UUID id, String firstname, String lastname, String username, String password) {
-        this.userId = id;
-        this.firstName = firstname;
-        this.lastName = lastname;
+        this.firstname = firstname;
+        this.lastname = lastname;
         this.username = username;
         this.setPassword(password);
     }
@@ -53,7 +51,7 @@ public class User implements Serializable {
 
     public void setPassword(String password) {
         this.password = PBKDF2Hash.CreateHash(password);
-        //this.password = password;
+//        this.password = password;
     }
 
     @Override
@@ -63,7 +61,7 @@ public class User implements Serializable {
 
         User user = (User) o;
 
-        if (userId != null ? !userId.equals(user.userId) : user.userId != null) return false;
+        if (id != null ? !id.equals(user.id) : user.id != null) return false;
         if (username != null ? !username.equals(user.username) : user.username != null) return false;
 
         return true;
@@ -71,7 +69,7 @@ public class User implements Serializable {
 
     @Override
     public int hashCode() {
-        int result = userId != null ? userId.hashCode() : 0;
+        int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (username != null ? username.hashCode() : 0);
         return result;
     }

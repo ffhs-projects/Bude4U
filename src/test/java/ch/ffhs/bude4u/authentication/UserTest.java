@@ -19,17 +19,17 @@ public class UserTest {
 
     @Test
     public void testDefaultConstructor() {
-        assertNull(user.getUserId());
+        assertNull(user.getId());
         assertNull(user.getUsername());
     }
 
     @Test
     public void testSetterAndGetters() {
         UUID newId = UUID.randomUUID();
-        user.setUserId(newId);
+        user.setId(newId);
         user.setUsername("John Doe");
 
-        assertEquals(newId, user.getUserId());
+        assertEquals(newId, user.getId());
         assertEquals("John Doe", user.getUsername());
     }
 }

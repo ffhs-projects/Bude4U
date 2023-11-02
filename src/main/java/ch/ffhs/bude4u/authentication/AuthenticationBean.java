@@ -35,6 +35,7 @@ public class AuthenticationBean implements Serializable {
 
     User user;
 
+    User newUser;
 
     public String register() {
         String firstName = getFirstName();
@@ -49,9 +50,13 @@ public class AuthenticationBean implements Serializable {
             return "ALREADY REGISTERED, NAVIGATE BACK TO LOGIN PAGE";
         }
         // Create new user
-        User newuser = new User(firstName, lastName, username, password);
-        userService.createUser(newuser);
-        return "REGISTER_SUCCESSFULL, SWITCH BACK TO LOGIN PAGE";
+        try {
+            newUser = new User(firstName, lastName, username, password);
+            userService.createUser(newUser);
+            return "REGISTER_SUCCESSFULL, SWITCH BACK TO LOGIN PAGE";
+        } catch (Exception ex) {
+            return "ERROR: " + ex.getMessage();
+        }
     }
 
     public HttpSession getSession() {

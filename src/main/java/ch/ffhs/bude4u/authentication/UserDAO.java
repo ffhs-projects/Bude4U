@@ -55,14 +55,18 @@ public class UserDAO implements GenericDAO<User> {
 
     @Override
     public void create(User user) {
-        entityManager.getTransaction().begin();
-        entityManager.persist(user);
-        entityManager.getTransaction().commit();
+        try {
+            entityManager.getTransaction().begin();
+            entityManager.persist(user);
+            entityManager.getTransaction().commit();
+        } catch (Exception ex) {
+            throw new RuntimeException(ex);
+        }
     }
 
     @Override
     public void update(User user) {
-        Optional<User> userToUpdate = get(user.getUserId());
+        Optional<User> userToUpdate = get(user.getId());
         if (userToUpdate.isPresent()) {
             entityManager.getTransaction().begin();
             entityManager.merge(user);

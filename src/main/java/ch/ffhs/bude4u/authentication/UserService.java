@@ -1,12 +1,10 @@
 package ch.ffhs.bude4u.authentication;
 
 import ch.ffhs.bude4u.utils.GenericDAO;
-import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.inject.Named;
 import lombok.Getter;
 import lombok.Setter;
-
 import java.io.Serializable;
 import java.util.List;
 import java.util.Optional;
@@ -15,9 +13,10 @@ import java.util.UUID;
 @Getter
 @Setter
 @SessionScoped
+@Named
 public class UserService implements Serializable {
 
-    UserDAO userDao;
+    private final UserDAO userDao;
 
     public UserService() {
         userDao = new UserDAO();
