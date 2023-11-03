@@ -49,7 +49,6 @@ public class AuthenticationBean implements Serializable {
         Optional<User> user = userService.getUserByName(userName);
         if (user.isPresent()) {
             // This means user is already registered, navigate back to login page.
-            // TODO: navigation does not work
             return "/views/login.xhtml";
         }
         // Create new user
@@ -57,7 +56,6 @@ public class AuthenticationBean implements Serializable {
             User newUser = new User(firstName, lastName, username, password);
             userService.createUser(newUser);
             // New user created, navigate back to login page.
-            // TODO: navigation does not work
             return "/views/login.xhtml";
         } catch (Exception ex) {
             return "ERROR: " + ex.getMessage();
@@ -77,12 +75,9 @@ public class AuthenticationBean implements Serializable {
         String passwordInput = getPassword();
         session = getSession();
 
-        boolean isAuth = this.isAuthenticated();
-
         Optional<User> user = userService.getUserByName(userNameInput);
 
-        // TODO: What sould be done here?
-        if (user.isEmpty()) return "/views/login.xhtml";
+        if (user.isEmpty()) return "/views/loginFailed.xhtml";
 
         String hashedPw = user.get().getPassword();
         boolean pwMatch = PBKDF2Hash.CheckPassword(hashedPw, passwordInput);
@@ -97,7 +92,6 @@ public class AuthenticationBean implements Serializable {
         }
         this.authenticated = false;
         setUser(null);
-        // TODO: add invalid login page
         return "/views/loginFailed.xhtml";
     }
 
