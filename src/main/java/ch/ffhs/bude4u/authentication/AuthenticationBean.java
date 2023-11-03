@@ -81,8 +81,8 @@ public class AuthenticationBean implements Serializable {
 
         Optional<User> user = userService.getUserByName(userNameInput);
 
-        // TODO: add try again page
-        if (user.isEmpty()) return "USER NOT FOUND PAGE";
+        // TODO: What sould be done here?
+        if (user.isEmpty()) return "/views/login.xhtml";
 
         String hashedPw = user.get().getPassword();
         boolean pwMatch = PBKDF2Hash.CheckPassword(hashedPw, passwordInput);
@@ -92,26 +92,24 @@ public class AuthenticationBean implements Serializable {
             session.setAttribute("username", userNameInput);
             this.authenticated = true;
             setUser(user.get());
-            // TODO: navigate back to main page with successfully login
-            return "/views/index.xhtml";
+            // Navigate back to main page with successfully login
+            return "/index.xhtml";
         }
         this.authenticated = false;
         setUser(null);
         // TODO: add invalid login page
-        return "/views/advertisementFailed";
+        return "/views/loginFailed.xhtml";
     }
 
 
     public String logout() {
         user = null;
         this.authenticated = false;
-        this.session = null;
         FacesContext facesContext = FacesContext.getCurrentInstance();
         ExternalContext externalContext = facesContext.getExternalContext();
         externalContext.invalidateSession();
         // Navigate back to main-page
-        // TODO: navigation does not work
-        return "/views/home.xhtml";
+        return "/index.xhtml";
     }
 
 

@@ -1,0 +1,13 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="jakarta.faces.facelets"
+                xmlns:h="jakarta.faces.html"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/layouts/template.xhtml">
+    <ui:define name="retryLoginLabel">Erneut versuchen 👉 </ui:define>
+    <ui:define name="retryLoginLink">
+        <p:commandLink value="Zurück zum Login" id="retryLoginLink" action="#{navigationController.showLogin()}"/>
+    </ui:define>
+    <ui:define name="content">
+        <ui:include src="/WEB-INF/layouts/loginFailed.xhtml"/>
+    </ui:define>
+</ui:composition>
