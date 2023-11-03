@@ -38,7 +38,7 @@ public class User implements Serializable {
         this.firstname = first;
         this.lastname = last;
         this.username = username;
-        this.password = password;
+        this.setPassword(password);
     }
 
     public User(UUID id, String firstname, String lastname, String username, String password) {
@@ -51,7 +51,6 @@ public class User implements Serializable {
 
     public void setPassword(String password) {
         this.password = PBKDF2Hash.CreateHash(password);
-//        this.password = password;
     }
 
     @Override

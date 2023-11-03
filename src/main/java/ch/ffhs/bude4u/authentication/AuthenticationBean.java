@@ -2,8 +2,12 @@ package ch.ffhs.bude4u.authentication;
 
 import ch.ffhs.bude4u.utils.PBKDF2Hash;
 import jakarta.ejb.Stateless;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.context.RequestScoped;
+import jakarta.enterprise.context.SessionScoped;
 import jakarta.faces.context.ExternalContext;
 import jakarta.faces.context.FacesContext;
+import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import jakarta.servlet.http.HttpServletRequest;
@@ -15,7 +19,7 @@ import lombok.Setter;
 import java.io.Serializable;
 import java.util.Optional;
 
-@Stateless
+@SessionScoped
 @Named
 @Getter
 @Setter
@@ -35,8 +39,6 @@ public class AuthenticationBean implements Serializable {
 
     User user;
 
-    User newUser;
-
     public String register() {
         String firstName = getFirstName();
         String lastName = getLastName();
@@ -47,20 +49,22 @@ public class AuthenticationBean implements Serializable {
         Optional<User> user = userService.getUserByName(userName);
         if (user.isPresent()) {
             // This means user is already registered, navigate back to login page.
-            return "ALREADY REGISTERED, NAVIGATE BACK TO LOGIN PAGE";
+            // TODO: navigation does not work
+            return "/views/login.xhtml";
         }
         // Create new user
         try {
-            newUser = new User(firstName, lastName, username, password);
+            User newUser = new User(firstName, lastName, username, password);
             userService.createUser(newUser);
-            return "REGISTER_SUCCESSFULL, SWITCH BACK TO LOGIN PAGE";
+            // New user created, navigate back to login page.
+            // TODO: navigation does not work
+            return "/views/login.xhtml";
         } catch (Exception ex) {
             return "ERROR: " + ex.getMessage();
         }
     }
 
     public HttpSession getSession() {
-        // if(session == null){
         FacesContext context = FacesContext.getCurrentInstance();
         HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
         session = request.getSession();
@@ -71,33 +75,45 @@ public class AuthenticationBean implements Serializable {
     public String login() {
         String userNameInput = getUsername();
         String passwordInput = getPassword();
-        HttpSession session = getSession();
+        session = getSession();
+
+        boolean isAuth = this.isAuthenticated();
+
         Optional<User> user = userService.getUserByName(userNameInput);
 
+        // TODO: add try again page
         if (user.isEmpty()) return "USER NOT FOUND PAGE";
 
         String hashedPw = user.get().getPassword();
         boolean pwMatch = PBKDF2Hash.CheckPassword(hashedPw, passwordInput);
 
         if (pwMatch) {
+            session.setAttribute("authenticated", true);
+            session.setAttribute("username", userNameInput);
             this.authenticated = true;
             setUser(user.get());
-            return "SUCCESS_LOGIN PAGE";
+            // TODO: navigate back to main page with successfully login
+            return "/views/index.xhtml";
         }
         this.authenticated = false;
         setUser(null);
-        return "PW INVALID PAGE";
+        // TODO: add invalid login page
+        return "/views/advertisementFailed";
     }
 
 
     public String logout() {
         user = null;
         this.authenticated = false;
+        this.session = null;
         FacesContext facesContext = FacesContext.getCurrentInstance();
         ExternalContext externalContext = facesContext.getExternalContext();
         externalContext.invalidateSession();
-        return "SUCCESS_LOGOUT";
+        // Navigate back to main-page
+        // TODO: navigation does not work
+        return "/views/home.xhtml";
     }
+
 
     public boolean isAuthenticated() {
         try {

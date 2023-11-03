@@ -12,7 +12,7 @@
                 <p:divider layout="vertical"/>
                 <f:facet name="options">
                     <p:menubar style="background-color: transparent; border-style: none; padding: 0" >
-                        <p:menuitem value="Login" label="File" icon="pi pi-fw pi-file" action="#{navigationController.showLogin()}"/>
+                        <p:menuitem value="#{authenticationBean.isAuthenticated() ? 'Logout' : 'Login'}" label="File" icon="pi pi-fw pi-file" action="#{navigationController.showLogin()}"/>
                     </p:menubar>
                 </f:facet>
             </p:menubar>
