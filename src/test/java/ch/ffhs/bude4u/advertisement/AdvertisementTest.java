@@ -9,7 +9,7 @@ public class AdvertisementTest {
 
     @Test
     public void testAdvertisementWithUUIDConstructor() {
-        Advertisement advertisement = new Advertisement( "Test Title", "Test Description", "01.01.2023", "Category", "Status", 100000, 3.5, 150, "https://example.com");
+        Advertisement advertisement = new Advertisement( "Test Title", "Test Description", "01.01.2023", "Category", "Status", 100000, 3.5, 150, "https://example.com", UUID.randomUUID());
 
         assertEquals("Test Title", advertisement.getAdvertisementTitle());
         assertEquals("Test Description", advertisement.getMainDescription());
@@ -24,7 +24,7 @@ public class AdvertisementTest {
 
     @Test
     public void testAdvertisementWithDefaultConstructor() {
-        Advertisement advertisement = new Advertisement("Test Title", "Test Description", "Category", 100000, 3.5, 150, "https://example.com");
+        Advertisement advertisement = new Advertisement("Test Title", "Test Description", "Category", 100000, 3.5, 150, "https://example.com", UUID.randomUUID());
 
         assertEquals("Test Title", advertisement.getAdvertisementTitle());
         assertEquals("Test Description", advertisement.getMainDescription());
@@ -39,10 +39,10 @@ public class AdvertisementTest {
 
     @Test
     public void testGetMainImage() {
-        Advertisement advertisement = new Advertisement("Test Title", "Test Description", "Category", 100000, 3.5, 150, "https://example.com");
+        Advertisement advertisement = new Advertisement("Test Title", "Test Description", "Category", 100000, 3.5, 150, "https://example.com", UUID.randomUUID());
         assertEquals("https://example.com", advertisement.getMainImage());
 
-        Advertisement advertisementWithoutImage = new Advertisement("Test Title", "Test Description", "Category", 100000, 3.5, 150, "");
+        Advertisement advertisementWithoutImage = new Advertisement("Test Title", "Test Description", "Category", 100000, 3.5, 150, "", UUID.randomUUID());
         assertEquals("", advertisementWithoutImage.getMainImage());
     }
 }

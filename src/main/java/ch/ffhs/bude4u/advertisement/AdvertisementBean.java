@@ -1,14 +1,12 @@
 package ch.ffhs.bude4u.advertisement;
 
-import jakarta.annotation.ManagedBean;
+
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.faces.context.FacesContext;
 import jakarta.inject.Named;
 import jakarta.inject.Inject;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -40,14 +38,23 @@ public class AdvertisementBean {
     private String mainPicUrl;
     private boolean test;
     Advertisement newAd;
-    public String createAdvertisement() {
+    private HttpSession session = null;
 
+    public HttpSession getSession() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
+        session = request.getSession();
+        return session;
+    }
+
+    public String createAdvertisement() {
+        session = getSession();
         try {
             // Required for unit tests
             if(test) {
-                newAd = new Advertisement(advertisementTitle, mainDescription,"01.01.2001", advCategory,"offen", buyPrice, numberRooms, livingSpace, mainPicUrl);
+                newAd = new Advertisement(advertisementTitle, mainDescription,"01.01.2001", advCategory,"offen", buyPrice, numberRooms, livingSpace, mainPicUrl, UUID.fromString(session.getAttribute("userId").toString()));
             } else {
-                newAd = new Advertisement(advertisementTitle, mainDescription, advCategory, buyPrice, numberRooms, livingSpace, mainPicUrl);
+                newAd = new Advertisement(advertisementTitle, mainDescription, advCategory, buyPrice, numberRooms, livingSpace, mainPicUrl, UUID.fromString(session.getAttribute("userId").toString()));
            }
             advertisementService.createAdvertisement(newAd);
             return "/views/advertisement.xhtml?advertisement=" + newAd.getId() + "&faces-redirect=true";

@@ -1,7 +1,5 @@
 package ch.ffhs.bude4u.utils;
 
-import ch.ffhs.bude4u.authentication.User;
-
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -54,4 +52,5 @@ public interface GenericDAO<T> {
      */
     List<T> getPaginatedItems(int pageNumber, int pageSize);
 
+    Optional<List<T>> getByUserId(UUID advUserId);
 }

@@ -42,6 +42,19 @@ public class AdvertisementDAO implements GenericDAO<Advertisement> {
         }
     }
 
+    public Optional<List<Advertisement>> getByUserId(UUID advUserId) {
+        String jpql = "SELECT adv FROM Advertisement adv WHERE adv.advertiserId = :advUserId";
+        Query query = entityManager.createQuery(jpql);
+        query.setParameter("advUserId", advUserId);
+
+        List<Advertisement> advertisements = query.getResultList();
+        if (advertisements.isEmpty()) {
+            return Optional.empty();
+        } else {
+            return Optional.of(advertisements);
+        }
+    }
+
     @Override
     public void create(Advertisement advertisement) {
         entityManager.getTransaction().begin();

@@ -1,13 +1,9 @@
 package ch.ffhs.bude4u.authentication;
 
 import ch.ffhs.bude4u.utils.PBKDF2Hash;
-import jakarta.ejb.Stateless;
-import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.enterprise.context.RequestScoped;
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.faces.context.ExternalContext;
 import jakarta.faces.context.FacesContext;
-import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import jakarta.servlet.http.HttpServletRequest;
@@ -85,13 +81,15 @@ public class AuthenticationBean implements Serializable {
         if (pwMatch) {
             session.setAttribute("authenticated", true);
             session.setAttribute("username", userNameInput);
+            session.setAttribute("userId", user.get().getId());
             this.authenticated = true;
             setUser(user.get());
-            // Navigate back to main page with successfully login
-            return "/index.xhtml";
+            // Navigate to userAdvertisements page
+            return "/views/userAdvertisements.xhtml";
         }
         this.authenticated = false;
         setUser(null);
+
         return "/views/loginFailed.xhtml";
     }
 
@@ -103,7 +101,7 @@ public class AuthenticationBean implements Serializable {
         ExternalContext externalContext = facesContext.getExternalContext();
         externalContext.invalidateSession();
         // Navigate back to main-page
-        return "/index.xhtml";
+        return "/index.xhtml?faces-redirect=true";
     }
 
 

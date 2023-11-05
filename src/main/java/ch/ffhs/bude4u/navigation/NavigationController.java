@@ -38,6 +38,11 @@ public class NavigationController implements Serializable {
         return authBean.isAuthenticated() ? "/views/logout.xhtml" : "/views/login.xhtml";
     }
 
+    public String userAdvertisements() {
+        return "/views/userAdvertisements.xhtml";
+    }
+
+
     public String createAdvertisement() {
         return "/views/advertise.xhtml";
     }
