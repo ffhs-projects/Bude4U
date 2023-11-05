@@ -33,7 +33,7 @@
     </ui:define>
 
     <ui:define name="advertiser">
-        <h:outputText value="Verkäufer: #{advertisementService.getAdvertisement(param.advertisement).get().id}"/>
+        <h:outputText value="Verkäufer: #{userService.getUserById(advertisementService.getAdvertisement(param.advertisement).get().advertiserId).get().username}"/>
     </ui:define>
 
     <ui:define name="mainDescription">

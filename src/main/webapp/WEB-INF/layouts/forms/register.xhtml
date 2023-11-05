@@ -1,7 +1,6 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="jakarta.faces.facelets"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
-                xmlns:f="http://xmlns.jcp.org/jsf/core"
                 xmlns:p="http://primefaces.org/ui"
 >
     <div class="flex align-items-center justify-content-center">
@@ -20,7 +19,7 @@
 
                     <label for="lastname" class="block text-900 font-medium mb-2"><ui:insert
                             name="lastnameLabel"/></label>
-                    <p:inputText id="lastname" type="password" styleClass="w-full mb-3" placeholder="Nachname"
+                    <p:inputText id="lastname" type="text" styleClass="w-full mb-3" placeholder="Nachname"
                                  value="#{authenticationBean.lastName}"/>
 
                     <label for="email" class="block text-900 font-medium mb-2"><ui:insert name="emailLabel"/></label>

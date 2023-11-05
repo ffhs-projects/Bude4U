@@ -93,5 +93,10 @@ public class UserDAO implements GenericDAO<User> {
         query.setMaxResults(pageSize);
         return query.getResultList();
     }
+
+    @Override
+    public Optional<List<User>> getByUserId(UUID advUserId) {
+        return Optional.empty();
+    }
 }
 

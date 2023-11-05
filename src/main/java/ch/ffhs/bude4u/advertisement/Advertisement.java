@@ -28,7 +28,7 @@ public class Advertisement implements Serializable {
         advertiserId = UUID.randomUUID();
     }
 
-    public Advertisement(String title, String description, String date, String category, String status, double price, double rooms, int space, String mainPicUrl) {
+    public Advertisement(String title, String description, String date, String category, String status, double price, double rooms, int space, String mainPicUrl, UUID advUserId) {
         advertisementTitle = title;
         mainDescription = description;
         creationDate = date;
@@ -37,12 +37,12 @@ public class Advertisement implements Serializable {
         livingSpace = space;
         advCategory = category;
         advStatus = status;
-        advertiserId = UUID.randomUUID();
+        advertiserId = advUserId;
         advertisementImages = new ArrayList<>();
         advertisementImages.add(mainPicUrl);
     }
 
-    public Advertisement(String title, String description, String category, double price, double rooms, int space, String mainPicUrl) {
+    public Advertisement(String title, String description, String category, double price, double rooms, int space, String mainPicUrl,UUID advUserId) {
         advertisementTitle = title;
         mainDescription = description;
         creationDate = dtf.format(now);
@@ -51,7 +51,7 @@ public class Advertisement implements Serializable {
         livingSpace = space;
         advCategory = category;
         advStatus = "offen";
-        advertiserId = UUID.randomUUID();
+        advertiserId = advUserId;
         advertisementImages = new ArrayList<>();
         advertisementImages.add(mainPicUrl);
     }
