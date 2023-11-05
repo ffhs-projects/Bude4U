@@ -6,6 +6,51 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
+
+
+    <div class="flex">
+    <div class="flex-2 font-bold pr-4">
+
+        <h:form>
+            <p:growl id="growl" showDetail="true" />
+            <p:divider type="dashed"/>
+            <h2>Filter</h2>
+
+            <p:divider type="dashed"/>
+
+            <h:panelGrid columns="1" style="margin-bottom: 10px; color:black">
+                <p:outputLabel for="advCategory" value="Preis von"/>
+                <p:inputNumber id="preisvon" value="#{inputNumberView.input1}"/>
+                <p:outputLabel for="advCategory" value="Preis bis"/>
+                <p:inputNumber id="preisbis" value="#{inputNumberView.input2}"/>
+            </h:panelGrid>
+
+            <p:divider type="dashed"/>
+
+            <h:panelGrid columns="1" style="margin-bottom: 10px; color:black">
+                <p:outputLabel for="advCategory" value="Zimmer von"/>
+                <p:inputNumber id="zimmervon" value="#{inputNumberView.input1}"/>
+                <p:outputLabel for="advCategory" value="Zimmer bis"/>
+                <p:inputNumber id="zimmerbis" value="#{inputNumberView.input2}"/>
+            </h:panelGrid>
+
+            <p:divider type="dashed"/>
+
+            <h:panelGrid columns="1" style="margin-bottom: 10px; color:black">
+                <p:outputLabel for="advCategory" value="Kategorie"/>
+            <p:selectOneMenu id="advCategory" value="#{advertisementBean.advCategory}">
+                <f:selectItem itemLabel="Beliebig" itemValue=""/>
+                <f:selectItem itemLabel="Wohnung" itemValue="Wohnung"/>
+                <f:selectItem itemLabel="Haus" itemValue="Haus"/>
+                <f:selectItem itemLabel="Hobbyraum" itemValue="Hobbyraum"/>
+                <f:selectItem itemLabel="Garagenplatz" itemValue="Garagenplatz"/>
+                <f:selectItem itemLabel="Lager" itemValue="Lager"/>
+            </p:selectOneMenu>
+            </h:panelGrid>
+        </h:form>
+    </div>
+
+    <div class="flex-1  font-bold text-center p-10 border-round mx-10">
 <ui:repeat value="#{advertisementService.getAllAdvertisements().get() }" var="advertisement">
 
     <div class="surface-card p-4 shadow-2 border-round mb-4 ">
@@ -53,4 +98,6 @@
         </div>
     </div>
 </ui:repeat>
+    </div>
+    </div>
 </html>

@@ -40,6 +40,8 @@ public class AdvertisementBean {
     Advertisement newAd;
     private HttpSession session = null;
 
+
+
     public HttpSession getSession() {
         FacesContext context = FacesContext.getCurrentInstance();
         HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
@@ -105,5 +107,6 @@ public class AdvertisementBean {
             return "/views/advertisementFailed.xhtml";
         }
     }
+
 }
 
