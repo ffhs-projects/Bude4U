@@ -51,22 +51,6 @@
                 value="Wohnfläche: #{advertisementService.getAdvertisement(param.advertisement).get().livingSpace}"/>
     </ui:define>
 
-    <ui:define name="editButton">
-        <p:commandButton id="submit-button" action="#{navigationController.editAdvertise()}" value="Bearbeiten"
-                         icon="pi pi-file-edit" styleClass="ui-button-raised ui-button-primary">
-            <f:param name="advertisement"
-                     value="#{advertisementService.getAdvertisement(param.advertisement).get().id}"/>
-        </p:commandButton>
-    </ui:define>
-
-    <ui:define name="deleteButton">
-        <p:commandButton action="#{advertisementBean.deleteAdvertisement()}" value="Löschen" icon="pi pi-user"
-                         styleClass="ui-button-raised ui-button-danger">
-            <f:param name="advertisement"
-                     value="#{advertisementService.getAdvertisement(param.advertisement).get().id}"/>
-        </p:commandButton>
-    </ui:define>
-
     <ui:define name="content">
         <ui:include src="/WEB-INF/layouts/advertisement.xhtml"/>
     </ui:define>
