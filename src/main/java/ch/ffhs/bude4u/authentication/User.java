@@ -10,16 +10,15 @@ import java.util.UUID;
 
 @Entity
 @Getter
+@Setter
 @Table(name = "users")
 public class User implements Serializable {
 
     @Id
     @GeneratedValue
-    @Setter
     private UUID id;
 
     @Column(name = "username")
-    @Setter
     private String username;
 
     @Column(name = "password")
@@ -72,4 +71,5 @@ public class User implements Serializable {
         result = 31 * result + (username != null ? username.hashCode() : 0);
         return result;
     }
+
 }
