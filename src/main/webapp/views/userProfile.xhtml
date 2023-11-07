@@ -1,0 +1,43 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="jakarta.faces.facelets"
+                xmlns:h="jakarta.faces.html"
+                template="/WEB-INF/layouts/template.xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="username">
+        <p:outputLabel for="updateUsername" value="Username"/>
+        <div class="ui-inputgroup pb-3">
+            <p:inputText id="updateUsername" value="#{userService.getUserById(session.getAttribute('userId')).get().username}"/>
+        </div>
+    </ui:define>
+
+    <ui:define name="firstname">
+        <p:outputLabel for="firstName" value="Vorname"/>
+        <div class="ui-inputgroup pb-3">
+            <p:inputText id="firstName" value="#{userService.getUserById(session.getAttribute('userId')).get().firstname}"/>
+        </div>
+    </ui:define>
+
+    <ui:define name="lastname">
+        <p:outputLabel for="lastName" value="Nachname"/>
+        <div class="ui-inputgroup pb-3">
+            <p:inputText id="lastName" value="#{userService.getUserById(session.getAttribute('userId')).get().lastname}"/>
+        </div>
+    </ui:define>
+
+    <ui:define name="password">
+        <p:outputLabel for="password" value="Passwort"/>
+        <div class="ui-inputgroup pb-3">
+            <p:inputText type="password"  id="password" value="#{userService.getUserById(session.getAttribute('userId')).get().password}" required="true" requiredMessage="Bitte Passwort eingeben."/>
+        </div>
+    </ui:define>
+
+    <ui:define name="sendButton">
+        <p:commandButton id="submit-button" action="#{authenticationBean.updateProfile()}" value="Update" icon="pi pi-user" styleClass="ui-button-raised ui-button-danger"/>
+    </ui:define>
+
+    <ui:define name="content">
+        <ui:include src="/WEB-INF/layouts/forms/userProfile.xhtml" />
+    </ui:define>
+</ui:composition>

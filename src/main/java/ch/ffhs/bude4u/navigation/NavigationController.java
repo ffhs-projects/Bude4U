@@ -42,7 +42,6 @@ public class NavigationController implements Serializable {
         return "/views/userAdvertisements.xhtml";
     }
 
-
     public String createAdvertisement() {
         return "/views/advertise.xhtml";
     }
@@ -63,6 +62,9 @@ public class NavigationController implements Serializable {
         return "/views/register.xhtml";
     }
 
+    public String showUserProfile() {
+        return "/views/userProfile.xhtml";
+    }
 
     //TODO: Demonstrates the use of conditional navigation
     public void login() {
