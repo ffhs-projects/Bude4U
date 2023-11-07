@@ -100,6 +100,7 @@ public class AuthenticationBean implements Serializable {
         FacesContext facesContext = FacesContext.getCurrentInstance();
         ExternalContext externalContext = facesContext.getExternalContext();
         externalContext.invalidateSession();
+
         // Navigate back to main-page
         return "/index.xhtml?faces-redirect=true";
     }

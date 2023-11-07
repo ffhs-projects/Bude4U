@@ -6,6 +6,7 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import jakarta.persistence.Query;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -55,6 +56,25 @@ public class AdvertisementDAO implements GenericDAO<Advertisement> {
         }
     }
 
+    public Optional<List<Advertisement>> getByFilter(Long priceFrom, Long priceTo, Double roomFrom, Double roomTo, String category) {
+
+
+        String jpql = "SELECT adv FROM Advertisement adv WHERE adv.buyPrice >= :priceFrom AND adv.buyPrice <= :priceTo AND adv.numberRooms >= :roomFrom AND adv.numberRooms <= :roomTo AND (adv.advCategory = :category OR :category = 'Any')";
+        Query query = entityManager.createQuery(jpql);
+        query.setParameter("priceFrom", priceFrom);
+        query.setParameter("priceTo", priceTo);
+        query.setParameter("roomFrom", roomFrom);
+        query.setParameter("roomTo", roomTo);
+        query.setParameter("category", category);
+
+        List<Advertisement> advertisements = query.getResultList();
+        if (advertisements.isEmpty()) {
+            return Optional.empty();
+        } else {
+            return Optional.of(advertisements);
+        }
+    }
+
     @Override
     public void create(Advertisement advertisement) {
         entityManager.getTransaction().begin();
@@ -68,10 +88,6 @@ public class AdvertisementDAO implements GenericDAO<Advertisement> {
         if (advToUpdate.isPresent()) {
             entityManager.getTransaction().begin();
             entityManager.merge(advertisement);
-            // TODO: maybe better solution: check each property that can be overwritten...
-            // advToUpdate.setProperty1(advertisement.getProperty1());
-            // advToUpdate.setProperty2(advertisement.getProperty2());
-            // advToUpdate.setProperty3(advertisement.getProperty3());
             entityManager.getTransaction().commit();
         }
     }
@@ -93,6 +109,7 @@ public class AdvertisementDAO implements GenericDAO<Advertisement> {
         Query query = entityManager.createQuery("SELECT adv FROM Advertisement adv");
         query.setFirstResult((pageNumber - 1) * pageSize);
         query.setMaxResults(pageSize);
+
         return query.getResultList();
     }
 }

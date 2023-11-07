@@ -39,6 +39,10 @@ public class AdvertisementService implements Serializable{
         return advertisementDao.getByUserId(advUserId);
     }
 
+    public Optional<List<Advertisement>> getAdvertisementByFilter(Long priceFrom, Long priceTo, Double roomFrom, Double roomTo, String category) {
+        return advertisementDao.getByFilter(priceFrom, priceTo, roomFrom, roomTo, category);
+    }
+
     public void delete(UUID advertisementId) {
         advertisementDao.delete(advertisementId);
     }

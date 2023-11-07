@@ -98,5 +98,10 @@ public class UserDAO implements GenericDAO<User> {
     public Optional<List<User>> getByUserId(UUID advUserId) {
         return Optional.empty();
     }
+
+    @Override
+    public Optional<List<User>> getByFilter(Long priceFrom, Long priceTo, Double roomFrom, Double roomTo, String category) {
+        return Optional.empty();
+    }
 }
 

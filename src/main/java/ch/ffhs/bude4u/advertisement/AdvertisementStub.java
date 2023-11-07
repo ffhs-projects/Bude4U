@@ -56,6 +56,11 @@ public class AdvertisementStub implements GenericDAO<Advertisement> {
         return Optional.empty();
     }
 
+    @Override
+    public Optional<List<Advertisement>> getByFilter(Long priceFrom, Long priceTo, Double roomFrom, Double roomTo, String category) {
+        return Optional.empty();
+    }
+
     private List<Advertisement> CreateMockData() {
         List<Advertisement> mockAdvertisements = new ArrayList<>();
         mockAdvertisements.add(new Advertisement("Haus 1", "Schön hier 1...", "01.01.2023", "Haus", "offen", 100000, 5.5, 142, "https://cdn.pixabay.com/photo/2016/11/18/17/46/house-1836070_1280.jpg", UUID.fromString("f8c3de3d-1fea-4d7c-a8b0-29f63c4c3454")));
