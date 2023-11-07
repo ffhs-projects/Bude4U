@@ -88,10 +88,6 @@ public class AdvertisementDAO implements GenericDAO<Advertisement> {
         if (advToUpdate.isPresent()) {
             entityManager.getTransaction().begin();
             entityManager.merge(advertisement);
-            // TODO: maybe better solution: check each property that can be overwritten...
-            // advToUpdate.setProperty1(advertisement.getProperty1());
-            // advToUpdate.setProperty2(advertisement.getProperty2());
-            // advToUpdate.setProperty3(advertisement.getProperty3());
             entityManager.getTransaction().commit();
         }
     }
@@ -113,6 +109,7 @@ public class AdvertisementDAO implements GenericDAO<Advertisement> {
         Query query = entityManager.createQuery("SELECT adv FROM Advertisement adv");
         query.setFirstResult((pageNumber - 1) * pageSize);
         query.setMaxResults(pageSize);
+
         return query.getResultList();
     }
 }

@@ -40,10 +40,6 @@ public class AdvertisementService implements Serializable{
     }
 
     public Optional<List<Advertisement>> getAdvertisementByFilter(Long priceFrom, Long priceTo, Double roomFrom, Double roomTo, String category) {
-
-
-
-
         return advertisementDao.getByFilter(priceFrom, priceTo, roomFrom, roomTo, category);
     }
 

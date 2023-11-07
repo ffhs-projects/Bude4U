@@ -7,108 +7,106 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 
-
     <div class="flex">
-    <div class="flex-2 font-bold pr-4">
+        <div class="flex-2 font-bold pr-4">
+            <h:form>
+                <p:growl id="growl" showDetail="true" />
+                <p:divider type="dashed"/>
+                <h2>Filter</h2>
 
-        <h:form>
-            <p:growl id="growl" showDetail="true" />
-            <p:divider type="dashed"/>
-            <h2>Filter</h2>
+                <p:divider type="dashed"/>
 
-            <p:divider type="dashed"/>
+                <h:panelGrid columns="1" style="margin-bottom: 10px; color:black">
+                    <p:outputLabel for="advCategory" value="Preis von"/>
+                    <p:inputNumber id="preisvon" value="#{advertisementBean.filterPriceFrom}"/>
+                    <p:outputLabel for="advCategory" value="Preis bis"/>
+                    <p:inputNumber id="preisbis" value="#{advertisementBean.filterPriceTo}"/>
+                </h:panelGrid>
 
-            <h:panelGrid columns="1" style="margin-bottom: 10px; color:black">
-                <p:outputLabel for="advCategory" value="Preis von"/>
-                <p:inputNumber id="preisvon" value="#{advertisementBean.filterPriceFrom}"/>
-                <p:outputLabel for="advCategory" value="Preis bis"/>
-                <p:inputNumber id="preisbis" value="#{advertisementBean.filterPriceTo}"/>
-            </h:panelGrid>
+                <p:divider type="dashed"/>
 
-            <p:divider type="dashed"/>
+                <h:panelGrid columns="1" style="margin-bottom: 10px; color:black">
+                    <p:outputLabel for="advCategory" value="Zimmer von"/>
+                    <p:inputNumber id="zimmervon" value="#{advertisementBean.filterRoomFrom}"/>
+                    <p:outputLabel for="advCategory" value="Zimmer bis"/>
+                    <p:inputNumber id="zimmerbis" value="#{advertisementBean.filterRoomTo}"/>
+                </h:panelGrid>
 
-            <h:panelGrid columns="1" style="margin-bottom: 10px; color:black">
-                <p:outputLabel for="advCategory" value="Zimmer von"/>
-                <p:inputNumber id="zimmervon" value="#{advertisementBean.filterRoomFrom}"/>
-                <p:outputLabel for="advCategory" value="Zimmer bis"/>
-                <p:inputNumber id="zimmerbis" value="#{advertisementBean.filterRoomTo}"/>
-            </h:panelGrid>
+                <p:divider type="dashed"/>
 
-            <p:divider type="dashed"/>
+                <h:panelGrid columns="1" style="margin-bottom: 10px; color:black">
+                    <p:outputLabel for="advCategory" value="Kategorie"/>
+                <p:selectOneMenu id="advCategory" value="#{advertisementBean.filterCategory}">
+                    <f:selectItem itemLabel="Beliebig" itemValue="Any"/>
+                    <f:selectItem itemLabel="Wohnung" itemValue="Wohnung"/>
+                    <f:selectItem itemLabel="Haus" itemValue="Haus"/>
+                    <f:selectItem itemLabel="Hobbyraum" itemValue="Hobbyraum"/>
+                    <f:selectItem itemLabel="Garagenplatz" itemValue="Garagenplatz"/>
+                    <f:selectItem itemLabel="Lager" itemValue="Lager"/>
+                </p:selectOneMenu>
+                </h:panelGrid>
+                <p:commandButton id="filter-button" value="Filter" action="#{advertisementBean.filterAdvertisement}">
+                <f:ajax execute="@form" render="advertisements" />
+                </p:commandButton>
+            </h:form>
+        </div>
 
-            <h:panelGrid columns="1" style="margin-bottom: 10px; color:black">
-                <p:outputLabel for="advCategory" value="Kategorie"/>
-            <p:selectOneMenu id="advCategory" value="#{advertisementBean.filterCategory}">
-                <f:selectItem itemLabel="Beliebig" itemValue="Any"/>
-                <f:selectItem itemLabel="Wohnung" itemValue="Wohnung"/>
-                <f:selectItem itemLabel="Haus" itemValue="Haus"/>
-                <f:selectItem itemLabel="Hobbyraum" itemValue="Hobbyraum"/>
-                <f:selectItem itemLabel="Garagenplatz" itemValue="Garagenplatz"/>
-                <f:selectItem itemLabel="Lager" itemValue="Lager"/>
-            </p:selectOneMenu>
-            </h:panelGrid>
-            <p:commandButton id="filter-button" value="Filter" action="#{advertisementBean.filterAdvertisement}">
-            <f:ajax execute="@form" render="advertisements" />
-            </p:commandButton>
-        </h:form>
-    </div>
+        <div class="flex-1  font-bold text-center p-10 border-round mx-10">
+            <h:panelGroup id="advertisements">
+                <ui:repeat value="#{advertisementService.getAdvertisementByFilter(
+                    advertisementBean.filterPriceFrom,
+                    advertisementBean.filterPriceTo,
+                    advertisementBean.filterRoomFrom,
+                    advertisementBean.filterRoomTo,
+                    advertisementBean.filterCategory
+                    ).get() }" var="advertisement">
 
-    <div class="flex-1  font-bold text-center p-10 border-round mx-10">
-        <h:panelGroup id="advertisements">
-            <ui:repeat value="#{advertisementService.getAdvertisementByFilter(
-                advertisementBean.filterPriceFrom,
-                advertisementBean.filterPriceTo,
-                advertisementBean.filterRoomFrom,
-                advertisementBean.filterRoomTo,
-                advertisementBean.filterCategory
-                ).get() }" var="advertisement">
+                    <div class="surface-card p-4 shadow-2 border-round mb-4 ">
+                        <div class="grid ui-fluid">
 
-                <div class="surface-card p-4 shadow-2 border-round mb-4 ">
-                    <div class="grid ui-fluid">
+                            <div class="p-4 col-4 md:col-4">
+                                <h:graphicImage value="#{ advertisement.getMainImage()}" class="img-fluid" alt="header"
+                                                style="max-width: 100%; height: auto;"/>
+                            </div>
 
-                        <div class="p-4 col-4 md:col-4">
-                            <h:graphicImage value="#{ advertisement.getMainImage()}" class="img-fluid" alt="header"
-                                            style="max-width: 100%; height: auto;"/>
+                            <div class="p-4 col-6 md:col-4">
+                                <div class="col-12 md:col-12">
+                                    <h:outputText class="mt-0 text-2xl font-bold" value="#{advertisement.advertisementTitle}"/>
+                                </div>
+                                <div class="col-12 md:col-12">
+                                    <h:outputText class="mt-0 text-3xl font-bold" value="Zimmer: #{advertisement.numberRooms}"/>
+                                </div>
+
+                                <div class="col-12 md:col-12">
+                                    <h:outputText class="text-2xl font-bold" value="Preis: #{advertisement.buyPrice}"/>
+                                </div>
+
+                                <div class="col-12 md:col-12">
+                                    <h:outputText value="Beschreibung: #{advertisement.mainDescription}"/>
+                                </div>
+                            </div>
+
+                            <div class="p-3 col-2 md:col-2">
+                                <div class="col-12 md:col-12">
+                                    <h:outputText value="Veröffentlichung: #{advertisement.creationDate}"/>
+                                </div>
+                                <div class="col-12 md:col-12">
+                                    <h:outputText value="Kategorie: #{advertisement.advCategory}"/>
+                                </div>
+                                <div class="col-12 md:col-12">
+                                    <h:outputText value="Wohnfläche: #{advertisement.livingSpace}"/>
+                                </div>
+                            </div>
                         </div>
-
-                        <div class="p-4 col-6 md:col-4">
-                            <div class="col-12 md:col-12">
-                                <h:outputText class="mt-0 text-2xl font-bold" value="#{advertisement.advertisementTitle}"/>
-                            </div>
-                            <div class="col-12 md:col-12">
-                                <h:outputText class="mt-0 text-3xl font-bold" value="Zimmer: #{advertisement.numberRooms}"/>
-                            </div>
-
-                            <div class="col-12 md:col-12">
-                                <h:outputText class="text-2xl font-bold" value="Preis: #{advertisement.buyPrice}"/>
-                            </div>
-
-                            <div class="col-12 md:col-12">
-                                <h:outputText value="Beschreibung: #{advertisement.mainDescription}"/>
-                            </div>
-                        </div>
-
-                        <div class="p-3 col-2 md:col-2">
-                            <div class="col-12 md:col-12">
-                                <h:outputText value="Veröffentlichung: #{advertisement.creationDate}"/>
-                            </div>
-                            <div class="col-12 md:col-12">
-                                <h:outputText value="Kategorie: #{advertisement.advCategory}"/>
-                            </div>
-                            <div class="col-12 md:col-12">
-                                <h:outputText value="Wohnfläche: #{advertisement.livingSpace}"/>
-                            </div>
+                        <div class="col-12 md:col-12">
+                            <p:commandButton id="submit-button" action="#{navigationController.showAdvertisement()}"
+                                             value="Inserat anzeigen">
+                                <f:param name="advertisement" value="#{advertisement.id}"/>
+                            </p:commandButton>
                         </div>
                     </div>
-                    <div class="col-12 md:col-12">
-                        <p:commandButton id="submit-button" action="#{navigationController.showAdvertisement()}"
-                                         value="Inserat anzeigen">
-                            <f:param name="advertisement" value="#{advertisement.id}"/>
-                        </p:commandButton>
-                    </div>
-                </div>
-            </ui:repeat>
-        </h:panelGroup>
-    </div>
+                </ui:repeat>
+            </h:panelGroup>
+        </div>
     </div>
 </html>
