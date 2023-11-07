@@ -116,7 +116,7 @@ public class AdvertisementBean {
     }
 
     public String getFilterAdvertisement() {
-        return "/";
+        return "/index.xhtml";
     }
 }
 
