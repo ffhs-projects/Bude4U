@@ -53,4 +53,6 @@ public interface GenericDAO<T> {
     List<T> getPaginatedItems(int pageNumber, int pageSize);
 
     Optional<List<T>> getByUserId(UUID advUserId);
+
+    Optional<List<T>> getByFilter(Long priceFrom, Long priceTo, Double roomFrom, Double roomTo, String category);
 }

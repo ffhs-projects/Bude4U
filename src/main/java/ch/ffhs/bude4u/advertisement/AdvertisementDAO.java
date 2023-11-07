@@ -6,6 +6,7 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import jakarta.persistence.Query;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -46,6 +47,25 @@ public class AdvertisementDAO implements GenericDAO<Advertisement> {
         String jpql = "SELECT adv FROM Advertisement adv WHERE adv.advertiserId = :advUserId";
         Query query = entityManager.createQuery(jpql);
         query.setParameter("advUserId", advUserId);
+
+        List<Advertisement> advertisements = query.getResultList();
+        if (advertisements.isEmpty()) {
+            return Optional.empty();
+        } else {
+            return Optional.of(advertisements);
+        }
+    }
+
+    public Optional<List<Advertisement>> getByFilter(Long priceFrom, Long priceTo, Double roomFrom, Double roomTo, String category) {
+
+
+        String jpql = "SELECT adv FROM Advertisement adv WHERE adv.buyPrice >= :priceFrom AND adv.buyPrice <= :priceTo AND adv.numberRooms >= :roomFrom AND adv.numberRooms <= :roomTo AND (adv.advCategory = :category OR :category = 'Any')";
+        Query query = entityManager.createQuery(jpql);
+        query.setParameter("priceFrom", priceFrom);
+        query.setParameter("priceTo", priceTo);
+        query.setParameter("roomFrom", roomFrom);
+        query.setParameter("roomTo", roomTo);
+        query.setParameter("category", category);
 
         List<Advertisement> advertisements = query.getResultList();
         if (advertisements.isEmpty()) {

@@ -1,6 +1,7 @@
 package ch.ffhs.bude4u.advertisement;
 
 
+import jakarta.el.MethodExpression;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.faces.context.FacesContext;
 import jakarta.inject.Named;
@@ -39,6 +40,12 @@ public class AdvertisementBean {
     private boolean test;
     Advertisement newAd;
     private HttpSession session = null;
+
+    private long filterPriceFrom = 0;
+    private long filterPriceTo = 999999999;
+    private double filterRoomFrom = 0;
+    private double filterRoomTo = 50;
+    private String filterCategory = "Any";
 
 
 
@@ -108,5 +115,8 @@ public class AdvertisementBean {
         }
     }
 
+    public String getFilterAdvertisement() {
+        return "/";
+    }
 }
 

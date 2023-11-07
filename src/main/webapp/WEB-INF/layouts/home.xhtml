@@ -20,25 +20,25 @@
 
             <h:panelGrid columns="1" style="margin-bottom: 10px; color:black">
                 <p:outputLabel for="advCategory" value="Preis von"/>
-                <p:inputNumber id="preisvon" value="#{inputNumberView.input1}"/>
+                <p:inputNumber id="preisvon" value="#{advertisementBean.filterPriceFrom}"/>
                 <p:outputLabel for="advCategory" value="Preis bis"/>
-                <p:inputNumber id="preisbis" value="#{inputNumberView.input2}"/>
+                <p:inputNumber id="preisbis" value="#{advertisementBean.filterPriceTo}"/>
             </h:panelGrid>
 
             <p:divider type="dashed"/>
 
             <h:panelGrid columns="1" style="margin-bottom: 10px; color:black">
                 <p:outputLabel for="advCategory" value="Zimmer von"/>
-                <p:inputNumber id="zimmervon" value="#{inputNumberView.input1}"/>
+                <p:inputNumber id="zimmervon" value="#{advertisementBean.filterRoomFrom}"/>
                 <p:outputLabel for="advCategory" value="Zimmer bis"/>
-                <p:inputNumber id="zimmerbis" value="#{inputNumberView.input2}"/>
+                <p:inputNumber id="zimmerbis" value="#{advertisementBean.filterRoomTo}"/>
             </h:panelGrid>
 
             <p:divider type="dashed"/>
 
             <h:panelGrid columns="1" style="margin-bottom: 10px; color:black">
                 <p:outputLabel for="advCategory" value="Kategorie"/>
-            <p:selectOneMenu id="advCategory" value="#{advertisementBean.advCategory}">
+            <p:selectOneMenu id="advCategory" value="#{advertisementBean.filterCategory}">
                 <f:selectItem itemLabel="Beliebig" itemValue=""/>
                 <f:selectItem itemLabel="Wohnung" itemValue="Wohnung"/>
                 <f:selectItem itemLabel="Haus" itemValue="Haus"/>
@@ -47,11 +47,18 @@
                 <f:selectItem itemLabel="Lager" itemValue="Lager"/>
             </p:selectOneMenu>
             </h:panelGrid>
+            <p:commandButton id="filter-button" value="Filter" action="#{advertisementBean.filterAdvertisement}"/>
         </h:form>
     </div>
 
     <div class="flex-1  font-bold text-center p-10 border-round mx-10">
-<ui:repeat value="#{advertisementService.getAllAdvertisements().get() }" var="advertisement">
+<ui:repeat value="#{advertisementService.getAdvertisementByFilter(
+    advertisementBean.filterPriceFrom,
+    advertisementBean.filterPriceTo,
+    advertisementBean.filterRoomFrom,
+    advertisementBean.filterRoomTo,
+    advertisementBean.filterCategory
+    ).get() }" var="advertisement">
 
     <div class="surface-card p-4 shadow-2 border-round mb-4 ">
         <div class="grid ui-fluid">
