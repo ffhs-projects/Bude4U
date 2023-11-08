@@ -40,17 +40,6 @@
         </p:selectOneMenu>
     </ui:define>
 
-<!--    <ui:define name="theme">
-        <p:outputLabel for="themeSelectMenu" value="Theme"/>
-        <p:selectOneMenu id="themeSelectMenu" value="#{authenticationBean.currentTheme}">
-            <f:selectItem itemLabel="saga" itemValue="saga"/>
-            <f:selectItem itemLabel="vela" itemValue="vela"/>
-            <f:selectItem itemLabel="arya" itemValue="arya"/>
-            <p:ajax process="@this" oncomplete="PrimeFaces.changeTheme($('#user-form\\:themeSelectMenu_label').text());"/>
-            <f:selectItems value="#{authenticationBean.availableThemes}"/>
-        </p:selectOneMenu>
-    </ui:define>-->
-
     <ui:define name="sendButton">
         <p:commandButton id="submit-button" action="#{authenticationBean.updateProfile()}" value="Aktualisieren" icon="pi pi-user" styleClass="ui-button-raised ui-button-text-icon-primary"/>
     </ui:define>
