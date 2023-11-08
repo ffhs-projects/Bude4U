@@ -57,9 +57,10 @@ public class AdvertisementStub implements GenericDAO<Advertisement> {
     }
 
     @Override
-    public Optional<List<Advertisement>> getByFilter(Long priceFrom, Long priceTo, Double roomFrom, Double roomTo, String category) {
+    public Optional<List<Advertisement>> getByFilter(Long priceFrom, Long priceTo, Double roomFrom, Double roomTo, String category, String city) {
         return Optional.empty();
     }
+
 
     private List<Advertisement> CreateMockData() {
         List<Advertisement> mockAdvertisements = new ArrayList<>();

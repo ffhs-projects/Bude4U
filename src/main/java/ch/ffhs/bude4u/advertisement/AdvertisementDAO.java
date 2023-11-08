@@ -56,16 +56,18 @@ public class AdvertisementDAO implements GenericDAO<Advertisement> {
         }
     }
 
-    public Optional<List<Advertisement>> getByFilter(Long priceFrom, Long priceTo, Double roomFrom, Double roomTo, String category) {
 
 
-        String jpql = "SELECT adv FROM Advertisement adv WHERE adv.buyPrice >= :priceFrom AND adv.buyPrice <= :priceTo AND adv.numberRooms >= :roomFrom AND adv.numberRooms <= :roomTo AND (adv.advCategory = :category OR :category = 'Any')";
+    public Optional<List<Advertisement>> getByFilter(Long priceFrom, Long priceTo, Double roomFrom, Double roomTo, String category, String city) {
+
+        String jpql = "SELECT adv FROM Advertisement adv WHERE adv.buyPrice >= :priceFrom AND adv.buyPrice <= :priceTo AND adv.numberRooms >= :roomFrom AND adv.numberRooms <= :roomTo AND (adv.advCategory = :category OR :category = 'Any' ) AND (adv.city = :city OR :city = 'Any')";
         Query query = entityManager.createQuery(jpql);
         query.setParameter("priceFrom", priceFrom);
         query.setParameter("priceTo", priceTo);
         query.setParameter("roomFrom", roomFrom);
         query.setParameter("roomTo", roomTo);
         query.setParameter("category", category);
+        query.setParameter("city", city);
 
         List<Advertisement> advertisements = query.getResultList();
         if (advertisements.isEmpty()) {

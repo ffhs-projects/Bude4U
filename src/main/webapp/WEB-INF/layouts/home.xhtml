@@ -12,11 +12,10 @@
             <h:form>
                 <p:growl id="growl" showDetail="true" />
                 <p:divider type="dashed"/>
-                <h2>Filter</h2>
-
+                <p:outputLabel value="Filter"/>
                 <p:divider type="dashed"/>
 
-                <h:panelGrid columns="1" style="margin-bottom: 10px; color:black">
+                <h:panelGrid columns="1" style="margin-bottom: 10px">
                     <p:outputLabel for="advCategory" value="Preis von"/>
                     <p:inputNumber id="preisvon" value="#{advertisementBean.filterPriceFrom}"/>
                     <p:outputLabel for="advCategory" value="Preis bis"/>
@@ -25,7 +24,7 @@
 
                 <p:divider type="dashed"/>
 
-                <h:panelGrid columns="1" style="margin-bottom: 10px; color:black">
+                <h:panelGrid columns="1" style="margin-bottom: 10px">
                     <p:outputLabel for="advCategory" value="Zimmer von"/>
                     <p:inputNumber id="zimmervon" value="#{advertisementBean.filterRoomFrom}"/>
                     <p:outputLabel for="advCategory" value="Zimmer bis"/>
@@ -34,31 +33,43 @@
 
                 <p:divider type="dashed"/>
 
-                <h:panelGrid columns="1" style="margin-bottom: 10px; color:black">
-                    <p:outputLabel for="advCategory" value="Kategorie"/>
-                <p:selectOneMenu id="advCategory" value="#{advertisementBean.filterCategory}">
-                    <f:selectItem itemLabel="Beliebig" itemValue="Any"/>
-                    <f:selectItem itemLabel="Wohnung" itemValue="Wohnung"/>
-                    <f:selectItem itemLabel="Haus" itemValue="Haus"/>
-                    <f:selectItem itemLabel="Hobbyraum" itemValue="Hobbyraum"/>
-                    <f:selectItem itemLabel="Garagenplatz" itemValue="Garagenplatz"/>
-                    <f:selectItem itemLabel="Lager" itemValue="Lager"/>
-                </p:selectOneMenu>
+                <h:panelGrid columns="1" style="margin-bottom: 10px">
+                    <p:outputLabel for="city" value="Ort"/>
+                    <p:inputText id="city" value="#{advertisementBean.filterCity}"/>
                 </h:panelGrid>
+
+                <p:divider type="dashed"/>
+
+
+                <h:panelGrid columns="1" style="margin-bottom: 10px">
+                    <p:outputLabel for="advCategory" value="Kategorie"/>
+                    <p:selectOneMenu id="advCategory" value="#{advertisementBean.filterCategory}">
+                        <f:selectItem itemLabel="Beliebig" itemValue="Any"/>
+                        <f:selectItem itemLabel="Wohnung" itemValue="Wohnung"/>
+                        <f:selectItem itemLabel="Haus" itemValue="Haus"/>
+                        <f:selectItem itemLabel="Hobbyraum" itemValue="Hobbyraum"/>
+                        <f:selectItem itemLabel="Garagenplatz" itemValue="Garagenplatz"/>
+                        <f:selectItem itemLabel="Lager" itemValue="Lager"/>
+                    </p:selectOneMenu>
+                </h:panelGrid>
+
+                <p:divider type="dashed"/>
+
                 <p:commandButton id="filter-button" value="Filter" action="#{advertisementBean.filterAdvertisement}">
                 <f:ajax execute="@form" render="advertisements" />
                 </p:commandButton>
             </h:form>
         </div>
 
-        <div class="flex-1  font-bold text-center p-10 border-round mx-10">
+        <div class="flex-1  font-bold p-10 border-round mx-10">
             <h:panelGroup id="advertisements">
                 <ui:repeat value="#{advertisementService.getAdvertisementByFilter(
                     advertisementBean.filterPriceFrom,
                     advertisementBean.filterPriceTo,
                     advertisementBean.filterRoomFrom,
                     advertisementBean.filterRoomTo,
-                    advertisementBean.filterCategory
+                    advertisementBean.filterCategory,
+                    advertisementBean.filterCity
                     ).get() }" var="advertisement">
 
                     <div class="surface-card p-4 shadow-2 border-round mb-4 ">
@@ -95,6 +106,15 @@
                                 </div>
                                 <div class="col-12 md:col-12">
                                     <h:outputText value="Wohnfläche: #{advertisement.livingSpace}"/>
+                                </div>
+                                <div class="col-12 md:col-12">
+                                    <h:outputText value="Strasse: #{advertisement.street}"/>
+                                </div>
+                                <div class="col-12 md:col-12">
+                                    <h:outputText value="Ort: #{advertisement.city}"/>
+                                </div>
+                                <div class="col-12 md:col-12">
+                                    <h:outputText value="PLZ: #{advertisement.postalCode}"/>
                                 </div>
                             </div>
                         </div>

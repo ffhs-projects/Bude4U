@@ -54,5 +54,5 @@ public interface GenericDAO<T> {
 
     Optional<List<T>> getByUserId(UUID advUserId);
 
-    Optional<List<T>> getByFilter(Long priceFrom, Long priceTo, Double roomFrom, Double roomTo, String category);
+    Optional<List<T>> getByFilter(Long priceFrom, Long priceTo, Double roomFrom, Double roomTo, String category, String city);
 }

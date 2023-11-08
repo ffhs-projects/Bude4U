@@ -46,6 +46,7 @@ public class AdvertisementBean {
     private double filterRoomFrom = 0;
     private double filterRoomTo = 50;
     private String filterCategory = "Any";
+    private String filterCity = "Any";
 
 
 

@@ -100,7 +100,7 @@ public class UserDAO implements GenericDAO<User> {
     }
 
     @Override
-    public Optional<List<User>> getByFilter(Long priceFrom, Long priceTo, Double roomFrom, Double roomTo, String category) {
+    public Optional<List<User>> getByFilter(Long priceFrom, Long priceTo, Double roomFrom, Double roomTo, String category, String city) {
         return Optional.empty();
     }
 }
