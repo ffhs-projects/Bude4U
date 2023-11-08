@@ -33,8 +33,27 @@
         </div>
     </ui:define>
 
+    <ui:define name="theme">
+        <h:outputLabel for="userTheme" value="Theme Name  *:" style="width: 300px"/>
+        <p:selectOneMenu id="userTheme" value="#{themeBean.userTheme}"  style="width:200px"
+                         required="true" requiredMessage="Theme Name is Required" >
+            <f:selectItems value="#{themeBean.themeMap}"/>
+        </p:selectOneMenu>
+    </ui:define>
+
+<!--    <ui:define name="theme">
+        <p:outputLabel for="themeSelectMenu" value="Theme"/>
+        <p:selectOneMenu id="themeSelectMenu" value="#{authenticationBean.currentTheme}">
+            <f:selectItem itemLabel="saga" itemValue="saga"/>
+            <f:selectItem itemLabel="vela" itemValue="vela"/>
+            <f:selectItem itemLabel="arya" itemValue="arya"/>
+            <p:ajax process="@this" oncomplete="PrimeFaces.changeTheme($('#user-form\\:themeSelectMenu_label').text());"/>
+            <f:selectItems value="#{authenticationBean.availableThemes}"/>
+        </p:selectOneMenu>
+    </ui:define>-->
+
     <ui:define name="sendButton">
-        <p:commandButton id="submit-button" action="#{authenticationBean.updateProfile()}" value="Update" icon="pi pi-user" styleClass="ui-button-raised ui-button-danger"/>
+        <p:commandButton id="submit-button" action="#{authenticationBean.updateProfile()}" value="Aktualisieren" icon="pi pi-user" styleClass="ui-button-raised ui-button-text-icon-primary"/>
     </ui:define>
 
     <ui:define name="content">

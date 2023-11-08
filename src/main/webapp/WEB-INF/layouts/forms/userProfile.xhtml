@@ -4,7 +4,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <div class="container">
         <h:form id="user-form">
             <ui:insert name="validation"/>
@@ -28,9 +29,14 @@
                             <div class="col-12 md:col-12">
                                 <ui:insert name="password" id="password"/>
                             </div>
+
+                            <div class="col-12 md:col-12">
+                                <ui:insert name="theme" id="theme"/>
+                            </div>
                         </div>
                     </div>
                 </div>
+
 
                 <p:growl id="messages" showDetail="true"/>
                 <div class="surface-card p-4 shadow-2 border-round">
@@ -38,5 +44,6 @@
                 </div>
             </div>
         </h:form>
+
     </div>
 </html>
