@@ -33,8 +33,15 @@
         </div>
     </ui:define>
 
+    <ui:define name="theme">
+        <h:outputLabel for="userTheme" value="Theme" />
+        <p:selectOneMenu id="userTheme" value="#{themeBean.userTheme}">
+            <f:selectItems value="#{themeBean.themeMap}"/>
+        </p:selectOneMenu>
+    </ui:define>
+
     <ui:define name="sendButton">
-        <p:commandButton id="submit-button" action="#{authenticationBean.updateProfile()}" value="Update" icon="pi pi-user" styleClass="ui-button-raised ui-button-danger"/>
+        <p:commandButton id="submit-button" action="#{authenticationBean.updateProfile()}" value="Aktualisieren" icon="pi pi-user" styleClass="ui-button-raised ui-button-text-icon-primary"/>
     </ui:define>
 
     <ui:define name="content">
