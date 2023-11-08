@@ -34,9 +34,8 @@
     </ui:define>
 
     <ui:define name="theme">
-        <h:outputLabel for="userTheme" value="Theme Name  *:" style="width: 300px"/>
-        <p:selectOneMenu id="userTheme" value="#{themeBean.userTheme}"  style="width:200px"
-                         required="true" requiredMessage="Theme Name is Required" >
+        <h:outputLabel for="userTheme" value="Theme" />
+        <p:selectOneMenu id="userTheme" value="#{themeBean.userTheme}">
             <f:selectItems value="#{themeBean.themeMap}"/>
         </p:selectOneMenu>
     </ui:define>
