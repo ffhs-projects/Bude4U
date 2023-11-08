@@ -61,9 +61,9 @@ public class AdvertisementBean {
         try {
             // Required for unit tests
             if(test) {
-                newAd = new Advertisement(advertisementTitle, mainDescription,"01.01.2001", advCategory,"offen", buyPrice, numberRooms, livingSpace, mainPicUrl, UUID.fromString(session.getAttribute("userId").toString()));
+                newAd = new Advertisement(advertisementTitle, mainDescription,"01.01.2001", advCategory,"offen", buyPrice, numberRooms, livingSpace, mainPicUrl, UUID.fromString(session.getAttribute("userId").toString()), street, city, postalCode);
             } else {
-                newAd = new Advertisement(advertisementTitle, mainDescription, advCategory, buyPrice, numberRooms, livingSpace, mainPicUrl, UUID.fromString(session.getAttribute("userId").toString()));
+                newAd = new Advertisement(advertisementTitle, mainDescription, advCategory, buyPrice, numberRooms, livingSpace, mainPicUrl, UUID.fromString(session.getAttribute("userId").toString()), street, city, postalCode);
            }
             advertisementService.createAdvertisement(newAd);
             return "/views/advertisement.xhtml?advertisement=" + newAd.getId() + "&faces-redirect=true";
