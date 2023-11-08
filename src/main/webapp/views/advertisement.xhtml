@@ -41,6 +41,11 @@
                 value="Beschreibung: #{advertisementService.getAdvertisement(param.advertisement).get().mainDescription}"/>
     </ui:define>
 
+    <ui:define name="address">
+        <h:outputText
+                value="Adresse: #{advertisementService.getAdvertisement(param.advertisement).get().street} in #{advertisementService.getAdvertisement(param.advertisement).get().postalCode} #{advertisementService.getAdvertisement(param.advertisement).get().city}"/>
+    </ui:define>
+
     <ui:define name="numberRooms">
         <h:outputText value="Zimmer: #{advertisementService.getAdvertisement(param.advertisement).get().numberRooms}"
                       class="mt-0 text-3xl font-bold"/>

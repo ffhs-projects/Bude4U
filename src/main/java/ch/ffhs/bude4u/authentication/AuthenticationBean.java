@@ -92,8 +92,8 @@ public class AuthenticationBean implements Serializable {
             session.setAttribute("userId", user.get().getId());
             this.authenticated = true;
             setUser(user.get());
-            // Navigate to userAdvertisements page
-            return "/views/userAdvertisements.xhtml";
+            // Navigate to landing page
+            return "/index.xhtml";
         }
         this.authenticated = false;
         setUser(null);
