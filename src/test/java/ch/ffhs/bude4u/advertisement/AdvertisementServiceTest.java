@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -16,6 +18,8 @@ public class AdvertisementServiceTest {
     public void setup() {
         advertisementService = new AdvertisementService();
     }
+
+    private ArrayList<String> advertisementImages = new ArrayList<>();
 
     @Test
     public void testGetAdvertisementById() {
@@ -49,7 +53,7 @@ public class AdvertisementServiceTest {
 
     @Test
     public void testCreateAdvertisement() {
-        Advertisement newAdvertisement = new Advertisement("New House", "Description", "01.01.2023", "Haus", "offen", 100000, 5.5, 142, "https://example.com", UUID.randomUUID(), "Strasse 1", "Stadt 2", 1234);
+        Advertisement newAdvertisement = new Advertisement("New House", "Description", "01.01.2023", "Haus", "offen", 100000, 5.5, 142, "https://example.com", UUID.randomUUID(), "Strasse 1", "Stadt 2", 1234,  advertisementImages);
         advertisementService.createAdvertisement(newAdvertisement);
         Optional<List<Advertisement>> allAdvertisements = advertisementService.getAllAdvertisements();
         assertTrue(allAdvertisements.stream().anyMatch(x -> x.contains(newAdvertisement)));
@@ -58,7 +62,7 @@ public class AdvertisementServiceTest {
     @Test
     public void testUpdateAdvertisement() {
         UUID id = UUID.fromString("f8c3de3d-1fea-4d7c-a8b0-29f63c4c3455");
-        Advertisement updatedAdvertisement = new Advertisement("Updated House", "Updated Description", "01.01.2023", "Haus", "offen", 100000, 5.5, 142, "https://example.com", UUID.randomUUID(), "Strasse 1", "Stadt 2", 1234);
+        Advertisement updatedAdvertisement = new Advertisement("Updated House", "Updated Description", "01.01.2023", "Haus", "offen", 100000, 5.5, 142, "https://example.com", UUID.randomUUID(), "Strasse 1", "Stadt 2", 1234, advertisementImages );
         advertisementService.updateAdvertisement(updatedAdvertisement);
         Optional<Advertisement> advertisement = advertisementService.getAdvertisement(id);
         assertTrue(advertisement.isPresent());

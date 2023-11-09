@@ -3,6 +3,8 @@ package ch.ffhs.bude4u.advertisement;
 
 import jakarta.el.MethodExpression;
 import jakarta.enterprise.context.RequestScoped;
+import jakarta.enterprise.context.SessionScoped;
+import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.inject.Named;
 import jakarta.inject.Inject;
@@ -10,8 +12,12 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.Getter;
 import lombok.Setter;
+import org.primefaces.event.FileUploadEvent;
+import org.primefaces.model.file.UploadedFile;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.Map;
 import java.util.UUID;
 
@@ -40,7 +46,7 @@ public class AdvertisementBean {
     private boolean test;
     Advertisement newAd;
     private HttpSession session = null;
-
+    private ArrayList<String> advertisementImages = new ArrayList<>();
     private long filterPriceFrom = 0;
     private long filterPriceTo = 999999999;
     private double filterRoomFrom = 0;
@@ -62,9 +68,9 @@ public class AdvertisementBean {
         try {
             // Required for unit tests
             if(test) {
-                newAd = new Advertisement(advertisementTitle, mainDescription,"01.01.2001", advCategory,"offen", buyPrice, numberRooms, livingSpace, mainPicUrl, UUID.fromString(session.getAttribute("userId").toString()), street, city, postalCode);
+                newAd = new Advertisement(advertisementTitle, mainDescription,"01.01.2001", advCategory,"offen", buyPrice, numberRooms, livingSpace, mainPicUrl, UUID.fromString(session.getAttribute("userId").toString()), street, city, postalCode , advertisementImages);
             } else {
-                newAd = new Advertisement(advertisementTitle, mainDescription, advCategory, buyPrice, numberRooms, livingSpace, mainPicUrl, UUID.fromString(session.getAttribute("userId").toString()), street, city, postalCode);
+                newAd = new Advertisement(advertisementTitle, mainDescription, advCategory, buyPrice, numberRooms, livingSpace, mainPicUrl, UUID.fromString(session.getAttribute("userId").toString()), street, city, postalCode, advertisementImages);
            }
             advertisementService.createAdvertisement(newAd);
             return "/views/advertisement.xhtml?advertisement=" + newAd.getId() + "&faces-redirect=true";
@@ -89,7 +95,7 @@ public class AdvertisementBean {
             advertisement.setStreet(advertisement.getStreet());
             advertisement.setCity(advertisement.getCity());
             advertisement.setPostalCode(advertisement.getPostalCode());
-            advertisement.setAdvertisementImages(new ArrayList<>());
+            advertisement.setAdvertisementImages(advertisementImages);
             //Todo: add all images
             /*advertisement.getAdvertisementImages().add(advertisement.getMainImage());*/
             advertisementService.updateAdvertisement(advertisement);
@@ -118,6 +124,18 @@ public class AdvertisementBean {
 
     public String getFilterAdvertisement() {
         return "/index.xhtml";
+    }
+
+    public void handleFileUpload(FileUploadEvent event) {
+        FacesMessage message = new FacesMessage("Successful", event.getFile().getFileName() + " is uploaded.");
+        FacesContext.getCurrentInstance().addMessage(null, message);
+        UploadedFile file = event.getFile();
+
+        String encodedString = Base64.getEncoder().encodeToString(file.getContent());
+
+        advertisementImages.add(encodedString);
+
+        setMainPicUrl(encodedString);
     }
 }
 

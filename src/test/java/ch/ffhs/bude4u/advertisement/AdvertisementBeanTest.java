@@ -3,8 +3,11 @@ package ch.ffhs.bude4u.advertisement;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.primefaces.event.FileUploadEvent;
+
 import static org.mockito.Mockito.*;
 
+import java.util.EventObject;
 import java.util.UUID;
 
 public class AdvertisementBeanTest {

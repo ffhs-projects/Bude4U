@@ -4,12 +4,16 @@ import jakarta.enterprise.context.RequestScoped;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.inject.Named;
+import org.postgresql.shaded.com.ongres.scram.common.bouncycastle.base64.Base64Encoder;
 import org.primefaces.PrimeFaces;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.event.FilesUploadEvent;
 import org.primefaces.model.file.UploadedFile;
 import org.primefaces.model.file.UploadedFiles;
 import org.primefaces.util.EscapeUtils;
+
+import java.io.IOException;
+import java.util.Base64;
 
 @Named
 @RequestScoped
@@ -35,9 +39,15 @@ public class FileUploadView {
         }
     }
 
+
+
     public void handleFileUpload(FileUploadEvent event) {
         FacesMessage message = new FacesMessage("Successful", event.getFile().getFileName() + " is uploaded.");
         FacesContext.getCurrentInstance().addMessage(null, message);
+        UploadedFile file = event.getFile();
+
+        String encodedString = Base64.getEncoder().encodeToString(file.getContent());
+
     }
 
     public void handleFileUploadTextarea(FileUploadEvent event) {
