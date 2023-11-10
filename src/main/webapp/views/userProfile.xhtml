@@ -29,7 +29,7 @@
     <ui:define name="password">
         <p:outputLabel for="password" value="Passwort"/>
         <div class="ui-inputgroup pb-3">
-            <p:inputText type="password"  id="password" value="#{userService.getUserById(session.getAttribute('userId')).get().password}" required="true" requiredMessage="Bitte Passwort eingeben."/>
+            <p:inputText type="password"  id="password" value="#{authenticationBean.updatePassword}" required="true" requiredMessage="Bitte Passwort eingeben."/>
         </div>
     </ui:define>
 

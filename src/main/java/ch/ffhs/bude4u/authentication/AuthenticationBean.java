@@ -106,6 +106,7 @@ public class AuthenticationBean implements Serializable {
     public String logout() {
         user = null;
         this.authenticated = false;
+        session.setAttribute("userId", null);
         FacesContext facesContext = FacesContext.getCurrentInstance();
         ExternalContext externalContext = facesContext.getExternalContext();
         externalContext.invalidateSession();
@@ -128,29 +129,11 @@ public class AuthenticationBean implements Serializable {
         try {
 
             Optional<User> updatedUser = userService.getUserById((UUID) session.getAttribute("userId"));
-
             if (updatedUser.isEmpty()) return "/views/loginFailed.xhtml";
-
-            if (getUpdateUsername() != null) {
-                updatedUser.get().setUsername(getUpdateUsername());
-            }
-
-            if (getUpdateFirstName() != null) {
-                updatedUser.get().setFirstname(getUpdateFirstName());
-            }
-
-            if (getUpdateLastName() != null) {
-                updatedUser.get().setLastname(getUpdateLastName());
-            }
 
             if (getUpdatePassword() != null && !getUpdatePassword().isEmpty()) {
                 updatedUser.get().setPassword(getUpdatePassword());
             }
-
-            if (getUpdateTheme() != null) {
-                updatedUser.get().setTheme(getUpdateTheme());
-            }
-
             userService.updateUser(updatedUser.get());
             return "/index.xhtml";
         } catch (Exception ex) {
