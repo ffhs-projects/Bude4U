@@ -30,21 +30,22 @@ public class User implements Serializable {
     @Column(name = "lastname")
     private String lastname;
 
+    @Column(name = "theme")
+    private String theme;
+
     public User() {
     }
 
-    public User(String first, String last, String username, String password) {
+    public User(String first, String last, String username, String password, String theme) {
         this.firstname = first;
         this.lastname = last;
         this.username = username;
         this.setPassword(password);
+        this.theme = theme;
     }
 
-    public User(UUID id, String firstname, String lastname, String username, String password) {
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.username = username;
-        this.setPassword(password);
+    public User(String first, String last, String username, String password) {
+        this(first, last, username, password, "saga");
     }
 
 
