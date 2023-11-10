@@ -1,11 +1,13 @@
 package ch.ffhs.bude4u.authentication;
 
 import ch.ffhs.bude4u.utils.PBKDF2Hash;
+import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.util.Objects;
 import java.util.UUID;
 
 @Entity
@@ -30,26 +32,31 @@ public class User implements Serializable {
     @Column(name = "lastname")
     private String lastname;
 
+    @Column(name = "theme")
+    private String theme;
+
     public User() {
     }
 
-    public User(String first, String last, String username, String password) {
+    public User(String first, String last, String username, String password, String theme) {
         this.firstname = first;
         this.lastname = last;
         this.username = username;
         this.setPassword(password);
+        this.theme = theme;
     }
 
-    public User(UUID id, String firstname, String lastname, String username, String password) {
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.username = username;
-        this.setPassword(password);
+    public User(String first, String last, String username, String password) {
+        this(first, last, username, password, "saga");
     }
 
 
     public void setPassword(String password) {
         this.password = PBKDF2Hash.CreateHash(password);
+    }
+
+    public String getTheme() {
+        return Objects.requireNonNullElse(this.theme, "saga");
     }
 
     @Override

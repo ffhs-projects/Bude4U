@@ -35,7 +35,7 @@
 
     <ui:define name="theme">
         <h:outputLabel for="userTheme" value="Theme" />
-        <p:selectOneMenu id="userTheme" value="#{themeBean.userTheme}">
+        <p:selectOneMenu id="userTheme" value="#{userService.getUserById(session.getAttribute('userId')).get().theme}">
             <f:selectItems value="#{themeBean.themeMap}"/>
         </p:selectOneMenu>
     </ui:define>

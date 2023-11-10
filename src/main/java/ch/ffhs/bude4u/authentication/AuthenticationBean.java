@@ -40,6 +40,7 @@ public class AuthenticationBean implements Serializable {
     private String updatePassword = null;
     private String updateFirstName = null;
     private String updateLastName = null;
+    private String updateTheme = null;
 
     User user;
 
@@ -124,8 +125,6 @@ public class AuthenticationBean implements Serializable {
     }
 
     public String updateProfile() {
-
-        // Update user
         try {
 
             Optional<User> updatedUser = userService.getUserById((UUID) session.getAttribute("userId"));
@@ -146,6 +145,10 @@ public class AuthenticationBean implements Serializable {
 
             if (getUpdatePassword() != null && !getUpdatePassword().isEmpty()) {
                 updatedUser.get().setPassword(getUpdatePassword());
+            }
+
+            if (getUpdateTheme() != null) {
+                updatedUser.get().setTheme(getUpdateTheme());
             }
 
             userService.updateUser(updatedUser.get());
