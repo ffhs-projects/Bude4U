@@ -1,10 +1,10 @@
 package ch.ffhs.bude4u.authentication;
 
-import ch.ffhs.bude4u.utils.GenericDAO;
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.inject.Named;
 import lombok.Getter;
 import lombok.Setter;
+
 import java.io.Serializable;
 import java.util.List;
 import java.util.Optional;
@@ -23,7 +23,8 @@ public class UserService implements Serializable {
     }
 
     public Optional<User> getUserById(UUID userId) {
-        return userDao.get(userId);
+        Optional<User> luser = userDao.get(userId);
+        return luser;
     }
 
     public Optional<List<User>> getAllUsers() {

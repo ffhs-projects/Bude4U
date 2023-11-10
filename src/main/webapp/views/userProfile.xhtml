@@ -8,43 +8,49 @@
     <ui:define name="username">
         <p:outputLabel for="updateUsername" value="Username"/>
         <div class="ui-inputgroup pb-3">
-            <p:inputText id="updateUsername" value="#{userService.getUserById(session.getAttribute('userId')).get().username}"/>
+            <p:inputText id="updateUsername"
+                         value="#{userService.getUserById(session.getAttribute('userId')).get().username}"/>
         </div>
     </ui:define>
 
     <ui:define name="firstname">
         <p:outputLabel for="firstName" value="Vorname"/>
         <div class="ui-inputgroup pb-3">
-            <p:inputText id="firstName" value="#{userService.getUserById(session.getAttribute('userId')).get().firstname}"/>
+            <p:inputText id="firstName"
+                         value="#{userService.getUserById(session.getAttribute('userId')).get().firstname}"/>
         </div>
     </ui:define>
 
     <ui:define name="lastname">
         <p:outputLabel for="lastName" value="Nachname"/>
         <div class="ui-inputgroup pb-3">
-            <p:inputText id="lastName" value="#{userService.getUserById(session.getAttribute('userId')).get().lastname}"/>
+            <p:inputText id="lastName"
+                         value="#{userService.getUserById(session.getAttribute('userId')).get().lastname}"/>
         </div>
     </ui:define>
 
     <ui:define name="password">
         <p:outputLabel for="password" value="Passwort"/>
         <div class="ui-inputgroup pb-3">
-            <p:inputText type="password"  id="password" value="#{authenticationBean.updatePassword}" required="true" requiredMessage="Bitte Passwort eingeben."/>
+            <p:inputText type="password" id="password" value="#{authenticationBean.updatePassword}" required="true"
+                         requiredMessage="Bitte Passwort eingeben."/>
         </div>
     </ui:define>
 
-    <ui:define name="theme">
-        <h:outputLabel for="userTheme" value="Theme" />
-        <p:selectOneMenu id="userTheme" value="#{userService.getUserById(session.getAttribute('userId')).get().theme}">
+    <ui:define name="userTheme">
+        <h:outputLabel for="userTheme" value="Theme"/>
+        <p:selectOneMenu id="userTheme"
+                         value="#{userService.getUserById(session.getAttribute('userId')).get().selectedTheme}">
             <f:selectItems value="#{themeBean.themeMap}"/>
         </p:selectOneMenu>
     </ui:define>
 
     <ui:define name="sendButton">
-        <p:commandButton id="submit-button" action="#{authenticationBean.updateProfile()}" value="Aktualisieren" icon="pi pi-user" styleClass="ui-button-raised ui-button-text-icon-primary"/>
+        <p:commandButton id="submit-button" action="#{authenticationBean.updateProfile()}" value="Aktualisieren"
+                         icon="pi pi-user" styleClass="ui-button-raised ui-button-text-icon-primary"/>
     </ui:define>
 
     <ui:define name="content">
-        <ui:include src="/WEB-INF/layouts/forms/userProfile.xhtml" />
+        <ui:include src="/WEB-INF/layouts/forms/userProfile.xhtml"/>
     </ui:define>
 </ui:composition>

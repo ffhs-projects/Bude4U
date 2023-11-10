@@ -2,64 +2,51 @@ package ch.ffhs.bude4u.theme;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.SessionScoped;
-import jakarta.faces.context.ExternalContext;
 import jakarta.faces.context.FacesContext;
 import jakarta.inject.Named;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import lombok.Getter;
+import lombok.Setter;
 
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
-@Getter
 @Named
 @SessionScoped
 public class ThemeBean implements Serializable {
 
+    private HttpSession session = null;
 
+    @Getter
+    @Setter
     private String userTheme = "saga";
+
+    @Getter
     private Map<String, String> themeMap;
 
     @PostConstruct
-    public void init() {
-        setThemeMapInit();
-    }
-
-    public void setUserTheme(String userTheme) {
-        this.userTheme = userTheme;
-    }
-
-    public void setThemeMapInit() {
+    public void initializeThemeMap() {
         themeMap = new LinkedHashMap<>();
         themeMap.put("Saga", "saga");
         themeMap.put("Vela", "vela");
         themeMap.put("Arya", "arya");
     }
 
-    public void setThemeMap(Map<String, String> themeMap) {
-        this.themeMap = themeMap;
+    public String getSelectedUserTheme() {
+        session = getSession();
+        String sessionTheme = (String) session.getAttribute("selectedTheme");
+        if (sessionTheme == null || sessionTheme.trim().isEmpty()) return "saga";
+        return sessionTheme;
     }
 
+    public HttpSession getSession() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
+        session = request.getSession();
 
-    public void submitUserSettings() {
-        ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
-        try {
-            ec.redirect(((HttpServletRequest) ec.getRequest()).getRequestURI());
-        } catch (IOException ex) {
-            Logger.getLogger(ThemeBean.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    public String getAvailableThemes() {
-        return "Saga";
-    }
-
-    public String getCurrentTheme() {
-        return "Saga";
+        return session;
     }
 
 }

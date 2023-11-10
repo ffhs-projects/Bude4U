@@ -1,7 +1,6 @@
 package ch.ffhs.bude4u.authentication;
 
 import ch.ffhs.bude4u.utils.PBKDF2Hash;
-import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -11,29 +10,37 @@ import java.util.Objects;
 import java.util.UUID;
 
 @Entity
-@Getter
-@Setter
 @Table(name = "users")
 public class User implements Serializable {
 
+    @Setter
+    @Getter
     @Id
     @GeneratedValue
     private UUID id;
 
+    @Getter
+    @Setter
     @Column(name = "username")
     private String username;
 
+    @Getter
     @Column(name = "password")
     private String password;
 
+    @Getter
+    @Setter
     @Column(name = "firstname")
     private String firstname;
 
+    @Getter
+    @Setter
     @Column(name = "lastname")
     private String lastname;
 
+    @Setter
     @Column(name = "theme")
-    private String theme;
+    private String selectedTheme;
 
     public User() {
     }
@@ -43,7 +50,7 @@ public class User implements Serializable {
         this.lastname = last;
         this.username = username;
         this.setPassword(password);
-        this.theme = theme;
+        this.selectedTheme = theme;
     }
 
     public User(String first, String last, String username, String password) {
@@ -55,8 +62,8 @@ public class User implements Serializable {
         this.password = PBKDF2Hash.CreateHash(password);
     }
 
-    public String getTheme() {
-        return Objects.requireNonNullElse(this.theme, "saga");
+    public String getSelectedTheme() {
+        return Objects.requireNonNullElse(this.selectedTheme, "saga");
     }
 
     @Override

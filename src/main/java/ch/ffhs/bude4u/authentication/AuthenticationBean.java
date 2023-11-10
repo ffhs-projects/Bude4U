@@ -1,7 +1,6 @@
 package ch.ffhs.bude4u.authentication;
 
 import ch.ffhs.bude4u.utils.PBKDF2Hash;
-import jakarta.el.MethodExpression;
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.faces.context.ExternalContext;
 import jakarta.faces.context.FacesContext;
@@ -34,13 +33,7 @@ public class AuthenticationBean implements Serializable {
     private String password = null;
     private String firstName = null;
     private String lastName = null;
-
-    @Setter
-    private String updateUsername = null;
     private String updatePassword = null;
-    private String updateFirstName = null;
-    private String updateLastName = null;
-    private String updateTheme = null;
 
     User user;
 
@@ -91,6 +84,7 @@ public class AuthenticationBean implements Serializable {
             session.setAttribute("authenticated", true);
             session.setAttribute("username", userNameInput);
             session.setAttribute("userId", user.get().getId());
+            session.setAttribute("selectedTheme", user.get().getSelectedTheme());
             this.authenticated = true;
             setUser(user.get());
             // Navigate to landing page
@@ -134,6 +128,10 @@ public class AuthenticationBean implements Serializable {
             if (getUpdatePassword() != null && !getUpdatePassword().isEmpty()) {
                 updatedUser.get().setPassword(getUpdatePassword());
             }
+
+            String theme = updatedUser.get().getSelectedTheme();
+            session.setAttribute("selectedTheme", theme);
+
             userService.updateUser(updatedUser.get());
             return "/index.xhtml";
         } catch (Exception ex) {
