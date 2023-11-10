@@ -130,7 +130,6 @@ public class AdvertisementBean implements Serializable {
     }
 
     private void clearBean() {
-        //advertisementService = null;
         advertisementId = null;
         advertisementTitle = null;
         mainDescription = null;

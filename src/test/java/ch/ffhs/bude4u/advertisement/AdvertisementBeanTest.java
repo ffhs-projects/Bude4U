@@ -38,7 +38,6 @@ public class AdvertisementBeanTest {
         advertisementBean.setBuyPrice(100000);
         advertisementBean.setNumberRooms(3.5);
         advertisementBean.setLivingSpace(150);
-        advertisementBean.setMainPicUrl("https://example.com");
 
         // Call the createAdvertisement method
         String result = advertisementBean.createAdvertisement();
@@ -63,7 +62,6 @@ public class AdvertisementBeanTest {
         advertisementBean.setBuyPrice(100000);
         advertisementBean.setNumberRooms(3.5);
         advertisementBean.setLivingSpace(150);
-        advertisementBean.setMainPicUrl("https://example.com");
 
         String result = advertisementBean.createAdvertisement();
 
