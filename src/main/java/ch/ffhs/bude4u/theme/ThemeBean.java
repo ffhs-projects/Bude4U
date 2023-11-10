@@ -21,12 +21,12 @@ import java.util.logging.Logger;
 public class ThemeBean implements Serializable {
 
 
-    private String userTheme = "saga" ;
-    private Map<String , String>  themeMap ;
+    private String userTheme = "saga";
+    private Map<String, String> themeMap;
 
     @PostConstruct
-    public void init (){
-        setThemeMapInit(  );
+    public void init() {
+        setThemeMapInit();
     }
 
     public void setUserTheme(String userTheme) {
@@ -34,18 +34,18 @@ public class ThemeBean implements Serializable {
     }
 
     public void setThemeMapInit() {
-        themeMap =  new LinkedHashMap<String, String>();
+        themeMap = new LinkedHashMap<>();
         themeMap.put("Saga", "saga");
         themeMap.put("Vela", "vela");
         themeMap.put("Arya", "arya");
     }
 
     public void setThemeMap(Map<String, String> themeMap) {
-        this.themeMap =themeMap;
+        this.themeMap = themeMap;
     }
 
 
-    public void  sumbitUserSettings (){
+    public void submitUserSettings() {
         ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
         try {
             ec.redirect(((HttpServletRequest) ec.getRequest()).getRequestURI());
