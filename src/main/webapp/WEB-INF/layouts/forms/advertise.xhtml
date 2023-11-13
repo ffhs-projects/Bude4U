@@ -11,66 +11,61 @@
             <div class="surface-card p-4 shadow-2 border-round">
                 <div class="grid ui-fluid">
                     <h:messages />
-                    <div class="surface-card p-4 ">
+
+                    <div class="surface-card p-4 col-6 md:col-6">
                         <div class="grid ui-fluid">
                             <div class="col-12 md:col-12">
                                 <ui:insert name="title" id="title"/>
                             </div>
-
-                            <div class="col-12 md:col-6">
-                                <ui:insert name="buyprice"/>
-                            </div>
-
-                            <div class="col-12 md:col-6">
-                                <ui:insert name="numberRooms"/>
-                            </div>
-
-                            <div class="col-12 md:col-6">
-                                <ui:insert name="livingSpace"/>
-                            </div>
-
                             <div class="col-12 md:col-6">
                                 <ui:insert name="advCategory"/>
                             </div>
-
-                            <div class="col-12 md:col-4">
+                            <div class="col-12 md:col-6">
+                                <ui:insert name="numberRooms"/>
+                            </div>
+                            <div class="col-12 md:col-12">
                                 <ui:insert name="street"/>
                             </div>
-
-                            <div class="col-12 md:col-4">
+                            <div class="col-6 md:col-6">
                                 <ui:insert name="city"/>
                             </div>
-
-                            <div class="col-12 md:col-4">
+                            <div class="col-6 md:col-6">
                                 <ui:insert name="postalCode"/>
+                            </div>
+                            <div class="col-12 md:col-6">
+                                <ui:insert name="buyprice"/>
+                            </div>
+                            <div class="col-12 md:col-6">
+                                <ui:insert name="livingSpace"/>
                             </div>
                         </div>
                     </div>
 
-                    <div class="surface-card p-4 ">
+                    <div class="surface-card p-4 col-6 md:col-6">
                         <div class="grid ui-fluid">
                             <div class="col-12 md:col-12">
                                 <ui:insert name="date"/>
                             </div>
-                        </div>
-                        <div class="grid ui-fluid">
                             <div class="col-12 md:col-12">
-                                <ui:insert name="description"/>
+                                <div class="surface-card ">
+                                    <ui:insert name="fileupload"/>
+                                    <p:fileUpload listener="#{advertisementBean.handleFileUpload}" mode="advanced" dragDropSupport="true" multiple="true" auto="true"
+                                                  update="messages" sizeLimit="10000000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" style="height: auto" class="border-2 border-dashed surface-border"/>
+                                </div>
                             </div>
                         </div>
                     </div>
+
+                    <div class="surface-card p-4 col-4 md:col-4">
+                    </div>
+                    <div class="col-12 md:col-12">
+                        <ui:insert name="description"/>
+                    </div>
                 </div>
 
-                <div class="surface-card p-4">
-                    <div class="text-3xl font-medium text-900 mb-3">File Upload</div>
-                    <div class="font-medium text-500 mb-3">Drop on the text area to upload, or choose.</div>
-                    <p:fileUpload listener="#{advertisementBean.handleFileUpload}" mode="advanced" dragDropSupport="true" multiple="true" auto="true"
-                                  update="messages" sizeLimit="10000000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" style="height: auto" class="border-2 border-dashed surface-border"/>
-                </div>
                 <p:growl id="messages" showDetail="true"/>
-                <div class="surface-card p-4 shadow-2 border-round">
-                    <ui:insert name="sendButton"/>
-                </div>
+                <ui:insert name="sendButton"/>
+
             </div>
         </h:form>
     </div>

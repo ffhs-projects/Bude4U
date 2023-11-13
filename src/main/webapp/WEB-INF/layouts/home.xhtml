@@ -80,7 +80,7 @@
 
                                 <div class="col-5 md:col-4">
                                     <h:graphicImage value="#{advertisement.getMainImage()}"
-                                                    style="max-width: 100%; height: auto; padding-left: 0.5em"/>
+                                                    style="max-width: 80%; height: auto; padding-left: 0.5em"/>
                                 </div>
 
 
@@ -110,8 +110,8 @@
 <!--                                    <div class="col-12 md:col-12">
                                         <p:outputLabel value="Beschreibung: #{advertisement.mainDescription}" />
                                     </div>-->
-                                    <div class="col-12 md:col-12">
-                                        <p:commandButton id="submit-button" action="#{navigationController.showAdvertisement()}"
+                                    <div class="col-5 md:col-5">
+                                        <p:commandButton id="submit-button" action="#{navigationController.showAdvertisement()}" style="max-width: 20em"
                                                          value="Inserat anzeigen">
                                             <f:param name="advertisement" value="#{advertisement.id}"/>
                                         </p:commandButton>

@@ -19,6 +19,11 @@
                         class="img-fluid" alt="header" style="max-width: 40%; height: auto;"/>
     </ui:define>
 
+
+    <ui:define name="informations">
+        <p:outputLabel value="Eckdaten" styleClass="text-2xl font-bold"/>
+    </ui:define>
+
     <ui:define name="creationDate">
         <p:outputLabel
                 value="Veröffentlichung: #{advertisementService.getAdvertisement(param.advertisement).get().creationDate}"/>
@@ -38,10 +43,6 @@
         <p:outputLabel value="Status: #{advertisementService.getAdvertisement(param.advertisement).get().advStatus}"/>
     </ui:define>
 
-    <ui:define name="advertiser">
-        <p:outputLabel value="Verkäufer: #{userService.getUserById(advertisementService.getAdvertisement(param.advertisement).get().advertiserId).get().username}"/>
-    </ui:define>
-
     <ui:define name="mainDescription">
         <p:outputLabel
                 value="Beschreibung: #{advertisementService.getAdvertisement(param.advertisement).get().mainDescription}"/>
@@ -54,14 +55,23 @@
 
     <ui:define name="numberRooms">
         <i class="pi pi-home"/>
-        <p:outputLabel value="  #{advertisementService.getAdvertisement(param.advertisement).get().numberRooms} Zimmer" style="font-size: 18px !important;"/>
+        <p:outputLabel value="  #{advertisementService.getAdvertisement(param.advertisement).get().numberRooms} Zimmer" />
     </ui:define>
 
     <ui:define name="livingSpace">
-        <i class="pi pi-box"></i>
+        <i class="pi pi-box"/>
         <p:outputLabel
                 value="  #{advertisementService.getAdvertisement(param.advertisement).get().livingSpace}  m²"/>
     </ui:define>
+
+    <ui:define name="contact">
+        <p:outputLabel value="Kontakt" styleClass="text-2xl font-bold"/>
+    </ui:define>
+
+    <ui:define name="advertiser">
+        <p:outputLabel value="Verkäufer: #{userService.getUserById(advertisementService.getAdvertisement(param.advertisement).get().advertiserId).get().username}"/>
+    </ui:define>
+
 
     <ui:define name="content">
         <ui:include src="/WEB-INF/layouts/advertisement.xhtml"/>
