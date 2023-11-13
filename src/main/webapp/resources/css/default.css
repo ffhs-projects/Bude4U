@@ -1,0 +1,9 @@
+#headline {
+    font-weight: bold;
+    font-size: 40px; !important;
+}
+
+p:OutputLabel {
+    font-weight: bold;
+    font-size: 20px; !important;
+}

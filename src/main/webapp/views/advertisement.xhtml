@@ -6,7 +6,8 @@
                 xmlns:c="http://java.sun.com/jsp/jstl/core"
                 template="/WEB-INF/layouts/template.xhtml">
     <ui:define name="pageTitle">
-        #{advertisementService.getAdvertisement(param.advertisement).get().advertisementTitle}
+        <p:outputLabel  value="#{advertisementService.getAdvertisement(param.advertisement).get().advertisementTitle}" style="font-size: 40px !important;"/>
+
     </ui:define>
 
     <ui:define name="image">
