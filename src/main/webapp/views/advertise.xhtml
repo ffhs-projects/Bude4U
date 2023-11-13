@@ -5,6 +5,7 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
                 xmlns:p="http://primefaces.org/ui">
 
+    <ui:define name="pageTitle"><p:outputLabel  value="Inserat erstellen" style="font-size: 40px !important;"/></ui:define>
     <ui:define name="title">
         <p:outputLabel for="advertisementTitle" value="Titel"/>
         <div class="ui-inputgroup pb-3">
@@ -16,6 +17,7 @@
         <p:outputLabel for="numberRooms" value="Zimmer"/>
         <p:selectOneMenu id="numberRooms" value="#{advertisementBean.numberRooms}" required="true" requiredMessage="Number of rooms is required">
             <f:selectItem itemLabel="Bitte auswählen" itemValue=""/>
+            <f:selectItem itemLabel="0" itemValue="0"/>
             <f:selectItem itemLabel="1" itemValue="1"/>
             <f:selectItem itemLabel="1.5" itemValue="1.5"/>
             <f:selectItem itemLabel="2" itemValue="2"/>
@@ -93,12 +95,17 @@
     </ui:define>
 
     <ui:define name="date">
-        <p:outputLabel for="datumDescription" value="Datum"/>
-        <p:inputTextarea id="datumDescription" value="Heute" disabled="true"/>
+        <p:outputLabel for="datumDescription" value="Datum der Veröffentlichung"/>
+        <p:inputText id="datumDescription" value="Heute" disabled="true"/>
     </ui:define>
 
+    <ui:define name="fileupload">
+        <p:outputLabel id="fileUpload" value="Bild hochladen" style="font-size: 18px !important;"/>
+    </ui:define>
+
+
     <ui:define name="sendButton">
-        <p:commandButton id="submit-button" value="Submit" action="#{advertisementBean.createAdvertisement}"/>
+        <p:commandButton id="submit-button" value="Veröffentlichen" action="#{advertisementBean.createAdvertisement}"/>
     </ui:define>
 
     <ui:define name="content">

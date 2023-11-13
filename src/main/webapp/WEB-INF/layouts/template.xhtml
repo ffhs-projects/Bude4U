@@ -13,19 +13,22 @@
         <meta charset="utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
         <ui:insert name="headIncludes"/>
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/theme.css"/>
+        <h:outputStylesheet name="css/default.css" />
+        <h:outputStylesheet library="webjars" name="font-awesome/5.12.0/css/all.min-jsf.css" />
+        <h:outputStylesheet library="webjars" name="font-awesome/5.12.0/css/v4-shims.min-jsf.css" />
     </h:head>
 
     <h:body styleClass="d-flex flex-column h-100">
+
 
         <h:panelGroup layout="block" styleClass="header sticky top-0 mb-3">
             <ui:include src="/WEB-INF/layouts/components/header.xhtml"/>
         </h:panelGroup>
 
         <main role="main" class="pl-8 pr-8">
-            <h1 class="page-header display-3 pt-4">
+            <div class="page-header display-3 pt-4">
                 <ui:insert name="pageTitle"/>
-            </h1>
+            </div>
             <ui:insert name="content"/>
         </main>
 

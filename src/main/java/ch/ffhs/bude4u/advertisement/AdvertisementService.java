@@ -41,7 +41,22 @@ public class AdvertisementService implements Serializable{
     }
 
     public Optional<List<Advertisement>> getAdvertisementByFilter(Long priceFrom, Long priceTo, Double roomFrom, Double roomTo, String category, String city) {
-        return advertisementDao.getByFilter(priceFrom, priceTo, roomFrom, roomTo, category, city);
+
+        Optional<List<Advertisement>> advertisementList = advertisementDao.getByFilter(priceFrom, priceTo, roomFrom, roomTo, category, city);
+        if (advertisementList.isEmpty()) {
+            Advertisement adv = new Advertisement();
+            adv.setAdvertiserId(UUID.randomUUID());
+            adv.setAdvCategory("test");
+            adv.setCity("test");
+            adv.setBuyPrice(1.0);
+            adv.setNumberRooms(1.0);
+            adv.setStreet("test");
+            adv.setAdvertisementTitle("test");
+            adv.setPostalCode(1);
+            advertisementDao.create(adv);
+        }
+
+        return advertisementList;
     }
 
     public void delete(UUID advertisementId) {
