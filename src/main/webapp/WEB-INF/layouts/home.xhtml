@@ -104,8 +104,12 @@
                                     </div>
 
                                     <div class="col-12 md:col-12">
-                                        <p:outputLabel value="Beschreibung: #{advertisement.mainDescription}" />
+                                        <p:outputLabel value="Strasse: #{advertisement.street} ,#{advertisement.postalCode} in #{advertisement.city}" />
                                     </div>
+
+<!--                                    <div class="col-12 md:col-12">
+                                        <p:outputLabel value="Beschreibung: #{advertisement.mainDescription}" />
+                                    </div>-->
                                     <div class="col-12 md:col-12">
                                         <p:commandButton id="submit-button" action="#{navigationController.showAdvertisement()}"
                                                          value="Inserat anzeigen">

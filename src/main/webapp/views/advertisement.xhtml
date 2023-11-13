@@ -5,59 +5,62 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
                 xmlns:c="http://java.sun.com/jsp/jstl/core"
                 template="/WEB-INF/layouts/template.xhtml">
+
     <ui:define name="pageTitle">
         <p:outputLabel  value="#{advertisementService.getAdvertisement(param.advertisement).get().advertisementTitle}" style="font-size: 40px !important;"/>
+    </ui:define>
 
+    <ui:define name="advertisementTitle">
+        <p:outputLabel  value="#{advertisementService.getAdvertisement(param.advertisement).get().advertisementTitle}" style="font-size: 40px !important;"/>
     </ui:define>
 
     <ui:define name="image">
         <h:graphicImage value="#{advertisementService.getAdvertisement(param.advertisement).get().getMainImage()}"
-                        class="img-fluid" alt="header" style="max-width: 80%; height: auto;"/>
+                        class="img-fluid" alt="header" style="max-width: 40%; height: auto;"/>
     </ui:define>
 
     <ui:define name="creationDate">
-        <h:outputText
+        <p:outputLabel
                 value="Veröffentlichung: #{advertisementService.getAdvertisement(param.advertisement).get().creationDate}"/>
     </ui:define>
 
     <ui:define name="advCategory">
-        <h:outputText
+        <p:outputLabel
                 value="Kategorie: #{advertisementService.getAdvertisement(param.advertisement).get().advCategory}"/>
     </ui:define>
 
     <ui:define name="buyPrice">
-        <h:outputText value="Preis: CHF #{advertisementService.getAdvertisement(param.advertisement).get().buyPrice}"
+        <p:outputLabel value="CHF #{advertisementService.getAdvertisement(param.advertisement).get().buyPrice} / Monat"
                       class="text-2xl font-bold"/>
     </ui:define>
 
     <ui:define name="advStatus">
-        <h:outputText value="Status: #{advertisementService.getAdvertisement(param.advertisement).get().advStatus}"/>
+        <p:outputLabel value="Status: #{advertisementService.getAdvertisement(param.advertisement).get().advStatus}"/>
     </ui:define>
 
     <ui:define name="advertiser">
-        <h:outputText value="Verkäufer: #{userService.getUserById(advertisementService.getAdvertisement(param.advertisement).get().advertiserId).get().username}"/>
+        <p:outputLabel value="Verkäufer: #{userService.getUserById(advertisementService.getAdvertisement(param.advertisement).get().advertiserId).get().username}"/>
     </ui:define>
 
     <ui:define name="mainDescription">
-        <h:outputText
+        <p:outputLabel
                 value="Beschreibung: #{advertisementService.getAdvertisement(param.advertisement).get().mainDescription}"/>
     </ui:define>
 
     <ui:define name="address">
-        <h:outputText
-                value="Adresse: #{advertisementService.getAdvertisement(param.advertisement).get().street} in #{advertisementService.getAdvertisement(param.advertisement).get().postalCode} #{advertisementService.getAdvertisement(param.advertisement).get().city}"/>
+        <p:outputLabel
+                value="Adresse: #{advertisementService.getAdvertisement(param.advertisement).get().street} in #{advertisementService.getAdvertisement(param.advertisement).get().postalCode} #{advertisementService.getAdvertisement(param.advertisement).get().city}" style="font-size: 18px !important;"/>
     </ui:define>
 
     <ui:define name="numberRooms">
-        <h:outputText value="Zimmer: #{advertisementService.getAdvertisement(param.advertisement).get().numberRooms}"
-                      class="mt-0 text-3xl font-bold"/>
+        <i class="pi pi-home"/>
+        <p:outputLabel value="  #{advertisementService.getAdvertisement(param.advertisement).get().numberRooms} Zimmer" style="font-size: 18px !important;"/>
     </ui:define>
 
     <ui:define name="livingSpace">
-        <h:outputText
-                value="Wohnfläche: #{advertisementService.getAdvertisement(param.advertisement).get().livingSpace}"/>
-                <p:inputText value="#{advertisementService.getAdvertisement(param.advertisement).get().advertiserId}"/>
-                <p:inputText value="#{session.getAttribute('userId')}"/>
+        <i class="pi pi-box"></i>
+        <p:outputLabel
+                value="  #{advertisementService.getAdvertisement(param.advertisement).get().livingSpace}  m²"/>
     </ui:define>
 
     <ui:define name="content">
