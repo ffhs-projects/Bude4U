@@ -57,7 +57,6 @@ public class NavigationController implements Serializable {
         String advertisementId = params.get("advertisementId");
         return "/views/advertisement.xhtml?advertisement=" + advertisementId;
     }
-
     public String showRegister() {
         return "/views/register.xhtml";
     }
