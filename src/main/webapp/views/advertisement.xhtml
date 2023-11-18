@@ -2,8 +2,6 @@
                 xmlns:ui="jakarta.faces.facelets"
                 xmlns:h="jakarta.faces.html"
                 xmlns:p="http://primefaces.org/ui"
-                xmlns:f="http://xmlns.jcp.org/jsf/core"
-                xmlns:c="http://java.sun.com/jsp/jstl/core"
                 template="/WEB-INF/layouts/template.xhtml">
 
     <ui:define name="pageTitle">
@@ -71,7 +69,6 @@
     <ui:define name="advertiser">
         <p:outputLabel value="Verkäufer: #{userService.getUserById(advertisementService.getAdvertisement(param.advertisement).get().advertiserId).get().username}"/>
     </ui:define>
-
 
     <ui:define name="content">
         <ui:include src="/WEB-INF/layouts/advertisement.xhtml"/>

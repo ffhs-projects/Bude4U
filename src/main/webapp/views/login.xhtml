@@ -1,15 +1,47 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="jakarta.faces.facelets"
                 xmlns:p="http://primefaces.org/ui"
-                template="/WEB-INF/layouts/template.xhtml">
-    <ui:define name="createAccountLabel">Hast du noch keinen Account? 👉 </ui:define>
-    <ui:define name="createAccountLink">
-        <p:commandLink value="Account erstellen" id="createAccountLink" action="#{navigationController.showRegister()}"/>
+                template="/WEB-INF/layouts/template.xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="login"><p:outputLabel value="Login" style="font-size: 40px !important;"/></ui:define>
+
+    <ui:define name="email">
+        <p:outputLabel for="email" value="Email" />
+        <p:message id="idEmail" for="email"/>
+        <p:inputText id="email" styleClass="w-full mb-3" placeholder="Email address"
+                     value="#{authenticationBean.username}" validatorMessage="Email Format nicht korrekt." required="true" requiredMessage="Email darf nicht leer sein.">
+                <f:validateRegex pattern="^[\wW\.]+@([\w-]+\.)+[\w-]{2,4}$"/>
+        </p:inputText>
     </ui:define>
-    <ui:define name="emailLabel">Email</ui:define>
-    <ui:define name="passwordLabel">Passwort</ui:define>
-    <ui:define name="forgotPasswordLink">Passwort vergessen?</ui:define>
+
+    <ui:define name="password">
+        <p:outputLabel for="password" value="Passwort" />
+        <p:message id="idPassword" for="password"/>
+        <p:inputText id="password" type="password" styleClass="w-full mb-3" placeholder="Password"
+                     value="#{authenticationBean.password}" required="true" requiredMessage="Passwort darf nicht leer sein."/>
+    </ui:define>
+
+    <ui:define name="forgotPasswordLink">
+        <p:commandLink value="Passwort vergessen?" id="forgotPasswordLink"/>
+        <br/>
+    </ui:define>
+
     <ui:define name="content">
         <ui:include src="/WEB-INF/layouts/forms/login.xhtml" />
+    </ui:define>
+
+    <ui:define name="createAccount">
+        <div class="text-center pt-3">
+            <span class="text-600 font-medium line-height-3"><p:outputLabel for="createAccount" value="Hast du noch keinen Account? 👉" /></span>
+            <a class="font-medium no-underline ml-2 text-blue-500 cursor-pointer"><ui:insert
+                    name="createAccountLink"/></a>
+            <p:commandLink value="Account erstellen" id="createAccount" action="#{navigationController.showRegister()}"/>
+        </div>
+    </ui:define>
+
+    <ui:define name="loginlink">
+        <p:commandButton type="submit-button" value="Login" icon="pi pi-user" styleClass="w-full" id="login"
+                     action="#{authenticationBean.login()}" update="@form"/>
     </ui:define>
 </ui:composition>

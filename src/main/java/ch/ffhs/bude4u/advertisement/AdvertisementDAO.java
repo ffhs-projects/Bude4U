@@ -57,6 +57,7 @@ public class AdvertisementDAO implements GenericDAO<Advertisement> {
     }
 
 
+
     public Optional<List<Advertisement>> getByFilter(Long priceFrom, Long priceTo, Double roomFrom, Double roomTo, String category, String city) {
 
         String jpql = "SELECT adv FROM Advertisement adv WHERE adv.buyPrice >= :priceFrom AND adv.buyPrice <= :priceTo AND adv.numberRooms >= :roomFrom AND adv.numberRooms <= :roomTo AND (adv.advCategory = :category OR :category = 'Any' ) AND (adv.city = :city OR :city = 'Any')";

@@ -7,6 +7,7 @@
            <ui:define name="pageTitle"><p:outputLabel  value="Inserat bearbeiten" style="font-size: 40px !important;"/></ui:define>
            <ui:define name="title">
                 <p:outputLabel for="advertisementTitle" value="Titel"/>
+                <p:message id="messageAdvertisementTitle" for="advertisementTitle"/>
                 <div class="ui-inputgroup pb-3">
                     <p:inputText id="advertisementTitle" value="#{advertisementService.getAdvertisement(param.advertisement).get().advertisementTitle}" required="false" requiredMessage="Title is required"/>
                 </div>
@@ -14,6 +15,7 @@
 
             <ui:define name="numberRooms">
                 <p:outputLabel for="numberRooms" value="Zimmer"/>
+                <p:message id="idNumberRooms" for="numberRooms"/>
                 <p:selectOneMenu id="numberRooms" value="#{advertisementService.getAdvertisement(param.advertisement).get().numberRooms}" required="false" requiredMessage="Number of rooms is required">
                     <f:selectItem itemLabel="Bitte auswählen" itemValue=""/>
                     <f:selectItem itemLabel="0" itemValue="0"/>
@@ -37,6 +39,7 @@
 
                 <ui:define name="livingSpace">
                     <p:outputLabel for="livingSpace" value="Wohnfläche"/>
+                    <p:message id="idlivingSpace" for="livingSpace"/>
                     <div class="ui-inputgroup">
                         <p:inputNumber id="livingSpace" value="#{advertisementService.getAdvertisement(param.advertisement).get().livingSpace}" required="false" requiredMessage="Living space is required"/>
                         <div class="ui-inputgroup-addon">m²</div>
@@ -45,6 +48,7 @@
 
                 <ui:define name="description">
                     <p:outputLabel for="mainDescription" value="Beschreibung"/>
+                    <p:message id="idMainDescription" for="mainDescription"/>
                     <div class="ui-inputgroup">
                         <div class="ui-inputgroup-addon"><i class="pi pi-user"></i></div>
                         <p:inputTextarea id="mainDescription" rows="12" cols="90" placeholder="Beschreibung" value="#{advertisementService.getAdvertisement(param.advertisement).get().mainDescription}" required="false" requiredMessage="Description is required"/>
@@ -53,6 +57,7 @@
 
                 <ui:define name="advCategory">
                     <p:outputLabel for="advCategory" value="Kategorie"/>
+                    <p:message id="idAdvCategory" for="advCategory"/>
                     <p:selectOneMenu id="advCategory" value="#{advertisementService.getAdvertisement(param.advertisement).get().advCategory}" required="false" requiredMessage="Category is required">
                         <f:selectItem itemLabel="Beliebig" itemValue=""/>
                         <f:selectItem itemLabel="Wohnung" itemValue="Wohnung"/>
@@ -60,25 +65,29 @@
                         <f:selectItem itemLabel="Hobbyraum" itemValue="Hobbyraum"/>
                         <f:selectItem itemLabel="Garagenplatz" itemValue="Garagenplatz"/>
                         <f:selectItem itemLabel="Lager" itemValue="Lager"/>
+                        <f:selectItem itemLabel="Andere" itemValue="Andere"/>
                     </p:selectOneMenu>
                 </ui:define>
 
                 <ui:define name="street">
-                    <p:outputLabel for="streetName" value="Strasse und Nummer"/>
+                    <p:outputLabel for="street" value="Strasse und Nummer"/>
+                    <p:message id="idStreet" for="street"/>
                     <div class="ui-inputgroup pb-3">
-                        <p:inputText id="streetName" placeholder="Musterstrasse" value="#{advertisementService.getAdvertisement(param.advertisement).get().street}" required="true" requiredMessage="Street is required" />
+                        <p:inputText id="street" placeholder="Musterstrasse" value="#{advertisementService.getAdvertisement(param.advertisement).get().street}" required="true" requiredMessage="Street is required" />
                     </div>
                 </ui:define>
 
                 <ui:define name="city">
-                    <p:outputLabel for="cityName" value="Stadt"/>
+                    <p:outputLabel for="city" value="Stadt"/>
+                    <p:message id="idCity" for="city"/>
                     <div class="ui-inputgroup pb-3">
-                        <p:inputText id="cityName" placeholder="Musterhausen" value="#{advertisementService.getAdvertisement(param.advertisement).get().city}" required="true" requiredMessage="City is required" />
+                        <p:inputText id="city" placeholder="Musterhausen" value="#{advertisementService.getAdvertisement(param.advertisement).get().city}" required="true" requiredMessage="City is required" />
                     </div>
                 </ui:define>
 
                 <ui:define name="postalCode">
                     <p:outputLabel for="postalCode" value="Postleitzahl"/>
+                    <p:message id="idPostalCode" for="postalCode"/>
                     <div class="ui-inputgroup">
                         <p:inputNumber id="postalCode" value="#{advertisementService.getAdvertisement(param.advertisement).get().postalCode}" placeholder="1234" required="true" requiredMessage="Postalcode is required" />
                     </div>
@@ -86,6 +95,7 @@
 
                 <ui:define name="buyprice">
                     <p:outputLabel for="buyPrice" value="Preis"/>
+                    <p:message id="idBuyPrice" for="buyPrice"/>
                     <div class="ui-inputgroup">
                         <div class="ui-inputgroup-addon">CHF</div>
                         <p:inputNumber id="buyPrice" value="#{advertisementService.getAdvertisement(param.advertisement).get().buyPrice}" required="false" requiredMessage="Buy price is required" />
@@ -102,7 +112,7 @@
                 </ui:define>
 
                 <ui:define name="sendButton">
-                   <p:commandButton id="submit-button" action="#{advertisementBean.updateAdvertisement()}" value="Aktualisieren" icon="pi pi-user" styleClass="ui-button-raised ui-button-danger">
+                   <p:commandButton id="submit-button" action="#{advertisementBean.updateAdvertisement()}" value="Aktualisieren" icon="pi pi-user" styleClass="ui-button-raised ui-button-danger" update="@form">
                       <f:param name="advertisement" value="#{advertisementService.getAdvertisement(param.advertisement).get().id}"/>
                   </p:commandButton>
                 </ui:define>
