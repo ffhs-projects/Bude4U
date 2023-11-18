@@ -30,7 +30,7 @@ public class Advertisement implements Serializable {
         advertiserId = UUID.randomUUID();
     }
 
-    public Advertisement(String title, String description, String date, String category, String status, double price, double rooms, int space, UUID advUserId, String street, String city, Integer plz, List<String> images) {
+    public Advertisement(String title, String description, String date, String category, String status, double price, double rooms, int space, UUID advUserId, String newstreet, String newcity, Integer plz, List<String> images) {
         advertisementTitle = title;
         mainDescription = description;
         creationDate = date;
@@ -42,8 +42,8 @@ public class Advertisement implements Serializable {
         advertiserId = advUserId;
         advertisementImages = new ArrayList<>();
         advertisementImages.addAll(images);
-        street = street;
-        city = city;
+        street = newstreet;
+        city = newcity;
         postalCode = plz;
 
     }

@@ -138,6 +138,7 @@ public class AuthenticationBean implements Serializable {
             } else {
                 // Check if username has already been set.
                 Optional<User> hasUser = userService.getUserByName(updatedUser.get().getUsername());
+                // Update failed -> Navigate to...
                 if (hasUser.isPresent()) return "/views/loginFailed.xhtml";
                 userService.updateUser(updatedUser.get());
             }

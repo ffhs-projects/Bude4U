@@ -35,7 +35,7 @@ public class AdvertisementBeanTest {
         advertisementBean.setAdvertisementTitle("Test Title");
         advertisementBean.setMainDescription("Test Description");
         advertisementBean.setAdvCategory("Category");
-        advertisementBean.setBuyPrice(100000);
+        advertisementBean.setBuyPrice(100000.0);
         advertisementBean.setNumberRooms(3.5);
         advertisementBean.setLivingSpace(150);
 
@@ -59,7 +59,7 @@ public class AdvertisementBeanTest {
         advertisementBean.setAdvertisementTitle("Test Title");
         advertisementBean.setMainDescription("Test Description");
         advertisementBean.setAdvCategory("Category");
-        advertisementBean.setBuyPrice(100000);
+        advertisementBean.setBuyPrice(100000.0);
         advertisementBean.setNumberRooms(3.5);
         advertisementBean.setLivingSpace(150);
 

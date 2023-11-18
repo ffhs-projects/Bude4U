@@ -90,7 +90,6 @@ public class AdvertisementBean implements Serializable {
             advertisement.setStreet(advertisement.getStreet());
             advertisement.setCity(advertisement.getCity());
             advertisement.setPostalCode(advertisement.getPostalCode());
-            // TODO: Merge
             advertisement.setAdvertisementImages(advertisementImages);
             advertisementService.updateAdvertisement(advertisement);
             return "/views/advertisement.xhtml?advertisement=" + advertisement.getId() + "&faces-redirect=true";
