@@ -28,16 +28,16 @@ public class AdvertisementBean implements Serializable {
     private UUID advertisementId;
     private String advertisementTitle;
     private String mainDescription;
-    private double buyPrice;
-    private double numberRooms;
-    private int livingSpace;
+    private Double buyPrice;
+    private Double numberRooms;
+    private Integer livingSpace;
     private String creationDate;
     private String advCategory;
     private String advStatus;
-    private int landArea;
+    private Integer landArea;
     private String street;
     private String city;
-    private int postalCode;
+    private Integer postalCode;
     private boolean test;
     Advertisement newAd;
     private HttpSession session = null;
@@ -90,6 +90,7 @@ public class AdvertisementBean implements Serializable {
             advertisement.setStreet(advertisement.getStreet());
             advertisement.setCity(advertisement.getCity());
             advertisement.setPostalCode(advertisement.getPostalCode());
+            // TODO: Merge
             advertisement.setAdvertisementImages(advertisementImages);
             advertisementService.updateAdvertisement(advertisement);
             return "/views/advertisement.xhtml?advertisement=" + advertisement.getId() + "&faces-redirect=true";
@@ -139,7 +140,7 @@ public class AdvertisementBean implements Serializable {
         creationDate = null;
         advCategory = null;
         advStatus = null;
-        landArea = 0;
+        landArea = null;
         street = null;
         city = null;
         postalCode = 0;

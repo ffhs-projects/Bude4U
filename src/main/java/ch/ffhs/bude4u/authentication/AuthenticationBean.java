@@ -132,7 +132,16 @@ public class AuthenticationBean implements Serializable {
             String theme = updatedUser.get().getSelectedTheme();
             session.setAttribute("selectedTheme", theme);
 
-            userService.updateUser(updatedUser.get());
+            // Check if username has been updated
+            if (updatedUser.get().getUsername().equals(session.getAttribute("username"))) {
+                userService.updateUser(updatedUser.get());
+            } else {
+                // Check if username has already been set.
+                Optional<User> hasUser = userService.getUserByName(updatedUser.get().getUsername());
+                if (hasUser.isPresent()) return "/views/loginFailed.xhtml";
+                userService.updateUser(updatedUser.get());
+            }
+
             return "/index.xhtml";
         } catch (Exception ex) {
             return "ERROR: " + ex.getMessage();
