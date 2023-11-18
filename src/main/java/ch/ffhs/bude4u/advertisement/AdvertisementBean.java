@@ -134,9 +134,9 @@ public class AdvertisementBean implements Serializable {
         advertisementId = null;
         advertisementTitle = null;
         mainDescription = null;
-        buyPrice = 0;
-        numberRooms = 0;
-        livingSpace = 0;
+        buyPrice = null;
+        numberRooms = null;
+        livingSpace = null;
         creationDate = null;
         advCategory = null;
         advStatus = null;
