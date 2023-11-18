@@ -7,14 +7,25 @@
         <h:form>
             <p:growl id="messages"/>
             <p:menubar>
+                <p:menuitem style="padding: 0 !important; margin: 0 !important">
+                        <h:graphicImage style="padding: 0 !important; margin: 0 !important"  name="images/bude4u_logo.png" width="50" height="50" />
+                </p:menuitem>
+<!--            <p:menuitem style="height: 80px" src="bude4u_logo.svg"/>-->
                 <p:menuitem value="Inserate" icon="pi pi-fw pi-home" action="#{navigationController.showHome()}"/>
-                <p:menuitem value="Inserieren" label="File" icon="pi pi-fw pi-plus" action="#{navigationController.createAdvertisement()}" rendered="#{session.getAttribute('authenticated')}"/>
-                <p:menuitem value="Meine Inserate" label="File" icon="pi pi-fw pi-user-plus" action="#{navigationController.userAdvertisements()}" rendered="#{session.getAttribute('authenticated')}"/>
+                <p:menuitem value="Inserieren" label="File" icon="pi pi-fw pi-plus"
+                            action="#{navigationController.createAdvertisement()}"
+                            rendered="#{session.getAttribute('authenticated')}"/>
+                <p:menuitem value="Meine Inserate" label="File" icon="pi pi-fw pi-user-plus"
+                            action="#{navigationController.userAdvertisements()}"
+                            rendered="#{session.getAttribute('authenticated')}"/>
                 <p:divider layout="vertical"/>
                 <f:facet name="options">
-                    <p:menubar style="background-color: transparent; border-style: none; padding: 0" >
-                        <p:menuitem value="Profil" label="File" icon="pi pi-fw pi-user-edit" action="#{navigationController.showUserProfile()}" rendered="#{session.getAttribute('authenticated')}"/>
-                        <p:menuitem value="#{authenticationBean.isAuthenticated() ? 'Logout' : 'Login'}" label="File" icon="pi pi-fw pi-unlock" action="#{navigationController.showLoginLogout()}"/>
+                    <p:menubar style="background-color: transparent; border-style: none; padding: 0">
+                        <p:menuitem value="Profil" label="File" icon="pi pi-fw pi-user-edit"
+                                    action="#{navigationController.showUserProfile()}"
+                                    rendered="#{session.getAttribute('authenticated')}"/>
+                        <p:menuitem value="#{authenticationBean.isAuthenticated() ? 'Logout' : 'Login'}" label="File"
+                                    icon="pi pi-fw pi-unlock" action="#{navigationController.showLoginLogout()}"/>
                     </p:menubar>
                 </f:facet>
             </p:menubar>
