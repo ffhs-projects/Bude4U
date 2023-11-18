@@ -65,6 +65,7 @@
                         <f:selectItem itemLabel="Hobbyraum" itemValue="Hobbyraum"/>
                         <f:selectItem itemLabel="Garagenplatz" itemValue="Garagenplatz"/>
                         <f:selectItem itemLabel="Lager" itemValue="Lager"/>
+                        <f:selectItem itemLabel="Andere" itemValue="Andere"/>
                     </p:selectOneMenu>
                 </ui:define>
 
@@ -111,7 +112,7 @@
                 </ui:define>
 
                 <ui:define name="sendButton">
-                   <p:commandButton id="submit-button" action="#{advertisementBean.updateAdvertisement()}" value="Aktualisieren" icon="pi pi-user" styleClass="ui-button-raised ui-button-danger">
+                   <p:commandButton id="submit-button" action="#{advertisementBean.updateAdvertisement()}" value="Aktualisieren" icon="pi pi-user" styleClass="ui-button-raised ui-button-danger" update="@form">
                       <f:param name="advertisement" value="#{advertisementService.getAdvertisement(param.advertisement).get().id}"/>
                   </p:commandButton>
                 </ui:define>

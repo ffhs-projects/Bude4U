@@ -52,6 +52,7 @@
                         <f:selectItem itemLabel="Hobbyraum" itemValue="Hobbyraum"/>
                         <f:selectItem itemLabel="Garagenplatz" itemValue="Garagenplatz"/>
                         <f:selectItem itemLabel="Lager" itemValue="Lager"/>
+                        <f:selectItem itemLabel="Andere" itemValue="Andere"/>
                     </p:selectOneMenu>
                 </h:panelGrid>
 
@@ -112,9 +113,6 @@
                                         <p:outputLabel value="Strasse: #{advertisement.street} ,#{advertisement.postalCode} in #{advertisement.city}" />
                                     </div>
 
-<!--                                    <div class="col-12 md:col-12">
-                                        <p:outputLabel value="Beschreibung: #{advertisement.mainDescription}" />
-                                    </div>-->
                                     <div class="col-5 md:col-5">
                                         <p:commandButton id="submit-button" action="#{navigationController.showAdvertisement()}" style="max-width: 20em"
                                                          value="Inserat anzeigen">
@@ -122,27 +120,6 @@
                                         </p:commandButton>
                                     </div>
                                 </div>
-
-<!--                                <div class="p-3 col-2 md:col-2">
-                                    <div class="col-12 md:col-12">
-                                        <p:outputLabel value="Veröffentlichung: #{advertisement.creationDate}"/>
-                                    </div>
-                                    <div class="col-12 md:col-12">
-                                        <p:outputLabel value="Kategorie: #{advertisement.advCategory}"/>
-                                    </div>
-                                    <div class="col-12 md:col-12">
-                                        <p:outputLabel value="Wohnfläche: #{advertisement.livingSpace}"/>
-                                    </div>
-                                    <div class="col-12 md:col-12">
-                                        <p:outputLabel value="Strasse: #{advertisement.street}"/>
-                                    </div>
-                                    <div class="col-12 md:col-12">
-                                        <p:outputLabel value="Ort: #{advertisement.city}"/>
-                                    </div>
-                                    <div class="col-12 md:col-12">
-                                        <p:outputLabel value="PLZ: #{advertisement.postalCode}"/>
-                                    </div>
-                                </div>-->
                             </div>
                         </div>
                     </ui:repeat>

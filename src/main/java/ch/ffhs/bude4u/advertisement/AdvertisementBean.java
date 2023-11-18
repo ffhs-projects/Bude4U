@@ -26,6 +26,7 @@ import java.util.UUID;
 public class AdvertisementBean implements Serializable {
     @Inject
     private AdvertisementService advertisementService;
+
     private UUID advertisementId;
     private String advertisementTitle;
     private String mainDescription;
