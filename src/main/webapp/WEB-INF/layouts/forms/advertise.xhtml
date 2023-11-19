@@ -38,8 +38,7 @@
                             </div>
                         </div>
                     </div>
-
-                    <div class="surface-card p-4 col-6 md:col-6">
+                    <div class="surface-card p-4 sm:w-6 md:w-6">
                         <div class="grid ui-fluid">
                             <div class="col-12 md:col-12">
                                 <ui:insert name="date"/>
@@ -48,22 +47,18 @@
                                 <div class="surface-card ">
                                     <ui:insert name="fileupload"/>
                                     <p:fileUpload listener="#{advertisementBean.handleFileUpload}" mode="advanced" dragDropSupport="true" multiple="true" auto="true"
-                                                  update="messages" sizeLimit="10000000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" style="height: auto" class="border-2 border-dashed surface-border"/>
+                                                  update="messages" sizeLimit="10000000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" style="height: auto" class="border-2 border-dashed surface-border"
+                                                  invalidFileMessage="Es sind nur gif | jpg | jpeg | png Formate erlaubt." label="Bild auswählen"/>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                    <div class="surface-card p-4 col-4 md:col-4">
-                    </div>
-                    <div class="col-12 md:col-12">
+                    <div class="sm:w-12 md:w-12 ">
                         <ui:insert name="description"/>
                     </div>
                 </div>
-
                 <p:growl id="messages" showDetail="true"/>
                 <ui:insert name="sendButton"/>
-
             </div>
         </h:form>
     </div>

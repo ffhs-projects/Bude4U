@@ -108,11 +108,11 @@
                 </ui:define>
 
                 <ui:define name="fileupload">
-                    <p:outputLabel id="fileUpload" value="Bild hochladen" style="font-size: 18px !important;"/>
+                    <p:outputLabel id="fileUpload" value="Bild hochladen"/>
                 </ui:define>
 
                 <ui:define name="sendButton">
-                   <p:commandButton id="submit-button" action="#{advertisementBean.updateAdvertisement()}" value="Aktualisieren" icon="pi pi-user" styleClass="ui-button-raised ui-button-danger" update="@form">
+                   <p:commandButton id="submit-button" action="#{advertisementBean.updateAdvertisement()}" value="Aktualisieren" icon="pi pi-upload" styleClass="ui-button-raised ui-button-success" update="@form">
                       <f:param name="advertisement" value="#{advertisementService.getAdvertisement(param.advertisement).get().id}"/>
                   </p:commandButton>
                 </ui:define>
