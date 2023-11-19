@@ -2,7 +2,8 @@
                 xmlns:ui="jakarta.faces.facelets"
                 template="/WEB-INF/layouts/template.xhtml"
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
-                xmlns:p="http://primefaces.org/ui">
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:c="http://java.sun.com/jsp/jstl/core">
 
            <ui:define name="pageTitle"><p:outputLabel  value="Inserat bearbeiten" style="font-size: 40px !important;"/></ui:define>
            <ui:define name="title">
@@ -18,22 +19,9 @@
                 <p:message id="idRooms" for="rooms"/>
                 <p:selectOneMenu id="rooms" value="#{advertisementService.getAdvertisement(param.advertisement).get().rooms}" required="false" requiredMessage="Number of rooms is required">
                     <f:selectItem itemLabel="Bitte auswählen" itemValue=""/>
-                    <f:selectItem itemLabel="0" itemValue="0"/>
-                    <f:selectItem itemLabel="1" itemValue="1"/>
-                    <f:selectItem itemLabel="1.5" itemValue="1.5"/>
-                    <f:selectItem itemLabel="2" itemValue="2"/>
-                    <f:selectItem itemLabel="2.5" itemValue="2.5"/>
-                    <f:selectItem itemLabel="3" itemValue="3"/>
-                    <f:selectItem itemLabel="3.5" itemValue="3.5"/>
-                    <f:selectItem itemLabel="4" itemValue="4"/>
-                    <f:selectItem itemLabel="4.5" itemValue="4.5"/>
-                    <f:selectItem itemLabel="5" itemValue="5"/>
-                    <f:selectItem itemLabel="5.5" itemValue="5.5"/>
-                    <f:selectItem itemLabel="6" itemValue="6"/>
-                    <f:selectItem itemLabel="6.5" itemValue="6.5"/>
-                    <f:selectItem itemLabel="7" itemValue="7"/>
-                    <f:selectItem itemLabel="7.5" itemValue="7.5"/>
-                    <f:selectItem itemLabel="8" itemValue="8"/>
+                    <c:forEach var="roomCount" items="#{advertisementBean.roomsList}">
+                        <f:selectItem itemLabel="${roomCount}" itemValue="${roomCount}"/>
+                    </c:forEach>
                 </p:selectOneMenu>
             </ui:define>
 
@@ -54,21 +42,17 @@
                             <i class="pi pi-user">
                             </i>
                         </div>
-                        <p:inputTextarea id="description" rows="12" cols="90" placeholder="Beschreibung" value="#{advertisementService.getAdvertisement(param.advertisement).get().description}" required="false" requiredMessage="Description is required"/>
+                        <p:inputTextarea id="description" rows="12" cols="90" placeholder="Beschreibung" value="#{advertisementService.getAdvertisement(param.advertisement).get().description}" required="false" requiredMessage="Bitte Beschreibung angeben"/>
                     </div>
                 </ui:define>
 
                 <ui:define name="category">
                     <p:outputLabel for="category" value="Kategorie"/>
                     <p:message id="idAdvCategory" for="category"/>
-                    <p:selectOneMenu id="category" value="#{advertisementService.getAdvertisement(param.advertisement).get().category}" required="false" requiredMessage="Category is required">
-                        <f:selectItem itemLabel="Beliebig" itemValue=""/>
-                        <f:selectItem itemLabel="Wohnung" itemValue="Wohnung"/>
-                        <f:selectItem itemLabel="Haus" itemValue="Haus"/>
-                        <f:selectItem itemLabel="Hobbyraum" itemValue="Hobbyraum"/>
-                        <f:selectItem itemLabel="Garagenplatz" itemValue="Garagenplatz"/>
-                        <f:selectItem itemLabel="Lager" itemValue="Lager"/>
-                        <f:selectItem itemLabel="Andere" itemValue="Andere"/>
+                    <p:selectOneMenu id="category" value="#{advertisementService.getAdvertisement(param.advertisement).get().category}" required="false" requiredMessage="Bitte Kategorie angeben">
+                        <c:forEach var="categoryCount" items="#{advertisementBean.categoryList}">
+                            <f:selectItem itemLabel="${categoryCount}" itemValue="${categoryCount}"/>
+                        </c:forEach>
                     </p:selectOneMenu>
                 </ui:define>
 
@@ -76,7 +60,7 @@
                     <p:outputLabel for="street" value="Strasse und Nummer"/>
                     <p:message id="idStreet" for="street"/>
                     <div class="ui-inputgroup pb-3">
-                        <p:inputText id="street" placeholder="Musterstrasse" value="#{advertisementService.getAdvertisement(param.advertisement).get().street}" required="true" requiredMessage="Street is required" />
+                        <p:inputText id="street" placeholder="Musterstrasse" value="#{advertisementService.getAdvertisement(param.advertisement).get().street}" required="true" requiredMessage="Bitte Strasse angeben" />
                     </div>
                 </ui:define>
 
@@ -84,7 +68,7 @@
                     <p:outputLabel for="city" value="Stadt"/>
                     <p:message id="idCity" for="city"/>
                     <div class="ui-inputgroup pb-3">
-                        <p:inputText id="city" placeholder="Musterhausen" value="#{advertisementService.getAdvertisement(param.advertisement).get().city}" required="true" requiredMessage="City is required" />
+                        <p:inputText id="city" placeholder="Musterhausen" value="#{advertisementService.getAdvertisement(param.advertisement).get().city}" required="true" requiredMessage="Bitte Stadt angeben" />
                     </div>
                 </ui:define>
 
@@ -92,7 +76,7 @@
                     <p:outputLabel for="postalCode" value="Postleitzahl"/>
                     <p:message id="idPostalCode" for="postalCode"/>
                     <div class="ui-inputgroup">
-                        <p:inputNumber id="postalCode" value="#{advertisementService.getAdvertisement(param.advertisement).get().postalCode}" placeholder="1234" required="true" requiredMessage="Postalcode is required" />
+                        <p:inputNumber id="postalCode" value="#{advertisementService.getAdvertisement(param.advertisement).get().postalCode}" placeholder="1234" required="true" requiredMessage="Bitte PLZ angeben" />
                     </div>
                 </ui:define>
 
@@ -101,7 +85,7 @@
                     <p:message id="idBuyPrice" for="price"/>
                     <div class="ui-inputgroup">
                         <div class="ui-inputgroup-addon">CHF</div>
-                        <p:inputNumber id="price" value="#{advertisementService.getAdvertisement(param.advertisement).get().price}" required="false" requiredMessage="Buy price is required" />
+                        <p:inputNumber id="price" value="#{advertisementService.getAdvertisement(param.advertisement).get().price}" required="false" requiredMessage="Bitte Preis angeben" />
                     </div>
                 </ui:define>
 
