@@ -6,17 +6,17 @@
 
            <ui:define name="pageTitle"><p:outputLabel  value="Inserat bearbeiten" style="font-size: 40px !important;"/></ui:define>
            <ui:define name="title">
-                <p:outputLabel for="advertisementTitle" value="Titel"/>
-                <p:message id="messageAdvertisementTitle" for="advertisementTitle"/>
+                <p:outputLabel for="title" value="Titel"/>
+                <p:message id="messageAdvertisementTitle" for="title"/>
                 <div class="ui-inputgroup pb-3">
-                    <p:inputText id="advertisementTitle" value="#{advertisementService.getAdvertisement(param.advertisement).get().advertisementTitle}" required="false" requiredMessage="Title is required"/>
+                    <p:inputText id="title" value="#{advertisementService.getAdvertisement(param.advertisement).get().title}" required="false" requiredMessage="Title is required"/>
                 </div>
             </ui:define>
 
-            <ui:define name="numberRooms">
-                <p:outputLabel for="numberRooms" value="Zimmer"/>
-                <p:message id="idNumberRooms" for="numberRooms"/>
-                <p:selectOneMenu id="numberRooms" value="#{advertisementService.getAdvertisement(param.advertisement).get().numberRooms}" required="false" requiredMessage="Number of rooms is required">
+            <ui:define name="rooms">
+                <p:outputLabel for="rooms" value="Zimmer"/>
+                <p:message id="idRooms" for="rooms"/>
+                <p:selectOneMenu id="rooms" value="#{advertisementService.getAdvertisement(param.advertisement).get().rooms}" required="false" requiredMessage="Number of rooms is required">
                     <f:selectItem itemLabel="Bitte auswählen" itemValue=""/>
                     <f:selectItem itemLabel="0" itemValue="0"/>
                     <f:selectItem itemLabel="1" itemValue="1"/>
@@ -47,18 +47,21 @@
                 </ui:define>
 
                 <ui:define name="description">
-                    <p:outputLabel for="mainDescription" value="Beschreibung"/>
-                    <p:message id="idMainDescription" for="mainDescription"/>
+                    <p:outputLabel for="description" value="Beschreibung"/>
+                    <p:message id="idDescription" for="description"/>
                     <div class="ui-inputgroup">
-                        <div class="ui-inputgroup-addon"><i class="pi pi-user"></i></div>
-                        <p:inputTextarea id="mainDescription" rows="12" cols="90" placeholder="Beschreibung" value="#{advertisementService.getAdvertisement(param.advertisement).get().mainDescription}" required="false" requiredMessage="Description is required"/>
+                        <div class="ui-inputgroup-addon">
+                            <i class="pi pi-user">
+                            </i>
+                        </div>
+                        <p:inputTextarea id="description" rows="12" cols="90" placeholder="Beschreibung" value="#{advertisementService.getAdvertisement(param.advertisement).get().description}" required="false" requiredMessage="Description is required"/>
                     </div>
                 </ui:define>
 
-                <ui:define name="advCategory">
-                    <p:outputLabel for="advCategory" value="Kategorie"/>
-                    <p:message id="idAdvCategory" for="advCategory"/>
-                    <p:selectOneMenu id="advCategory" value="#{advertisementService.getAdvertisement(param.advertisement).get().advCategory}" required="false" requiredMessage="Category is required">
+                <ui:define name="category">
+                    <p:outputLabel for="category" value="Kategorie"/>
+                    <p:message id="idAdvCategory" for="category"/>
+                    <p:selectOneMenu id="category" value="#{advertisementService.getAdvertisement(param.advertisement).get().category}" required="false" requiredMessage="Category is required">
                         <f:selectItem itemLabel="Beliebig" itemValue=""/>
                         <f:selectItem itemLabel="Wohnung" itemValue="Wohnung"/>
                         <f:selectItem itemLabel="Haus" itemValue="Haus"/>
@@ -94,17 +97,17 @@
                 </ui:define>
 
                 <ui:define name="buyprice">
-                    <p:outputLabel for="buyPrice" value="Preis"/>
-                    <p:message id="idBuyPrice" for="buyPrice"/>
+                    <p:outputLabel for="price" value="Preis"/>
+                    <p:message id="idBuyPrice" for="price"/>
                     <div class="ui-inputgroup">
                         <div class="ui-inputgroup-addon">CHF</div>
-                        <p:inputNumber id="buyPrice" value="#{advertisementService.getAdvertisement(param.advertisement).get().buyPrice}" required="false" requiredMessage="Buy price is required" />
+                        <p:inputNumber id="price" value="#{advertisementService.getAdvertisement(param.advertisement).get().price}" required="false" requiredMessage="Buy price is required" />
                     </div>
                 </ui:define>
 
                 <ui:define name="date">
                    <p:outputLabel for="datumDescription" value="Datum der Veröffentlichung"/>
-                   <p:inputText id="datumDescription" value="#{advertisementService.getAdvertisement(param.advertisement).get().creationDate}" disabled="true"/>
+                   <p:inputText id="datumDescription" value="#{advertisementService.getAdvertisement(param.advertisement).get().date}" disabled="true"/>
                 </ui:define>
 
                 <ui:define name="fileupload">

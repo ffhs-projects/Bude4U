@@ -1,24 +1,23 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="jakarta.faces.facelets"
-                xmlns:h="jakarta.faces.html"
                 template="/WEB-INF/layouts/template.xhtml"
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
                 xmlns:p="http://primefaces.org/ui">
 
     <ui:define name="pageTitle"><p:outputLabel  value="Inserat erstellen" style="font-size: 40px !important;"/></ui:define>
     <ui:define name="title">
-        <p:outputLabel for="advertisementTitle" value="Titel"/>
-        <p:message id="messageAdvertisementTitle" for="advertisementTitle"/>
+        <p:outputLabel for="title" value="Titel"/>
+        <p:message id="messageAdvertisementTitle" for="title"/>
         <div class="ui-inputgroup pb-3">
-            <p:inputText id="advertisementTitle" placeholder="Titel" value="#{advertisementBean.advertisementTitle}" required="true" requiredMessage="Bitte Titel angeben"/>
+            <p:inputText id="title" placeholder="Titel" value="#{advertisementBean.title}" required="true" requiredMessage="Bitte Titel angeben"/>
         </div>
     </ui:define>
 
-    <ui:define name="numberRooms">
-        <p:outputLabel for="numberRooms" value="Zimmer"/>
-        <p:message id="idNumberRooms" for="numberRooms"/>
+    <ui:define name="rooms">
+        <p:outputLabel for="rooms" value="Zimmer"/>
+        <p:message id="idRooms" for="rooms"/>
         <div class="ui-inputgroup pb-3">
-            <p:selectOneMenu id="numberRooms" value="#{advertisementBean.numberRooms}" required="true" requiredMessage="Bitte Zimmer angeben">
+            <p:selectOneMenu id="rooms" value="#{advertisementBean.rooms}" required="true" requiredMessage="Bitte Zimmer angeben">
                 <f:selectItem itemLabel="Bitte auswählen" itemValue=""/>
                 <f:selectItem itemLabel="0" itemValue="0"/>
                 <f:selectItem itemLabel="1" itemValue="1"/>
@@ -40,29 +39,31 @@
         </div>
     </ui:define>
 
-    <ui:define name="livingSpace">
+    <ui:define name="space">
         <p:outputLabel for="livingSpace" value="Wohnfläche"/>
         <p:message id="idlivingSpace" for="livingSpace"/>
         <div class="ui-inputgroup">
-            <p:inputNumber id="livingSpace" value="#{advertisementBean.livingSpace}" required="true" requiredMessage="Bitte Wohnfläche angeben."/>
+            <p:inputNumber id="livingSpace" value="#{advertisementBean.space}" required="true" requiredMessage="Bitte Wohnfläche angeben."/>
             <div class="ui-inputgroup-addon">m²</div>
         </div>
     </ui:define>
 
     <ui:define name="description">
-        <p:outputLabel for="mainDescription" value="Beschreibung"/>
-        <p:message id="idMainDescription" for="mainDescription"/>
+        <p:outputLabel for="description" value="Beschreibung"/>
+        <p:message id="idDescription" for="description"/>
         <div class="ui-inputgroup">
-            <div class="ui-inputgroup-addon"><i class="pi pi-user"></i></div>
-            <p:inputTextarea id="mainDescription" rows="12" cols="90" placeholder="Beschreibung" value="#{advertisementBean.mainDescription}" required="true" requiredMessage="Bitte Beschreibung angeben"/>
+            <div class="ui-inputgroup-addon">
+                <i class="pi pi-user">
+                </i></div>
+            <p:inputTextarea id="description" rows="12" cols="90" placeholder="Beschreibung" value="#{advertisementBean.description}" required="true" requiredMessage="Bitte Beschreibung angeben"/>
         </div>
 
     </ui:define>
 
-    <ui:define name="advCategory">
-        <p:outputLabel for="advCategory" value="Kategorie"/>
-        <p:message id="idAdvCategory" for="advCategory"/>
-        <p:selectOneMenu id="advCategory" value="#{advertisementBean.advCategory}" required="true" requiredMessage="Bitte Kategorie angeben">
+    <ui:define name="category">
+        <p:outputLabel for="categorySelect" value="Kategorie"/>
+        <p:message id="idCategory" for="categorySelect"/>
+        <p:selectOneMenu id="categorySelect" value="#{advertisementBean.category}" required="true" requiredMessage="Bitte Kategorie angeben">
             <f:selectItem itemLabel="Beliebig" itemValue=""/>
             <f:selectItem itemLabel="Wohnung" itemValue="Wohnung"/>
             <f:selectItem itemLabel="Haus" itemValue="Haus"/>
@@ -100,11 +101,11 @@
     </ui:define>
 
     <ui:define name="buyprice">
-        <p:outputLabel for="buyPrice" value="Preis"/>
-        <p:message id="idBuyPrice" for="buyPrice"/>
+        <p:outputLabel for="price" value="Preis"/>
+        <p:message id="idBuyPrice" for="price"/>
         <div class="ui-inputgroup">
             <div class="ui-inputgroup-addon">CHF</div>
-            <p:inputNumber id="buyPrice" value="#{advertisementBean.buyPrice}" required="true" requiredMessage="Buy price is required" />
+            <p:inputNumber id="price" value="#{advertisementBean.price}" required="true" requiredMessage="Buy price is required" />
         </div>
     </ui:define>
 

@@ -26,7 +26,7 @@ public class AdvertisementServiceTest {
         UUID id = UUID.fromString("f8c3de3d-1fea-4d7c-a8b0-29f63c4c3454");
         Optional<Advertisement> advertisement = advertisementService.getAdvertisement(id);
         assertTrue(advertisement.isPresent());
-        assertEquals("Haus 1", advertisement.get().getAdvertisementTitle());
+        assertEquals("Haus 1", advertisement.get().getTitle());
     }
 
     @Test
@@ -34,7 +34,7 @@ public class AdvertisementServiceTest {
         String idString = "f8c3de3d-1fea-4d7c-a8b0-29f63c4c3454";
         Optional<Advertisement> advertisement = advertisementService.getAdvertisement(idString);
         assertTrue(advertisement.isPresent());
-        assertEquals("Haus 1", advertisement.get().getAdvertisementTitle());
+        assertEquals("Haus 1", advertisement.get().getTitle());
     }
 
     @Test
@@ -66,7 +66,7 @@ public class AdvertisementServiceTest {
         advertisementService.updateAdvertisement(updatedAdvertisement);
         Optional<Advertisement> advertisement = advertisementService.getAdvertisement(id);
         assertTrue(advertisement.isPresent());
-        assertEquals("Updated House", advertisement.get().getAdvertisementTitle());
+        assertEquals("Updated House", advertisement.get().getTitle());
     }
 
     @Test

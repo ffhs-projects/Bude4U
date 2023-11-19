@@ -1,7 +1,6 @@
 package ch.ffhs.bude4u.advertisement;
 
 import ch.ffhs.bude4u.utils.GenericDAO;
-import jakarta.enterprise.context.RequestScoped;
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.inject.Named;
 import java.io.Serializable;
@@ -46,12 +45,12 @@ public class AdvertisementService implements Serializable{
         if (advertisementList.isEmpty()) {
             Advertisement adv = new Advertisement();
             adv.setAdvertiserId(UUID.randomUUID());
-            adv.setAdvCategory("test");
+            adv.setCategory("test");
             adv.setCity("test");
-            adv.setBuyPrice(1.0);
-            adv.setNumberRooms(1.0);
+            adv.setPrice(1.0);
+            adv.setRooms(1.0);
             adv.setStreet("test");
-            adv.setAdvertisementTitle("test");
+            adv.setTitle("test");
             adv.setPostalCode(1);
             advertisementDao.create(adv);
         }

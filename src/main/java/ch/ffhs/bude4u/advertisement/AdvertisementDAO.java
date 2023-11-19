@@ -6,7 +6,6 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import jakarta.persistence.Query;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -17,11 +16,6 @@ public class AdvertisementDAO implements GenericDAO<Advertisement> {
 
     public AdvertisementDAO() {
         this.emf = Persistence.createEntityManagerFactory("default");
-        this.entityManager = this.emf.createEntityManager();
-    }
-
-    public AdvertisementDAO(String pu) {
-        this.emf = Persistence.createEntityManagerFactory(pu);
         this.entityManager = this.emf.createEntityManager();
     }
 
@@ -60,7 +54,7 @@ public class AdvertisementDAO implements GenericDAO<Advertisement> {
 
     public Optional<List<Advertisement>> getByFilter(Long priceFrom, Long priceTo, Double roomFrom, Double roomTo, String category, String city) {
 
-        String jpql = "SELECT adv FROM Advertisement adv WHERE adv.buyPrice >= :priceFrom AND adv.buyPrice <= :priceTo AND adv.numberRooms >= :roomFrom AND adv.numberRooms <= :roomTo AND (adv.advCategory = :category OR :category = 'Any' ) AND (adv.city = :city OR :city = 'Any')";
+        String jpql = "SELECT adv FROM Advertisement adv WHERE adv.price >= :priceFrom AND adv.price <= :priceTo AND adv.rooms >= :roomFrom AND adv.rooms <= :roomTo AND (adv.category = :category OR :category = 'Any' ) AND (adv.city = :city OR :city = 'Any')";
         Query query = entityManager.createQuery(jpql);
         query.setParameter("priceFrom", priceFrom);
         query.setParameter("priceTo", priceTo);

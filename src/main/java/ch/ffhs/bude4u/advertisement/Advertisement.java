@@ -32,35 +32,35 @@ public class Advertisement implements Serializable {
 
     @Basic
     @Column(name = "advertisementTitle")
-    private String advertisementTitle;
+    private String title;
 
     @Basic
     @Column(name = "mainDescription")
-    private String mainDescription;
+    private String description;
 
     @Basic
     @Column(name = "creationDate")
-    private String creationDate;
+    private String date;
 
     @Basic
     @Column(name = "buyPrice")
-    private Double buyPrice;
+    private Double price;
 
     @Basic
     @Column(name = "numberRooms")
-    private Double numberRooms;
+    private Double rooms;
 
     @Basic
     @Column(name = "livingSpace")
-    private Integer livingSpace;
+    private Integer space;
 
     @Basic
     @Column(name = "advCategory")
-    private String advCategory;
+    private String category;
 
     @Basic
     @Column(name = "advStatus")
-    private String advStatus;
+    private String status;
 
     @Basic
     @Column(name = "landArea")
@@ -92,28 +92,28 @@ public class Advertisement implements Serializable {
         advertiserId = UUID.randomUUID();
     }
 
-    public Advertisement(String title, String description, String date, String category, String status, double price, double rooms, int space, UUID advUserId, String newstreet, String newcity, Integer plz, List<String> images) {
-        advertisementTitle = title;
-        mainDescription = description;
-        creationDate = date;
-        buyPrice = price;
-        numberRooms = rooms;
-        livingSpace = space;
-        advCategory = category;
-        advStatus = status;
+    public Advertisement(String title, String description, String date, String category, String status, double price, double rooms, int space, UUID advUserId, String street, String city, Integer postalCode, List<String> images) {
+        this.title = title;
+        this.description = description;
+        this.date = date;
+        this.price = price;
+        this.rooms = rooms;
+        this.space = space;
+        this.category = category;
+        this.status = status;
         advertiserId = advUserId;
         advertisementImages = new ArrayList<>();
         advertisementImages.addAll(images);
-        street = newstreet;
-        city = newcity;
-        postalCode = plz;
+        this.street = street;
+        this.city = city;
+        this.postalCode = postalCode;
 
     }
 
     public Advertisement(String title, String description, String category, double price, double rooms, int space, UUID advUserId, String street, String city, Integer plz, ArrayList<String> images) {
         this(title, description, "", category, "", price, rooms, space, advUserId, street, city, plz, images);
-        this.creationDate = dtf.format(now);
-        this.advStatus = "offen";
+        this.date = dtf.format(now);
+        this.status = "offen";
     }
 
     public String getMainImage() {
