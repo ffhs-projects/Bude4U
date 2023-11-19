@@ -49,6 +49,30 @@ public class AdvertisementBean implements Serializable {
     private double filterRoomTo = 50;
     private String filterCategory = "Any";
     private String filterCity = "Any";
+    @Getter
+    private ArrayList<String> roomsList = new ArrayList<>();
+    // Category list
+    @Getter
+    private ArrayList<String> categoryList = new ArrayList<>();
+
+    public AdvertisementBean() {
+
+        // Fill roomsList
+        for (double i = 0; i <= 12; i+=0.5) {
+            this.roomsList.add(String.valueOf(i));
+        }
+
+        // Fill categoryList
+        categoryList.add("Beliebig");
+        categoryList.add("Wohnung");
+        categoryList.add("Haus");
+        categoryList.add("Hobbyraum");
+        categoryList.add("Garagenplatz");
+        categoryList.add("Lager");
+        categoryList.add("Andere");
+
+    }
+
 
 
     public HttpSession getSession() {
@@ -147,5 +171,6 @@ public class AdvertisementBean implements Serializable {
         test = false;
         advertisementImages = new ArrayList<>();
     }
+
 }
 
