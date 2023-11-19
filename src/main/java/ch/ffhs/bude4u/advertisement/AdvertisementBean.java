@@ -7,7 +7,6 @@ import jakarta.inject.Named;
 import jakarta.inject.Inject;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
-import jakarta.validation.constraints.NotEmpty;
 import lombok.Getter;
 import lombok.Setter;
 import org.primefaces.event.FileUploadEvent;
@@ -28,14 +27,14 @@ public class AdvertisementBean implements Serializable {
     private AdvertisementService advertisementService;
 
     private UUID advertisementId;
-    private String advertisementTitle;
-    private String mainDescription;
-    private Double buyPrice;
-    private Double numberRooms;
-    private Integer livingSpace;
-    private String creationDate;
-    private String advCategory;
-    private String advStatus;
+    private String title;
+    private String description;
+    private Double price;
+    private Double rooms;
+    private Integer space;
+    private String date;
+    private String category;
+    private String status;
     private Integer landArea;
     private String street;
     private String city;
@@ -64,9 +63,9 @@ public class AdvertisementBean implements Serializable {
         try {
             // Required for unit tests
             if (test) {
-                newAd = new Advertisement(advertisementTitle, mainDescription, "01.01.2001", advCategory, "offen", buyPrice, numberRooms, livingSpace, UUID.fromString(session.getAttribute("userId").toString()), street, city, postalCode, advertisementImages);
+                newAd = new Advertisement(title, description, "01.01.2001", category, "offen", price, rooms, space, UUID.fromString(session.getAttribute("userId").toString()), street, city, postalCode, advertisementImages);
             } else {
-                newAd = new Advertisement(advertisementTitle, mainDescription, advCategory, buyPrice, numberRooms, livingSpace, UUID.fromString(session.getAttribute("userId").toString()), street, city, postalCode, advertisementImages);
+                newAd = new Advertisement(title, description, category, price, rooms, space, UUID.fromString(session.getAttribute("userId").toString()), street, city, postalCode, advertisementImages);
             }
             advertisementService.createAdvertisement(newAd);
             clearBean();
@@ -81,13 +80,13 @@ public class AdvertisementBean implements Serializable {
             Map<String, String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
             UUID adId = advertisementService.getAdvertisement(params.get("advertisement")).get().getId();
             Advertisement advertisement = advertisementService.getAdvertisement(adId.toString()).get();
-            advertisement.setAdvertisementTitle(advertisement.getAdvertisementTitle());
-            advertisement.setMainDescription(advertisement.getMainDescription());
-            advertisement.setBuyPrice(advertisement.getBuyPrice());
-            advertisement.setNumberRooms(advertisement.getNumberRooms());
-            advertisement.setLivingSpace(advertisement.getLivingSpace());
-            advertisement.setAdvCategory(advertisement.getAdvCategory());
-            advertisement.setAdvStatus(advertisement.getAdvStatus());
+            advertisement.setTitle(advertisement.getTitle());
+            advertisement.setDescription(advertisement.getDescription());
+            advertisement.setPrice(advertisement.getPrice());
+            advertisement.setRooms(advertisement.getRooms());
+            advertisement.setSpace(advertisement.getSpace());
+            advertisement.setCategory(advertisement.getCategory());
+            advertisement.setStatus(advertisement.getStatus());
             advertisement.setLandArea(advertisement.getLandArea());
             advertisement.setStreet(advertisement.getStreet());
             advertisement.setCity(advertisement.getCity());
@@ -133,20 +132,19 @@ public class AdvertisementBean implements Serializable {
 
     private void clearBean() {
         advertisementId = null;
-        advertisementTitle = null;
-        mainDescription = null;
-        buyPrice = null;
-        numberRooms = null;
-        livingSpace = null;
-        creationDate = null;
-        advCategory = null;
-        advStatus = null;
+        title = null;
+        description = null;
+        price = null;
+        rooms = null;
+        space = null;
+        date = null;
+        category = null;
+        status = null;
         landArea = null;
         street = null;
         city = null;
         postalCode = 0;
         test = false;
-        HttpSession session = null;
         advertisementImages = new ArrayList<>();
     }
 }
