@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.mockito.Mockito.*;
-
 import java.util.UUID;
 
 public class AdvertisementBeanTest {
@@ -29,13 +28,12 @@ public class AdvertisementBeanTest {
 
         // Set the properties of the AdvertisementBean
         advertisementBean.setTest(true);
-        advertisementBean.setAdvertisementTitle("Test Title");
-        advertisementBean.setMainDescription("Test Description");
-        advertisementBean.setAdvCategory("Category");
-        advertisementBean.setBuyPrice(100000);
-        advertisementBean.setNumberRooms(3.5);
-        advertisementBean.setLivingSpace(150);
-        advertisementBean.setMainPicUrl("https://example.com");
+        advertisementBean.setTitle("Test Title");
+        advertisementBean.setDescription("Test Description");
+        advertisementBean.setCategory("Category");
+        advertisementBean.setPrice(100000.0);
+        advertisementBean.setRooms(3.5);
+        advertisementBean.setSpace(150);
 
         // Call the createAdvertisement method
         String result = advertisementBean.createAdvertisement();
@@ -54,13 +52,12 @@ public class AdvertisementBeanTest {
     public void testCreateAdvertisementFailure() {
         doThrow(new RuntimeException("Failed to create advertisement")).when(advertisementService).createAdvertisement(any(Advertisement.class));
 
-        advertisementBean.setAdvertisementTitle("Test Title");
-        advertisementBean.setMainDescription("Test Description");
-        advertisementBean.setAdvCategory("Category");
-        advertisementBean.setBuyPrice(100000);
-        advertisementBean.setNumberRooms(3.5);
-        advertisementBean.setLivingSpace(150);
-        advertisementBean.setMainPicUrl("https://example.com");
+        advertisementBean.setTitle("Test Title");
+        advertisementBean.setDescription("Test Description");
+        advertisementBean.setCategory("Category");
+        advertisementBean.setPrice(100000.0);
+        advertisementBean.setRooms(3.5);
+        advertisementBean.setSpace(150);
 
         String result = advertisementBean.createAdvertisement();
 

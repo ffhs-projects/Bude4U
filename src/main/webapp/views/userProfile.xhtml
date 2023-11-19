@@ -1,0 +1,57 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="jakarta.faces.facelets"
+                xmlns:h="jakarta.faces.html"
+                template="/WEB-INF/layouts/template.xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="pageTitle"><p:outputLabel  value="Profil" style="font-size: 40px !important;"/></ui:define>
+    <ui:define name="username">
+        <p:outputLabel for="updateUsername" value="Username"/>
+        <div class="ui-inputgroup pb-3">
+            <p:inputText id="updateUsername"
+                         value="#{userService.getUserById(session.getAttribute('userId')).get().username}"/>
+        </div>
+    </ui:define>
+
+    <ui:define name="firstname">
+        <p:outputLabel for="firstName" value="Vorname"/>
+        <div class="ui-inputgroup pb-3">
+            <p:inputText id="firstName"
+                         value="#{userService.getUserById(session.getAttribute('userId')).get().firstname}"/>
+        </div>
+    </ui:define>
+
+    <ui:define name="lastname">
+        <p:outputLabel for="lastName" value="Nachname"/>
+        <div class="ui-inputgroup pb-3">
+            <p:inputText id="lastName"
+                         value="#{userService.getUserById(session.getAttribute('userId')).get().lastname}"/>
+        </div>
+    </ui:define>
+
+    <ui:define name="password">
+        <p:outputLabel for="password" value="Passwort"/>
+        <div class="ui-inputgroup pb-3">
+            <p:inputText type="password" id="password" value="#{authenticationBean.updatePassword}" required="true"
+                         requiredMessage="Bitte Passwort eingeben."/>
+        </div>
+    </ui:define>
+
+    <ui:define name="userTheme">
+        <h:outputLabel for="userTheme" value="Theme"/>
+        <p:selectOneMenu id="userTheme"
+                         value="#{userService.getUserById(session.getAttribute('userId')).get().selectedTheme}">
+            <f:selectItems value="#{themeBean.themeMap}"/>
+        </p:selectOneMenu>
+    </ui:define>
+
+    <ui:define name="sendButton">
+        <p:commandButton id="submit-button" action="#{authenticationBean.updateProfile()}" value="Aktualisieren"
+                         icon="pi pi-check" styleClass="ui-button-raised ui-button-success"/>
+    </ui:define>
+
+    <ui:define name="content">
+        <ui:include src="/WEB-INF/layouts/forms/userProfile.xhtml"/>
+    </ui:define>
+</ui:composition>

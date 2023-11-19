@@ -1,0 +1,51 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="jakarta.faces.facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/layouts/template.xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="createAccount"><p:outputLabel value="Account erstellen" style="font-size: 40px !important;"/></ui:define>
+
+    <ui:define name="firstname">
+        <p:outputLabel for="firstname" value="Vorname"/>
+        <p:message id="idFirstname" for="firstname"/>
+        <p:inputText id="firstname" type="text" styleClass="w-full mb-3" placeholder="Vorname"
+                 value="#{authenticationBean.firstName}" required="true" requiredMessage="Bitte Vornamen angeben"/>
+    </ui:define>
+
+    <ui:define name="lastname">
+        <p:outputLabel for="lastname" value="Nachname"/>
+        <p:message id="idLastname" for="lastname"/>
+        <p:inputText id="lastname" type="text" styleClass="w-full mb-3" placeholder="Nachname"
+                 value="#{authenticationBean.lastName}"  required="true" requiredMessage="Bitte Nachnamen angeben"/>
+    </ui:define>
+
+    <ui:define name="email">
+        <p:outputLabel for="email" value="Email"/>
+        <p:message id="idEmail" for="email"/>
+        <p:inputText id="email" type="email" styleClass="w-full mb-3" placeholder="Email"
+                 value="#{authenticationBean.username}"  required="true" requiredMessage="Bitte Email angeben"/>
+    </ui:define>
+
+    <ui:define name="password">
+        <p:outputLabel for="password" value="Passwort"/>
+        <p:message id="idPassword" for="password"/>
+        <p:password id="password" styleClass="w-full mb-3" placeholder="Passwort"
+                value="#{authenticationBean.password}"  required="true" requiredMessage="Bitte Passwort angeben">
+            <f:validateRegex pattern="^[\wW\.]+@([\w-]+\.)+[\w-]{2,4}$"/>
+        </p:password>
+    </ui:define>
+
+    <ui:define name="submit">
+        <p:commandButton type="submit-button" value="Register" icon="pi pi-user" styleClass="w-full" id="register"
+                         action="#{authenticationBean.register()}" update="@form"/>
+    </ui:define>
+
+    <ui:define name="alreadySignedUp">
+        <p:commandLink value="Wechsel zum Login" id="createAccountLink" action="#{navigationController.showLogin()}"/>
+    </ui:define>
+
+    <ui:define name="content">
+        <ui:include src="/WEB-INF/layouts/forms/register.xhtml"/>
+    </ui:define>
+</ui:composition>

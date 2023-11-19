@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <div class="container">
+        <h:form id="user-form">
+            <ui:insert name="validation"/>
+            <div class="surface-card p-4 shadow-2 border-round">
+                <div class="grid ui-fluid">
+                    <h:messages />
+                    <div class="surface-card p-2 ">
+                        <div class="grid ui-fluid">
+                            <div class="col-12 md:col-12">
+                                <ui:insert name="username" id="username"/>
+                            </div>
+
+                            <div class="col-12 md:col-12">
+                                <ui:insert name="firstname" id="firstname"/>
+                            </div>
+
+                            <div class="col-12 md:col-12">
+                                <ui:insert name="lastname" id="lastname"/>
+                            </div>
+
+                            <div class="col-12 md:col-12">
+                                <ui:insert name="password" id="password"/>
+                            </div>
+
+                            <div class="col-12 md:col-12">
+                                <ui:insert name="userTheme" id="userTheme"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <p:growl id="messages" showDetail="true"/>
+                <ui:insert name="sendButton"/>
+            </div>
+        </h:form>
+
+    </div>
+</html>

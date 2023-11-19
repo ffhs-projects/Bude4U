@@ -1,55 +1,74 @@
 package ch.ffhs.bude4u.advertisement;
 
-import jakarta.annotation.ManagedBean;
-import jakarta.enterprise.context.RequestScoped;
+import jakarta.enterprise.context.SessionScoped;
+import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.inject.Named;
 import jakarta.inject.Inject;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import lombok.Getter;
 import lombok.Setter;
+import org.primefaces.event.FileUploadEvent;
+import org.primefaces.model.file.UploadedFile;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.Map;
 import java.util.UUID;
 
 @Named
-@RequestScoped
+@SessionScoped
 @Getter
 @Setter
-public class AdvertisementBean {
+public class AdvertisementBean implements Serializable {
     @Inject
     private AdvertisementService advertisementService;
+
     private UUID advertisementId;
-    private String advertisementTitle;
-    private String mainDescription;
-    private double buyPrice;
-    private double numberRooms;
-    private int livingSpace;
-    private String creationDate;
-    // TODO: Wechsel auf Enum für Filter
-    private String advCategory;
-    private String advStatus;
-    private int landArea;
+    private String title;
+    private String description;
+    private Double price;
+    private Double rooms;
+    private Integer space;
+    private String date;
+    private String category;
+    private String status;
+    private Integer landArea;
     private String street;
     private String city;
-    private int postalCode;
-    private String mainPicUrl;
+    private Integer postalCode;
     private boolean test;
     Advertisement newAd;
-    public String createAdvertisement() {
+    private HttpSession session = null;
+    private ArrayList<String> advertisementImages = new ArrayList<>();
+    private long filterPriceFrom = 0;
+    private long filterPriceTo = 999999999;
+    private double filterRoomFrom = 0;
+    private double filterRoomTo = 50;
+    private String filterCategory = "Any";
+    private String filterCity = "Any";
 
+
+    public HttpSession getSession() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
+        session = request.getSession();
+        return session;
+    }
+
+    public String createAdvertisement() {
+        session = getSession();
         try {
             // Required for unit tests
-            if(test) {
-                newAd = new Advertisement(advertisementTitle, mainDescription,"01.01.2001", advCategory,"offen", buyPrice, numberRooms, livingSpace, mainPicUrl);
+            if (test) {
+                newAd = new Advertisement(title, description, "01.01.2001", category, "offen", price, rooms, space, UUID.fromString(session.getAttribute("userId").toString()), street, city, postalCode, advertisementImages);
             } else {
-                newAd = new Advertisement(advertisementTitle, mainDescription, advCategory, buyPrice, numberRooms, livingSpace, mainPicUrl);
-           }
+                newAd = new Advertisement(title, description, category, price, rooms, space, UUID.fromString(session.getAttribute("userId").toString()), street, city, postalCode, advertisementImages);
+            }
             advertisementService.createAdvertisement(newAd);
+            clearBean();
             return "/views/advertisement.xhtml?advertisement=" + newAd.getId() + "&faces-redirect=true";
         } catch (Exception e) {
             return "/views/advertisementFailed.xhtml";
@@ -58,23 +77,21 @@ public class AdvertisementBean {
 
     public String updateAdvertisement() {
         try {
-            Map<String,String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+            Map<String, String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
             UUID adId = advertisementService.getAdvertisement(params.get("advertisement")).get().getId();
             Advertisement advertisement = advertisementService.getAdvertisement(adId.toString()).get();
-            advertisement.setAdvertisementTitle(advertisement.getAdvertisementTitle());
-            advertisement.setMainDescription(advertisement.getMainDescription());
-            advertisement.setBuyPrice(advertisement.getBuyPrice());
-            advertisement.setNumberRooms(advertisement.getNumberRooms());
-            advertisement.setLivingSpace(advertisement.getLivingSpace());
-            advertisement.setAdvCategory(advertisement.getAdvCategory());
-            advertisement.setAdvStatus(advertisement.getAdvStatus());
+            advertisement.setTitle(advertisement.getTitle());
+            advertisement.setDescription(advertisement.getDescription());
+            advertisement.setPrice(advertisement.getPrice());
+            advertisement.setRooms(advertisement.getRooms());
+            advertisement.setSpace(advertisement.getSpace());
+            advertisement.setCategory(advertisement.getCategory());
+            advertisement.setStatus(advertisement.getStatus());
             advertisement.setLandArea(advertisement.getLandArea());
             advertisement.setStreet(advertisement.getStreet());
             advertisement.setCity(advertisement.getCity());
             advertisement.setPostalCode(advertisement.getPostalCode());
-            advertisement.setAdvertisementImages(new ArrayList<>());
-            //Todo: add all images
-            /*advertisement.getAdvertisementImages().add(advertisement.getMainImage());*/
+            advertisement.setAdvertisementImages(advertisementImages);
             advertisementService.updateAdvertisement(advertisement);
             return "/views/advertisement.xhtml?advertisement=" + advertisement.getId() + "&faces-redirect=true";
         } catch (Exception e) {
@@ -97,6 +114,38 @@ public class AdvertisementBean {
             // Handle any other exceptions that may occur
             return "/views/advertisementFailed.xhtml";
         }
+    }
+
+    public String getFilterAdvertisement() {
+        return "/index.xhtml";
+    }
+
+    public void handleFileUpload(FileUploadEvent event) {
+        FacesMessage message = new FacesMessage("Successful", event.getFile().getFileName() + " is uploaded.");
+        FacesContext.getCurrentInstance().addMessage(null, message);
+        UploadedFile file = event.getFile();
+
+        String encodedString = Base64.getEncoder().encodeToString(file.getContent());
+
+        advertisementImages.add(encodedString);
+    }
+
+    private void clearBean() {
+        advertisementId = null;
+        title = null;
+        description = null;
+        price = null;
+        rooms = null;
+        space = null;
+        date = null;
+        category = null;
+        status = null;
+        landArea = null;
+        street = null;
+        city = null;
+        postalCode = 0;
+        test = false;
+        advertisementImages = new ArrayList<>();
     }
 }
 

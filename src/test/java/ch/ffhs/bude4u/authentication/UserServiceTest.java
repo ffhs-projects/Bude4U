@@ -1,4 +1,4 @@
-package ch.ffhs.bude4u.user;
+package ch.ffhs.bude4u.authentication;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -21,16 +21,15 @@ public class UserServiceTest {
 
     @BeforeEach
     public void setUp() {
-        userDao = mock(GenericDAO.class);
+        userDao = mock(UserDAO.class);
         userService = new UserService();
-        userService.userDao = userDao;
     }
 
     @Test
     public void testGetUserById() {
         UUID userId = UUID.randomUUID();
         User user = new User();
-        user.setId(userId.toString());
+        user.setId(userId);
 
         when(userDao.get(userId)).thenReturn(Optional.of(user));
 
@@ -53,10 +52,10 @@ public class UserServiceTest {
 
     @Test
     public void testGetAllUsers() {
-        List<User> userList = new ArrayList<>();
+        Optional<List<User>> userList = Optional.of(new ArrayList<>());
         when(userDao.getAll()).thenReturn(userList);
 
-        List<User> retrievedUsers = userService.getAllUsers();
+        Optional<List<User>> retrievedUsers = userService.getAllUsers();
 
         assertEquals(userList, retrievedUsers);
     }

@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -17,12 +19,14 @@ public class AdvertisementServiceTest {
         advertisementService = new AdvertisementService();
     }
 
+    private ArrayList<String> advertisementImages = new ArrayList<>();
+
     @Test
     public void testGetAdvertisementById() {
         UUID id = UUID.fromString("f8c3de3d-1fea-4d7c-a8b0-29f63c4c3454");
         Optional<Advertisement> advertisement = advertisementService.getAdvertisement(id);
         assertTrue(advertisement.isPresent());
-        assertEquals("Haus 1", advertisement.get().getAdvertisementTitle());
+        assertEquals("Haus 1", advertisement.get().getTitle());
     }
 
     @Test
@@ -30,7 +34,7 @@ public class AdvertisementServiceTest {
         String idString = "f8c3de3d-1fea-4d7c-a8b0-29f63c4c3454";
         Optional<Advertisement> advertisement = advertisementService.getAdvertisement(idString);
         assertTrue(advertisement.isPresent());
-        assertEquals("Haus 1", advertisement.get().getAdvertisementTitle());
+        assertEquals("Haus 1", advertisement.get().getTitle());
     }
 
     @Test
@@ -42,27 +46,27 @@ public class AdvertisementServiceTest {
 
     @Test
     public void testGetAllAdvertisements() {
-        List<Advertisement> allAdvertisements = advertisementService.getAllAdvertisements();
+        Optional<List<Advertisement>> allAdvertisements = advertisementService.getAllAdvertisements();
         assertNotNull(allAdvertisements);
         assertFalse(allAdvertisements.isEmpty());
     }
 
     @Test
     public void testCreateAdvertisement() {
-        Advertisement newAdvertisement = new Advertisement("New House", "Description", "01.01.2023", "Haus", "offen", 100000, 5.5, 142, "https://example.com");
+        Advertisement newAdvertisement = new Advertisement("New House", "Description", "01.01.2023", "Haus", "offen", 100000, 5.5, 142, UUID.randomUUID(), "Strasse 1", "Stadt 2", 1234,  advertisementImages);
         advertisementService.createAdvertisement(newAdvertisement);
-        List<Advertisement> allAdvertisements = advertisementService.getAllAdvertisements();
-        assertTrue(allAdvertisements.contains(newAdvertisement));
+        Optional<List<Advertisement>> allAdvertisements = advertisementService.getAllAdvertisements();
+        assertTrue(allAdvertisements.stream().anyMatch(x -> x.contains(newAdvertisement)));
     }
 
     @Test
     public void testUpdateAdvertisement() {
         UUID id = UUID.fromString("f8c3de3d-1fea-4d7c-a8b0-29f63c4c3455");
-        Advertisement updatedAdvertisement = new Advertisement("Updated House", "Updated Description", "01.01.2023", "Haus", "offen", 100000, 5.5, 142, "https://example.com");
+        Advertisement updatedAdvertisement = new Advertisement("Updated House", "Updated Description", "01.01.2023", "Haus", "offen", 100000, 5.5, 142, UUID.randomUUID(), "Strasse 1", "Stadt 2", 1234, advertisementImages );
         advertisementService.updateAdvertisement(updatedAdvertisement);
         Optional<Advertisement> advertisement = advertisementService.getAdvertisement(id);
         assertTrue(advertisement.isPresent());
-        assertEquals("Updated House", advertisement.get().getAdvertisementTitle());
+        assertEquals("Updated House", advertisement.get().getTitle());
     }
 
     @Test

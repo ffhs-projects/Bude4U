@@ -19,19 +19,56 @@ public class AdvertisementDAO implements GenericDAO<Advertisement> {
         this.entityManager = this.emf.createEntityManager();
     }
 
-    public AdvertisementDAO(String pu) {
-        this.emf = Persistence.createEntityManagerFactory(pu);
-        this.entityManager = this.emf.createEntityManager();
-    }
-
     @Override
     public Optional<Advertisement> get(UUID id) {
         return Optional.ofNullable(entityManager.find(Advertisement.class, id));
     }
 
     @Override
-    public List<Advertisement> getAll() {
-        return entityManager.createQuery("SELECT adv FROM Advertisement adv").getResultList();
+    public Optional<List<Advertisement>> getAll() {
+        String jpql = "SELECT adv FROM Advertisement adv";
+        Query query = entityManager.createQuery(jpql);
+
+        List<Advertisement> advertisements = query.getResultList();
+        if (advertisements.isEmpty()) {
+            return Optional.empty();
+        } else {
+            return Optional.of(advertisements );
+        }
+    }
+
+    public Optional<List<Advertisement>> getByUserId(UUID advUserId) {
+        String jpql = "SELECT adv FROM Advertisement adv WHERE adv.advertiserId = :advUserId";
+        Query query = entityManager.createQuery(jpql);
+        query.setParameter("advUserId", advUserId);
+
+        List<Advertisement> advertisements = query.getResultList();
+        if (advertisements.isEmpty()) {
+            return Optional.empty();
+        } else {
+            return Optional.of(advertisements);
+        }
+    }
+
+
+
+    public Optional<List<Advertisement>> getByFilter(Long priceFrom, Long priceTo, Double roomFrom, Double roomTo, String category, String city) {
+
+        String jpql = "SELECT adv FROM Advertisement adv WHERE adv.price >= :priceFrom AND adv.price <= :priceTo AND adv.rooms >= :roomFrom AND adv.rooms <= :roomTo AND (adv.category = :category OR :category = 'Any' ) AND (adv.city = :city OR :city = 'Any')";
+        Query query = entityManager.createQuery(jpql);
+        query.setParameter("priceFrom", priceFrom);
+        query.setParameter("priceTo", priceTo);
+        query.setParameter("roomFrom", roomFrom);
+        query.setParameter("roomTo", roomTo);
+        query.setParameter("category", category);
+        query.setParameter("city", city);
+
+        List<Advertisement> advertisements = query.getResultList();
+        if (advertisements.isEmpty()) {
+            return Optional.empty();
+        } else {
+            return Optional.of(advertisements);
+        }
     }
 
     @Override
@@ -46,11 +83,7 @@ public class AdvertisementDAO implements GenericDAO<Advertisement> {
         Optional<Advertisement> advToUpdate = get(advertisement.getId());
         if (advToUpdate.isPresent()) {
             entityManager.getTransaction().begin();
-            entityManager.persist(advertisement);
-            // TODO: maybe better solution: check each property that can be overwritten...
-            // advToUpdate.setProperty1(advertisement.getProperty1());
-            // advToUpdate.setProperty2(advertisement.getProperty2());
-            // advToUpdate.setProperty3(advertisement.getProperty3());
+            entityManager.merge(advertisement);
             entityManager.getTransaction().commit();
         }
     }
@@ -72,6 +105,7 @@ public class AdvertisementDAO implements GenericDAO<Advertisement> {
         Query query = entityManager.createQuery("SELECT adv FROM Advertisement adv");
         query.setFirstResult((pageNumber - 1) * pageSize);
         query.setMaxResults(pageSize);
+
         return query.getResultList();
     }
 }
