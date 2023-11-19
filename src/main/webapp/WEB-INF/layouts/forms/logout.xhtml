@@ -5,22 +5,26 @@
 >
     <div class="flex align-items-center justify-content-center">
         <div class="surface-card p-4 shadow-2 border-round w-full lg:w-6">
-            <div class="text-center mb-5">
-                <div class="text-900 text-3xl font-medium mb-3">Logout</div>
-            </div>
+            <h:form>
+                <div class="text-center mb-5">
+                <p:outputLabel  value="Möchtest du wirklich abmelden?" style="font-size: 25px !important;"/>
+                </div>
+                    <div class="flex flex-row flex-wrap justify-content-center">
+                <div class="grid ui-fluid">
+                        <div class="sm:w-12 md:w-6 font-bold ">
+                            <p:commandButton type="submit-button" value="Ja" icon="pi pi-user" styleClass="ui-button-success w-full"
+                                             id="yesLogout" action="#{authenticationBean.logout()}"
+                            />
 
-            <div>
-                <h:form>
-                    <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" responsive="true" width="350">
-                        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no ui-button-flat"/>
-                        <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" />
-                    </p:confirmDialog>
-                    <p:commandButton type="submit-button" value="Logout" icon="pi pi-user" styleClass="w-full"
-                                     id="logout"
-                                     action="#{authenticationBean.logout()}"
-                    />
-                </h:form>
-            </div>
+                        </div>
+                        <div class="sm:w-12 md:w-6 font-bold ">
+                            <p:commandButton type="submit-button" value="Nein" icon="pi pi-user" styleClass="ui-button-danger w-full"
+                                             id="noLogout" action="#{navigationController.showHome()}"
+                            />
+                        </div>
+                    </div>
+                </div>
+            </h:form>
         </div>
     </div>
 </ui:composition>

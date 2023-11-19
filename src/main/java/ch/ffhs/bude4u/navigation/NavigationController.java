@@ -29,7 +29,6 @@ public class NavigationController implements Serializable {
         return "/index.xhtml";
     }
 
-
     public String showLogin() {
         return "/views/login.xhtml";
     }

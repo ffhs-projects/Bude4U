@@ -25,35 +25,6 @@ public class Advertisement implements Serializable {
     @Transient
     LocalDateTime now = LocalDateTime.now();
 
-    public Advertisement() {
-        advertisementImages = new ArrayList<>();
-        advertiserId = UUID.randomUUID();
-    }
-
-    public Advertisement(String title, String description, String date, String category, String status, double price, double rooms, int space, UUID advUserId, String newstreet, String newcity, Integer plz, List<String> images) {
-        advertisementTitle = title;
-        mainDescription = description;
-        creationDate = date;
-        buyPrice = price;
-        numberRooms = rooms;
-        livingSpace = space;
-        advCategory = category;
-        advStatus = status;
-        advertiserId = advUserId;
-        advertisementImages = new ArrayList<>();
-        advertisementImages.addAll(images);
-        street = newstreet;
-        city = newcity;
-        postalCode = plz;
-
-    }
-
-    public Advertisement(String title, String description, String category, double price, double rooms, int space, UUID advUserId, String street, String city, Integer plz, ArrayList<String> images) {
-        this(title, description, "", category, "", price, rooms, space, advUserId, street, city, plz, images);
-        this.creationDate = dtf.format(now);
-        this.advStatus = "offen";
-    }
-
     @Id
     @GeneratedValue
     @Setter
@@ -115,6 +86,35 @@ public class Advertisement implements Serializable {
     @Basic
     @Column(name = "advertiserId")
     private UUID advertiserId;
+
+    public Advertisement() {
+        advertisementImages = new ArrayList<>();
+        advertiserId = UUID.randomUUID();
+    }
+
+    public Advertisement(String title, String description, String date, String category, String status, double price, double rooms, int space, UUID advUserId, String newstreet, String newcity, Integer plz, List<String> images) {
+        advertisementTitle = title;
+        mainDescription = description;
+        creationDate = date;
+        buyPrice = price;
+        numberRooms = rooms;
+        livingSpace = space;
+        advCategory = category;
+        advStatus = status;
+        advertiserId = advUserId;
+        advertisementImages = new ArrayList<>();
+        advertisementImages.addAll(images);
+        street = newstreet;
+        city = newcity;
+        postalCode = plz;
+
+    }
+
+    public Advertisement(String title, String description, String category, double price, double rooms, int space, UUID advUserId, String street, String city, Integer plz, ArrayList<String> images) {
+        this(title, description, "", category, "", price, rooms, space, advUserId, street, city, plz, images);
+        this.creationDate = dtf.format(now);
+        this.advStatus = "offen";
+    }
 
     public String getMainImage() {
         return getImageWithIndex(0);
