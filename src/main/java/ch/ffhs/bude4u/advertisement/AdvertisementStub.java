@@ -14,36 +14,72 @@ public class AdvertisementStub implements GenericDAO<Advertisement> {
     private final List<Advertisement> mockData;
     private ArrayList<String> advertisementImages = new ArrayList<>();
 
+    /**
+     * Constructor
+     */
     public AdvertisementStub() {
         mockData = CreateMockData();
     }
 
+    /**
+     * Gets an advertisement by id
+     *
+     * @param id Advertisement id
+     * @return Advertisement
+     */
     @Override
     public Optional<Advertisement> get(UUID id) {
         return mockData.stream().filter(adv -> adv.getId().equals(id)).findFirst();
     }
 
+    /**
+     * Gets all advertisements
+     *
+     * @return List of advertisements
+     */
     @Override
     public Optional<List<Advertisement>> getAll() {
         return Optional.of(mockData);
     }
 
+    /**
+     * Creates an advertisement
+     *
+     * @param advertisement Advertisement
+     */
     @Override
     public void create(Advertisement advertisement) {
         mockData.add(advertisement);
     }
 
+    /**
+     * Updates an advertisement
+     *
+     * @param advertisement Advertisement
+     */
     @Override
     public void update(Advertisement advertisement) {
         var successfulRemoval = mockData.removeIf(adv -> adv.getId().equals(advertisement.getId()));
         if (successfulRemoval) mockData.add(advertisement);
     }
 
+    /**
+     * Deletes an advertisement by id
+     *
+     * @param advertisementId Advertisement id
+     */
     @Override
     public void delete(UUID advertisementId) {
         mockData.removeIf(adv -> adv.getId().equals(advertisementId));
     }
 
+    /**
+     * Gets a list of advertisements by page number and page size
+     *
+     * @param pageNumber Page number
+     * @param pageSize   Page size
+     * @return List of advertisements
+     */
     @Override
     public List<Advertisement> getPaginatedItems(int pageNumber, int pageSize) {
         pageNumber = Math.max(pageNumber, 0);
@@ -52,17 +88,38 @@ public class AdvertisementStub implements GenericDAO<Advertisement> {
         return mockData.subList(pageNumber, pageNumber + pageSize);
     }
 
+    /**
+     * Gets all advertisements by user id
+     *
+     * @param advUserId User id
+     * @return List of advertisements
+     */
     @Override
     public Optional<List<Advertisement>> getByUserId(UUID advUserId) {
         return Optional.empty();
     }
 
+    /**
+     * Gets all advertisements by filter
+     *
+     * @param priceFrom  Minimum price
+     * @param priceTo    Maximum price
+     * @param roomFrom   Minimum rooms
+     * @param roomTo     Maximum rooms
+     * @param category   Category
+     * @param city       City
+     * @return List of advertisements
+     */
     @Override
     public Optional<List<Advertisement>> getByFilter(Long priceFrom, Long priceTo, Double roomFrom, Double roomTo, String category, String city) {
         return Optional.empty();
     }
 
-
+    /**
+     * Creates mock data for testing purposes
+     *
+     * @return List of mock advertisements
+     */
     private List<Advertisement> CreateMockData() {
         advertisementImages.add("https://cdn.pixabay.com/photo/2016/11/18/17/46/house-1836070_1280.jpg");
 

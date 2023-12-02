@@ -12,21 +12,32 @@ public class UserDAO implements GenericDAO<User> {
     private final EntityManager entityManager;
     private final EntityManagerFactory emf;
 
+    /**
+     * Constructor
+     */
     public UserDAO() {
         this.emf = Persistence.createEntityManagerFactory("default");
         this.entityManager = this.emf.createEntityManager();
     }
 
-    public UserDAO(String pu) {
-        this.emf = Persistence.createEntityManagerFactory(pu);
-        this.entityManager = this.emf.createEntityManager();
-    }
 
+    /**
+     * Gets an user by id
+     *
+     * @param id User id
+     * @return User
+     */
     @Override
     public Optional<User> get(UUID id) {
         return Optional.ofNullable(entityManager.find(User.class, id));
     }
 
+    /**
+     * Gets an user by name
+     *
+     * @param name User name
+     * @return User
+     */
     public Optional<User> getUserByName(String name) {
         try {
             String jpql = "SELECT u FROM User u WHERE u.username = :username";
@@ -40,6 +51,11 @@ public class UserDAO implements GenericDAO<User> {
         }
     }
 
+    /**
+     * Gets all users
+     *
+     * @return List of users
+     */
     @Override
     public Optional<List<User>> getAll() {
         String jpql = "SELECT u FROM User u";
@@ -53,6 +69,11 @@ public class UserDAO implements GenericDAO<User> {
         }
     }
 
+    /**
+     * Creates an user
+     *
+     * @param user User
+     */
     @Override
     public void create(User user) {
         try {
@@ -64,6 +85,11 @@ public class UserDAO implements GenericDAO<User> {
         }
     }
 
+    /**
+     * Updates an user
+     *
+     * @param user User
+     */
     @Override
     public void update(User user) {
         Optional<User> userToUpdate = get(user.getId());
@@ -74,6 +100,11 @@ public class UserDAO implements GenericDAO<User> {
         }
     }
 
+    /**
+     * Deletes an user by id
+     *
+     * @param id User id
+     */
     @Override
     public void delete(UUID id) {
         Optional<User> userToDelete = get(id);
@@ -84,6 +115,11 @@ public class UserDAO implements GenericDAO<User> {
         }
     }
 
+    /**
+     * Gets the page count
+     *
+     * @return long
+     */
     @Override
     public List<User> getPaginatedItems(int pageNumber, int pageSize) {
         pageNumber = Math.max(pageNumber, 0);
@@ -94,6 +130,12 @@ public class UserDAO implements GenericDAO<User> {
         return query.getResultList();
     }
 
+    /**
+     * Gets all users by user id
+     *
+     * @param advUserId User id
+     * @return List of users
+     */
     @Override
     public Optional<List<User>> getByUserId(UUID advUserId) {
         return Optional.empty();

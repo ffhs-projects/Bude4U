@@ -7,6 +7,12 @@ import java.util.Base64;
 
 public class PBKDF2Hash {
 
+    /**
+     * Creates a hash from a password
+     *
+     * @param password String
+     * @return String
+     */
     public static String CreateHash(String password) {
         byte[] salt = "12345678".getBytes();
 
@@ -21,6 +27,13 @@ public class PBKDF2Hash {
         throw new IllegalArgumentException();
     }
 
+    /**
+     * Checks if a password is valid
+     *
+     * @param hash     String
+     * @param password String
+     * @return boolean
+     */
     public static boolean CheckPassword(String hash, String password) {
         String hashInsertedPassword = PBKDF2Hash.CreateHash(password);
         return hashInsertedPassword.equals(hash);

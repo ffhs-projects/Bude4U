@@ -42,9 +42,21 @@ public class User implements Serializable {
     @Column(name = "theme")
     private String selectedTheme;
 
+    /**
+     * Constructor
+     */
     public User() {
     }
 
+    /**
+     * Constructor
+     *
+     * @param first    String
+     * @param last     String
+     * @param username String
+     * @param password String
+     * @param theme    String
+     */
     public User(String first, String last, String username, String password, String theme) {
         this.firstname = first;
         this.lastname = last;
@@ -53,19 +65,42 @@ public class User implements Serializable {
         this.selectedTheme = theme;
     }
 
+    /**
+     * Constructor
+     *
+     * @param first    String
+     * @param last     String
+     * @param username String
+     * @param password String
+     */
     public User(String first, String last, String username, String password) {
         this(first, last, username, password, "saga");
     }
 
-
+    /**
+     * Sets the password
+     *
+     * @param password String
+     */
     public void setPassword(String password) {
         this.password = PBKDF2Hash.CreateHash(password);
     }
 
+    /**
+     * Gets the selected theme
+     *
+     * @return String
+     */
     public String getSelectedTheme() {
         return Objects.requireNonNullElse(this.selectedTheme, "saga");
     }
 
+    /**
+     * Checks if the password is correct
+     *
+     * @param o Object
+     * @return boolean
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -79,6 +114,11 @@ public class User implements Serializable {
         return true;
     }
 
+    /**
+     * Hashcode
+     *
+     * @return int
+     */
     @Override
     public int hashCode() {
         int result = id != null ? id.hashCode() : 0;
