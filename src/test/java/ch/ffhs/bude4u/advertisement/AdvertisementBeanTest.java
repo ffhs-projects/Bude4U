@@ -39,7 +39,7 @@ public class AdvertisementBeanTest {
         String result = advertisementBean.createAdvertisement();
 
         // Check if the result is as expected with the known UUID
-        assertEquals("/views/advertisement.xhtml?advertisement=" + newAdvertisementId + "&faces-redirect=true", result);
+        assertEquals("/views/showAdvertisement.xhtml?advertisement=" + newAdvertisementId + "&faces-redirect=true", result);
 
         // Verify that createAdvertisement was called once
         verify(advertisementService, times(1)).createAdvertisement(any(Advertisement.class));
@@ -61,7 +61,7 @@ public class AdvertisementBeanTest {
 
         String result = advertisementBean.createAdvertisement();
 
-        assertEquals("/views/advertisementFailed.xhtml", result);
+        assertEquals("/views/failedAdvertisement.xhtml", result);
         verify(advertisementService, times(1)).createAdvertisement(any(Advertisement.class));
     }
 }

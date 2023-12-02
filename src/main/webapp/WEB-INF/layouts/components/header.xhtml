@@ -11,8 +11,7 @@
                     <h:graphicImage style="padding: 0 !important; margin: 0 !important" name="images/bude4u_logo.png"
                                     width="50" height="50"/>
                 </p:menuitem>
-                <!--            <p:menuitem style="height: 80px" src="bude4u_logo.svg"/>-->
-                <p:menuitem value="Inserate" icon="pi pi-fw pi-home" action="#{navigationController.showHome()}"/>
+                <p:menuitem value="Inserate" action="#{navigationController.showHome()}"/>
                 <p:menuitem value="Inserieren" label="File" icon="pi pi-fw pi-plus"
                             action="#{navigationController.createAdvertisement()}"
                             rendered="#{session.getAttribute('authenticated')}"/>

@@ -37,6 +37,10 @@ public class AuthenticationBean implements Serializable {
 
     User user;
 
+    /**
+     * Register a new user
+     * @return String
+     */
     public String register() {
         String firstName = getFirstName();
         String lastName = getLastName();
@@ -60,6 +64,10 @@ public class AuthenticationBean implements Serializable {
         }
     }
 
+    /**
+     * Get the current session
+     * @return HttpSession
+     */
     public HttpSession getSession() {
         FacesContext context = FacesContext.getCurrentInstance();
         HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
@@ -68,6 +76,10 @@ public class AuthenticationBean implements Serializable {
         return session;
     }
 
+    /**
+     * Login a user
+     * @return String
+     */
     public String login() {
         String userNameInput = getUsername();
         String passwordInput = getPassword();
@@ -96,7 +108,10 @@ public class AuthenticationBean implements Serializable {
         return "/views/loginFailed.xhtml";
     }
 
-
+    /**
+     * Logout a user
+     * @return String
+     */
     public String logout() {
         user = null;
         this.authenticated = false;
@@ -108,7 +123,10 @@ public class AuthenticationBean implements Serializable {
         return "/index.xhtml?faces-redirect=true";
     }
 
-
+    /**
+     * Check if a user is authenticated
+     * @return boolean
+     */
     public boolean isAuthenticated() {
         try {
             this.authenticated = (boolean) getSession().getAttribute("authenticated");
@@ -119,6 +137,10 @@ public class AuthenticationBean implements Serializable {
         return authenticated;
     }
 
+    /**
+     * Get the current user
+     * @return User
+     */
     public String updateProfile() {
         try {
 

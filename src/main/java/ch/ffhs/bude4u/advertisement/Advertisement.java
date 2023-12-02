@@ -87,11 +87,30 @@ public class Advertisement implements Serializable {
     @Column(name = "advertiserId")
     private UUID advertiserId;
 
+    /**
+     * Constructor for Advertisement
+     */
     public Advertisement() {
         advertisementImages = new ArrayList<>();
         advertiserId = UUID.randomUUID();
     }
 
+    /**
+     * Constructor for Advertisement
+     * @param title      Title of the advertisement
+     * @param description Description of the advertisement
+     * @param date      Date of the advertisement
+     * @param category Category of the advertisement
+     * @param status   Status of the advertisement
+     * @param price    Price of the advertisement
+     * @param rooms   Rooms of the advertisement
+     * @param space  Space of the advertisement
+     * @param advUserId User ID of the advertisement
+     * @param street  Street of the advertisement
+     * @param city  City of the advertisement
+     * @param postalCode Postal Code of the advertisement
+     * @param images Images of the advertisement
+     */
     public Advertisement(String title, String description, String date, String category, String status, double price, double rooms, int space, UUID advUserId, String street, String city, Integer postalCode, List<String> images) {
         this.title = title;
         this.description = description;
@@ -110,16 +129,39 @@ public class Advertisement implements Serializable {
 
     }
 
+    /**
+     * Constructor for Advertisement
+     * @param title      Title of the advertisement
+     * @param description Description of the advertisement
+     * @param category Category of the advertisement
+     * @param price    Price of the advertisement
+     * @param rooms   Rooms of the advertisement
+     * @param space  Space of the advertisement
+     * @param advUserId User ID of the advertisement
+     * @param street  Street of the advertisement
+     * @param city  City of the advertisement
+     * @param plz Postal Code of the advertisement
+     * @param images Images of the advertisement
+     */
     public Advertisement(String title, String description, String category, double price, double rooms, int space, UUID advUserId, String street, String city, Integer plz, ArrayList<String> images) {
         this(title, description, "", category, "", price, rooms, space, advUserId, street, city, plz, images);
         this.date = dtf.format(now);
         this.status = "offen";
     }
 
+    /**
+     * Get the main image of the advertisement
+     * @return Main image of the advertisement
+     */
     public String getMainImage() {
         return getImageWithIndex(0);
     }
 
+    /**
+     * Get the image with the given index
+     * @param index Index of the image
+     * @return Image with the given index
+     */
     private String getImageWithIndex(Integer index) {
         try {
             if (advertisementImages.isEmpty()) throw new IndexOutOfBoundsException("No images available");

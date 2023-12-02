@@ -55,6 +55,9 @@ public class AdvertisementBean implements Serializable {
     @Getter
     private ArrayList<String> categoryList = new ArrayList<>();
 
+    /**
+     * Constructor
+     */
     public AdvertisementBean() {
 
         // Fill roomsList
@@ -74,7 +77,11 @@ public class AdvertisementBean implements Serializable {
     }
 
 
-
+    /**
+     * Get all advertisements
+     *
+     * @return List of advertisements
+     */
     public HttpSession getSession() {
         FacesContext context = FacesContext.getCurrentInstance();
         HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
@@ -82,6 +89,10 @@ public class AdvertisementBean implements Serializable {
         return session;
     }
 
+    /**
+     * Create a new advertisement
+     * @return Redirect to user advertisement page
+     */
     public String createAdvertisement() {
         session = getSession();
         try {
@@ -93,12 +104,16 @@ public class AdvertisementBean implements Serializable {
             }
             advertisementService.createAdvertisement(newAd);
             clearBean();
-            return "/views/advertisement.xhtml?advertisement=" + newAd.getId() + "&faces-redirect=true";
+            return "/views/userAdvertisement.xhtml?faces-redirect=true";
         } catch (Exception e) {
-            return "/views/advertisementFailed.xhtml";
+            return "/views/failedAdvertisement.xhtml";
         }
     }
 
+    /**
+     * Update an advertisement
+     * @return Redirect to show advertisement page
+     */
     public String updateAdvertisement() {
         try {
             Map<String, String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
@@ -117,33 +132,46 @@ public class AdvertisementBean implements Serializable {
             advertisement.setPostalCode(advertisement.getPostalCode());
             advertisement.setAdvertisementImages(advertisementImages);
             advertisementService.updateAdvertisement(advertisement);
-            return "/views/advertisement.xhtml?advertisement=" + advertisement.getId() + "&faces-redirect=true";
+            return "/views/showAdvertisement.xhtml?advertisement=" + advertisement.getId() + "&faces-redirect=true";
         } catch (Exception e) {
-            return "/views/advertisementFailed.xhtml";
+            return "/views/failedAdvertisement.xhtml";
         }
     }
 
+    /**
+     * Delete an advertisement
+     * @return Redirect to user advertisement page
+     */
     public String deleteAdvertisement() {
         try {
             Map<String, String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
             String paramID = params.get("advertisement");
             if (paramID != null) {
                 advertisementService.delete(UUID.fromString(paramID));
-                return "/index.xhtml?faces-redirect=true";
+                return "/views/userAdvertisement.xhtml?faces-redirect=true";
             } else {
                 // Handle the case where "paramID" is null
-                return "/views/advertisementFailed.xhtml";
+                return "/views/failedAdvertisement.xhtml";
             }
         } catch (Exception e) {
             // Handle any other exceptions that may occur
-            return "/views/advertisementFailed.xhtml";
+            return "/views/failedAdvertisement.xhtml";
         }
     }
 
+    /**
+     * Get an advertisement
+     * @return Redirect to show advertisement page
+     */
     public String getFilterAdvertisement() {
         return "/index.xhtml";
     }
 
+
+    /**
+     * Handle file upload
+     * @param event File upload event
+     */
     public void handleFileUpload(FileUploadEvent event) {
         FacesMessage message = new FacesMessage("Successful", event.getFile().getFileName() + " is uploaded.");
         FacesContext.getCurrentInstance().addMessage(null, message);
@@ -154,6 +182,9 @@ public class AdvertisementBean implements Serializable {
         advertisementImages.add(encodedString);
     }
 
+    /**
+     * Clear the bean
+     */
     private void clearBean() {
         advertisementId = null;
         title = null;

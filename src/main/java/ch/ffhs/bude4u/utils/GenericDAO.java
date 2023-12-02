@@ -52,7 +52,22 @@ public interface GenericDAO<T> {
      */
     List<T> getPaginatedItems(int pageNumber, int pageSize);
 
+    /**
+     * Gets a list of advertisements by user id
+     * @param advUserId User id
+     * @return List of advertisements
+     */
     Optional<List<T>> getByUserId(UUID advUserId);
 
+    /**
+     * Gets a list of advertisements by filter
+     * @param priceFrom Price from
+     * @param priceTo Price to
+     * @param roomFrom Room from
+     * @param roomTo Room to
+     * @param category Category
+     * @param city City
+     * @return List of advertisements
+     */
     Optional<List<T>> getByFilter(Long priceFrom, Long priceTo, Double roomFrom, Double roomTo, String category, String city);
 }

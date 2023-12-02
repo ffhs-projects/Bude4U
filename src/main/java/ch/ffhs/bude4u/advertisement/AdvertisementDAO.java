@@ -12,18 +12,31 @@ import java.util.UUID;
 public class AdvertisementDAO implements GenericDAO<Advertisement> {
 
     private final EntityManager entityManager;
-    private final EntityManagerFactory emf;
 
+    /**
+     * Constructor
+     */
     public AdvertisementDAO() {
-        this.emf = Persistence.createEntityManagerFactory("default");
-        this.entityManager = this.emf.createEntityManager();
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("default");
+        this.entityManager = emf.createEntityManager();
     }
 
+    /**
+     * Get advertisement by id
+     *
+     * @param id Advertisement id
+     * @return Advertisement
+     */
     @Override
     public Optional<Advertisement> get(UUID id) {
         return Optional.ofNullable(entityManager.find(Advertisement.class, id));
     }
 
+    /**
+     * Get all advertisements
+     *
+     * @return List of all advertisements
+     */
     @Override
     public Optional<List<Advertisement>> getAll() {
         String jpql = "SELECT adv FROM Advertisement adv";
@@ -37,6 +50,12 @@ public class AdvertisementDAO implements GenericDAO<Advertisement> {
         }
     }
 
+    /**
+     * Get all advertisements by user id
+     *
+     * @param advUserId User id
+     * @return List of advertisements
+     */
     public Optional<List<Advertisement>> getByUserId(UUID advUserId) {
         String jpql = "SELECT adv FROM Advertisement adv WHERE adv.advertiserId = :advUserId";
         Query query = entityManager.createQuery(jpql);
@@ -51,7 +70,17 @@ public class AdvertisementDAO implements GenericDAO<Advertisement> {
     }
 
 
-
+    /**
+     * Get all advertisements by filter
+     *
+     * @param priceFrom Price from
+     * @param priceTo   Price to
+     * @param roomFrom  Room from
+     * @param roomTo    Room to
+     * @param category  Category
+     * @param city      City
+     * @return List of advertisements
+     */
     public Optional<List<Advertisement>> getByFilter(Long priceFrom, Long priceTo, Double roomFrom, Double roomTo, String category, String city) {
 
         String jpql = "SELECT adv FROM Advertisement adv WHERE adv.price >= :priceFrom AND adv.price <= :priceTo AND adv.rooms >= :roomFrom AND adv.rooms <= :roomTo AND (adv.category = :category OR :category = 'Any' ) AND (adv.city = :city OR :city = 'Any')";
@@ -71,6 +100,11 @@ public class AdvertisementDAO implements GenericDAO<Advertisement> {
         }
     }
 
+    /**
+     * Create new advertisement
+     *
+     * @param advertisement Advertisement
+     */
     @Override
     public void create(Advertisement advertisement) {
         entityManager.getTransaction().begin();
@@ -78,6 +112,11 @@ public class AdvertisementDAO implements GenericDAO<Advertisement> {
         entityManager.getTransaction().commit();
     }
 
+    /**
+     * Update advertisement
+     *
+     * @param advertisement Advertisement
+     */
     @Override
     public void update(Advertisement advertisement) {
         Optional<Advertisement> advToUpdate = get(advertisement.getId());
@@ -88,6 +127,11 @@ public class AdvertisementDAO implements GenericDAO<Advertisement> {
         }
     }
 
+    /**
+     * Delete advertisement
+     *
+     * @param advertisementId Advertisement id
+     */
     @Override
     public void delete(UUID advertisementId) {
         Optional<Advertisement> advToDelete = get(advertisementId);
@@ -98,6 +142,13 @@ public class AdvertisementDAO implements GenericDAO<Advertisement> {
         }
     }
 
+    /**
+     * Get paginated items
+     *
+     * @param pageNumber Page number
+     * @param pageSize   Page size
+     * @return List of advertisements
+     */
     @Override
     public List<Advertisement> getPaginatedItems(int pageNumber, int pageSize) {
         pageNumber = Math.max(pageNumber, 0);
