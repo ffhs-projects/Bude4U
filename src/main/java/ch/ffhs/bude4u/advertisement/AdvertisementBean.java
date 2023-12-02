@@ -93,9 +93,9 @@ public class AdvertisementBean implements Serializable {
             }
             advertisementService.createAdvertisement(newAd);
             clearBean();
-            return "/views/advertisement.xhtml?advertisement=" + newAd.getId() + "&faces-redirect=true";
+            return "/views/userAdvertisement.xhtml?faces-redirect=true";
         } catch (Exception e) {
-            return "/views/advertisementFailed.xhtml";
+            return "/views/failedAdvertisement.xhtml";
         }
     }
 
@@ -117,9 +117,9 @@ public class AdvertisementBean implements Serializable {
             advertisement.setPostalCode(advertisement.getPostalCode());
             advertisement.setAdvertisementImages(advertisementImages);
             advertisementService.updateAdvertisement(advertisement);
-            return "/views/advertisement.xhtml?advertisement=" + advertisement.getId() + "&faces-redirect=true";
+            return "/views/showAdvertisement.xhtml?advertisement=" + advertisement.getId() + "&faces-redirect=true";
         } catch (Exception e) {
-            return "/views/advertisementFailed.xhtml";
+            return "/views/failedAdvertisement.xhtml";
         }
     }
 
@@ -129,14 +129,14 @@ public class AdvertisementBean implements Serializable {
             String paramID = params.get("advertisement");
             if (paramID != null) {
                 advertisementService.delete(UUID.fromString(paramID));
-                return "/index.xhtml?faces-redirect=true";
+                return "/views/userAdvertisement.xhtml?faces-redirect=true";
             } else {
                 // Handle the case where "paramID" is null
-                return "/views/advertisementFailed.xhtml";
+                return "/views/failedAdvertisement.xhtml";
             }
         } catch (Exception e) {
             // Handle any other exceptions that may occur
-            return "/views/advertisementFailed.xhtml";
+            return "/views/failedAdvertisement.xhtml";
         }
     }
 

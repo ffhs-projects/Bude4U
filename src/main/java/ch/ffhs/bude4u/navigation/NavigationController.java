@@ -38,23 +38,23 @@ public class NavigationController implements Serializable {
     }
 
     public String userAdvertisements() {
-        return "/views/userAdvertisements.xhtml";
+        return "/views/userAdvertisement.xhtml";
     }
 
     public String createAdvertisement() {
-        return "/views/advertise.xhtml";
+        return "/views/createAdvertisement.xhtml";
     }
 
     public String editAdvertise() {
         Map<String, String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
         String advertisementId = params.get("advertisementId");
-        return "/views/advertisementEdit.xhtml?advertisement=" + advertisementId;
+        return "/views/editAdvertisement.xhtml?advertisement=" + advertisementId;
     }
 
     public String showAdvertisement() {
         Map<String, String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
         String advertisementId = params.get("advertisementId");
-        return "/views/advertisement.xhtml?advertisement=" + advertisementId;
+        return "/views/showAdvertisement.xhtml?advertisement=" + advertisementId;
     }
     public String showRegister() {
         return "/views/register.xhtml";
