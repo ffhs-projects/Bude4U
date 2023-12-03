@@ -1,5 +1,6 @@
 package ch.ffhs.bude4u.authentication;
 
+import ch.ffhs.bude4u.utils.GenericDAO;
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.inject.Named;
 import lombok.Getter;
@@ -16,17 +17,26 @@ import java.util.UUID;
 @Named
 public class UserService implements Serializable {
 
-    private final UserDAO userDao;
+    private final GenericDAO userDao;
 
     /**
      * Constructor
      */
     public UserService() {
-        userDao = new UserDAO();
+        this(false);
+    }
+
+    public UserService(boolean testSetUp) {
+        if (testSetUp) {
+            userDao = new UserStub();
+        } else {
+            userDao = new UserDAO();
+        }
     }
 
     /**
      * Gets an user by id
+     *
      * @param userId User id
      * @return User
      */
@@ -37,6 +47,7 @@ public class UserService implements Serializable {
 
     /**
      * Gets all users
+     *
      * @return List of users
      */
     public Optional<List<User>> getAllUsers() {
@@ -45,6 +56,7 @@ public class UserService implements Serializable {
 
     /**
      * Deletes an user
+     *
      * @param userId User id
      */
     public void delete(UUID userId) {
@@ -53,6 +65,7 @@ public class UserService implements Serializable {
 
     /**
      * Creates an user
+     *
      * @param user User
      */
     public void createUser(User user) {
@@ -61,6 +74,7 @@ public class UserService implements Serializable {
 
     /**
      * Updates an user
+     *
      * @param user User
      */
     public void updateUser(User user) {
@@ -69,8 +83,9 @@ public class UserService implements Serializable {
 
     /**
      * Gets users from range
+     *
      * @param startIndex Wherer to start from
-     * @param length How many users to get
+     * @param length     How many users to get
      * @return List of users
      */
     public List<User> getUsersFromRange(int startIndex, int length) {
@@ -79,9 +94,11 @@ public class UserService implements Serializable {
 
     /**
      * Gets user by name
+     *
      * @return User by name
      */
     public Optional<User> getUserByName(String username) {
-        return userDao.getUserByName(username);
+        UserDAO daoCast = (UserDAO) userDao;
+        return daoCast.getUserByName(username);
     }
 }

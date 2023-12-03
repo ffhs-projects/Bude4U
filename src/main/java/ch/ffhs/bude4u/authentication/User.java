@@ -72,6 +72,24 @@ public class User implements Serializable {
      * @param last     String
      * @param username String
      * @param password String
+     * @param theme    String
+     */
+    public User(String id, String first, String last, String username, String password, String theme) {
+        this.id = UUID.fromString(id);
+        this.firstname = first;
+        this.lastname = last;
+        this.username = username;
+        this.setPassword(password);
+        this.selectedTheme = theme;
+    }
+
+    /**
+     * Constructor
+     *
+     * @param first    String
+     * @param last     String
+     * @param username String
+     * @param password String
      */
     public User(String first, String last, String username, String password) {
         this(first, last, username, password, "saga");
