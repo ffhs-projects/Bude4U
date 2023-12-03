@@ -29,7 +29,7 @@ public class UserServiceTest {
     public void testGetUserById() {
         UUID userId = UUID.fromString("f8c3de3d-1fea-4d7c-a8b0-29f63c4c3454");
 
-        Optional<User> retrievedUser =  userService.getUserById(userId);
+        Optional<User> retrievedUser = userService.getUserById(userId);
 
         assertTrue(retrievedUser.isPresent());
     }
