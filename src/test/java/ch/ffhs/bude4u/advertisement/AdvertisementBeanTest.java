@@ -5,7 +5,9 @@ import static org.junit.jupiter.api.Assertions.*;
 import jakarta.faces.context.FacesContext;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import static org.mockito.Mockito.*;
+
 import java.util.UUID;
 
 public class AdvertisementBeanTest {
@@ -43,8 +45,6 @@ public class AdvertisementBeanTest {
         // Check if the result is as expected with the known UUID
         assertEquals("/views/userAdvertisement.xhtml?faces-redirect=true", result);
     }
-
-
 
 
     @Test
