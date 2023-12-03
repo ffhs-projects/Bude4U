@@ -16,7 +16,7 @@ public class AdvertisementServiceTest {
 
     @BeforeEach
     public void setup() {
-        advertisementService = new AdvertisementService();
+        advertisementService = new AdvertisementService(true);
     }
 
     private ArrayList<String> advertisementImages = new ArrayList<>();
@@ -61,8 +61,8 @@ public class AdvertisementServiceTest {
 
     @Test
     public void testUpdateAdvertisement() {
-        UUID id = UUID.fromString("f8c3de3d-1fea-4d7c-a8b0-29f63c4c3455");
-        Advertisement updatedAdvertisement = new Advertisement("Updated House", "Updated Description", "01.01.2023", "Haus", "offen", 100000, 5.5, 142, UUID.randomUUID(), "Strasse 1", "Stadt 2", 1234, advertisementImages );
+        String id = "f8c3de3d-1fea-4d7c-a8b0-29f63c4c3455";
+        Advertisement updatedAdvertisement = new Advertisement(id,"Updated House", "Updated Description", "01.01.2023", "Haus", "offen", 100000, 5.5, 142, UUID.randomUUID(), "Strasse 1", "Stadt 2", 1234, advertisementImages );
         advertisementService.updateAdvertisement(updatedAdvertisement);
         Optional<Advertisement> advertisement = advertisementService.getAdvertisement(id);
         assertTrue(advertisement.isPresent());

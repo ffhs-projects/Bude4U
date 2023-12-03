@@ -3,16 +3,18 @@ package ch.ffhs.bude4u.advertisement;
 import ch.ffhs.bude4u.utils.GenericDAO;
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.inject.Named;
+
 import java.io.Serializable;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+
 import lombok.Getter;
 
 @Named
 @SessionScoped
 @Getter
-public class AdvertisementService implements Serializable{
+public class AdvertisementService implements Serializable {
 
     private final GenericDAO<Advertisement> advertisementDao;
 
@@ -20,9 +22,16 @@ public class AdvertisementService implements Serializable{
      * Constructor
      */
     public AdvertisementService() {
+        this(false);
+    }
+
+    public AdvertisementService(boolean testSetUp) {
         // Inject advertisementDAO or Stub...
-        advertisementDao = new AdvertisementDAO();
-        // advertisementDao = new AdvertisementStub();
+        if (testSetUp) {
+            advertisementDao = new AdvertisementStub();
+        } else {
+            advertisementDao = new AdvertisementDAO();
+        }
     }
 
     /**
@@ -115,6 +124,7 @@ public class AdvertisementService implements Serializable{
 
     /**
      * Update advertisement
+     *
      * @param advertisement Advertisement
      */
     public void updateAdvertisement(Advertisement advertisement) {
@@ -123,8 +133,9 @@ public class AdvertisementService implements Serializable{
 
     /**
      * Get advertisements from range
+     *
      * @param pageNumber Page number
-     * @param pageSize Page size
+     * @param pageSize   Page size
      * @return List of advertisements
      */
     public List<Advertisement> getAdvertisementsFromRange(int pageNumber, int pageSize) {
