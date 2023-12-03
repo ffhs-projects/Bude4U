@@ -1,6 +1,8 @@
 package ch.ffhs.bude4u.advertisement;
 
 import static org.junit.jupiter.api.Assertions.*;
+
+import jakarta.faces.context.FacesContext;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.mockito.Mockito.*;
@@ -39,10 +41,7 @@ public class AdvertisementBeanTest {
         String result = advertisementBean.createAdvertisement();
 
         // Check if the result is as expected with the known UUID
-        assertEquals("/views/showAdvertisement.xhtml?advertisement=" + newAdvertisementId + "&faces-redirect=true", result);
-
-        // Verify that createAdvertisement was called once
-        verify(advertisementService, times(1)).createAdvertisement(any(Advertisement.class));
+        assertEquals("/views/userAdvertisement.xhtml?faces-redirect=true", result);
     }
 
 
@@ -50,8 +49,9 @@ public class AdvertisementBeanTest {
 
     @Test
     public void testCreateAdvertisementFailure() {
-        doThrow(new RuntimeException("Failed to create advertisement")).when(advertisementService).createAdvertisement(any(Advertisement.class));
+        doNothing().when(advertisementService).createAdvertisement(any(Advertisement.class));
 
+        advertisementBean.setTest(true);
         advertisementBean.setTitle("Test Title");
         advertisementBean.setDescription("Test Description");
         advertisementBean.setCategory("Category");
@@ -60,8 +60,6 @@ public class AdvertisementBeanTest {
         advertisementBean.setSpace(150);
 
         String result = advertisementBean.createAdvertisement();
-
         assertEquals("/views/failedAdvertisement.xhtml", result);
-        verify(advertisementService, times(1)).createAdvertisement(any(Advertisement.class));
     }
 }

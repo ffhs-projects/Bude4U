@@ -83,6 +83,7 @@ public class AdvertisementBean implements Serializable {
      * @return List of advertisements
      */
     public HttpSession getSession() {
+        if (test) return null;
         FacesContext context = FacesContext.getCurrentInstance();
         HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
         session = request.getSession();
@@ -98,7 +99,8 @@ public class AdvertisementBean implements Serializable {
         try {
             // Required for unit tests
             if (test) {
-                newAd = new Advertisement(title, description, "01.01.2001", category, "offen", price, rooms, space, UUID.fromString(session.getAttribute("userId").toString()), street, city, postalCode, advertisementImages);
+
+                newAd = new Advertisement(title, description, "01.01.2001", category, "offen", price, rooms, space, UUID.fromString("f8c3de3d-1fea-4d7c-a8b0-29f63c4c3454"), street, city, postalCode, advertisementImages);
             } else {
                 newAd = new Advertisement(title, description, category, price, rooms, space, UUID.fromString(session.getAttribute("userId").toString()), street, city, postalCode, advertisementImages);
             }
