@@ -1,3 +1,6 @@
+<!--
+    View when the user tries to advertise a product but the product is already advertised.
+-->
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="jakarta.faces.facelets"
                 xmlns:h="jakarta.faces.html"
@@ -7,6 +10,6 @@
     <ui:define name="pageTitle"><p:outputLabel  value="Inserieren" style="font-size: 40px !important;"/></ui:define>
     <ui:define name="status"><h:outputText value="Status: Failed"/></ui:define>
     <ui:define name="content">
-        <ui:include src="/WEB-INF/layouts/advertiseFailed.xhtml" />
+        <ui:include src="/WEB-INF/layouts/failedAdvertisement.xhtml" />
     </ui:define>
 </ui:composition>

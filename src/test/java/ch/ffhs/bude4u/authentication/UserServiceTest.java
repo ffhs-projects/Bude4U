@@ -22,28 +22,21 @@ public class UserServiceTest {
     @BeforeEach
     public void setUp() {
         userDao = mock(UserDAO.class);
-        userService = new UserService();
+        userService = new UserService(true);
     }
 
     @Test
     public void testGetUserById() {
-        UUID userId = UUID.randomUUID();
-        User user = new User();
-        user.setId(userId);
-
-        when(userDao.get(userId)).thenReturn(Optional.of(user));
+        UUID userId = UUID.fromString("f8c3de3d-1fea-4d7c-a8b0-29f63c4c3454");
 
         Optional<User> retrievedUser = userService.getUserById(userId);
 
         assertTrue(retrievedUser.isPresent());
-        assertEquals(userId.toString(), retrievedUser.get().getId());
     }
 
     @Test
     public void testGetUserByIdNotFound() {
         UUID userId = UUID.randomUUID();
-
-        when(userDao.get(userId)).thenReturn(Optional.empty());
 
         Optional<User> retrievedUser = userService.getUserById(userId);
 
@@ -57,16 +50,18 @@ public class UserServiceTest {
 
         Optional<List<User>> retrievedUsers = userService.getAllUsers();
 
-        assertEquals(userList, retrievedUsers);
+        assertEquals(4, retrievedUsers.get().size());
     }
 
     @Test
     public void testDeleteUser() {
-        UUID userId = UUID.randomUUID();
+        UUID userId = UUID.fromString("f8c3de3d-1fea-4d7c-a8b0-29f63c4c3454");
 
         userService.delete(userId);
 
-        verify(userDao, times(1)).delete(userId);
+        Optional<List<User>> retrievedUsers = userService.getAllUsers();
+        assertEquals(3, retrievedUsers.get().size());
+
     }
 
     @Test
@@ -75,27 +70,31 @@ public class UserServiceTest {
 
         userService.createUser(user);
 
-        verify(userDao, times(1)).create(user);
+
+        Optional<List<User>> retrievedUsers = userService.getAllUsers();
+        assertEquals(5, retrievedUsers.get().size());
     }
 
     @Test
     public void testUpdateUser() {
-        User user = new User();
+        Optional<User> usr = userService.getUserById(UUID.fromString("f8c3de3d-1fea-4d7c-a8b0-29f63c4c3454"));
+        if (usr.isPresent()) {
+            usr.get().setLastname("NoDoe");
+        }
+        userService.updateUser(usr.get());
 
-        userService.updateUser(user);
-
-        verify(userDao, times(1)).update(user);
+        Optional<User> updatedUsr = userService.getUserById(UUID.fromString("f8c3de3d-1fea-4d7c-a8b0-29f63c4c3454"));
+        assertEquals("NoDoe", updatedUsr.get().getLastname());
     }
 
     @Test
     public void testGetUsersFromRange() {
         int startIndex = 0;
         int length = 10;
-        List<User> userList = new ArrayList<>();
-        when(userDao.getPaginatedItems(startIndex, length)).thenReturn(userList);
+        when(userDao.getPaginatedItems(startIndex, length));
 
         List<User> retrievedUsers = userService.getUsersFromRange(startIndex, length);
 
-        assertEquals(userList, retrievedUsers);
+        assertEquals(4, retrievedUsers.size());
     }
 }

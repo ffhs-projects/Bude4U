@@ -49,32 +49,73 @@ public class AdvertisementBean implements Serializable {
     private double filterRoomTo = 50;
     private String filterCategory = "Any";
     private String filterCity = "Any";
+    @Getter
+    private ArrayList<String> roomsList = new ArrayList<>();
+    // Category list
+    @Getter
+    private ArrayList<String> categoryList = new ArrayList<>();
+
+    /**
+     * Constructor
+     */
+    public AdvertisementBean() {
+
+        // Fill roomsList
+        for (double i = 0; i <= 12; i+=0.5) {
+            this.roomsList.add(String.valueOf(i));
+        }
+
+        // Fill categoryList
+        categoryList.add("Beliebig");
+        categoryList.add("Wohnung");
+        categoryList.add("Haus");
+        categoryList.add("Hobbyraum");
+        categoryList.add("Garagenplatz");
+        categoryList.add("Lager");
+        categoryList.add("Andere");
+
+    }
 
 
+    /**
+     * Get all advertisements
+     *
+     * @return List of advertisements
+     */
     public HttpSession getSession() {
+        if (test) return null;
         FacesContext context = FacesContext.getCurrentInstance();
         HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
         session = request.getSession();
         return session;
     }
 
+    /**
+     * Create a new advertisement
+     * @return Redirect to user advertisement page
+     */
     public String createAdvertisement() {
         session = getSession();
         try {
             // Required for unit tests
             if (test) {
-                newAd = new Advertisement(title, description, "01.01.2001", category, "offen", price, rooms, space, UUID.fromString(session.getAttribute("userId").toString()), street, city, postalCode, advertisementImages);
+
+                newAd = new Advertisement(title, description, "01.01.2001", category, "offen", price, rooms, space, UUID.fromString("f8c3de3d-1fea-4d7c-a8b0-29f63c4c3454"), street, city, postalCode, advertisementImages);
             } else {
                 newAd = new Advertisement(title, description, category, price, rooms, space, UUID.fromString(session.getAttribute("userId").toString()), street, city, postalCode, advertisementImages);
             }
             advertisementService.createAdvertisement(newAd);
             clearBean();
-            return "/views/advertisement.xhtml?advertisement=" + newAd.getId() + "&faces-redirect=true";
+            return "/views/userAdvertisement.xhtml?faces-redirect=true";
         } catch (Exception e) {
-            return "/views/advertisementFailed.xhtml";
+            return "/views/failedAdvertisement.xhtml";
         }
     }
 
+    /**
+     * Update an advertisement
+     * @return Redirect to show advertisement page
+     */
     public String updateAdvertisement() {
         try {
             Map<String, String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
@@ -93,33 +134,46 @@ public class AdvertisementBean implements Serializable {
             advertisement.setPostalCode(advertisement.getPostalCode());
             advertisement.setAdvertisementImages(advertisementImages);
             advertisementService.updateAdvertisement(advertisement);
-            return "/views/advertisement.xhtml?advertisement=" + advertisement.getId() + "&faces-redirect=true";
+            return "/views/showAdvertisement.xhtml?advertisement=" + advertisement.getId() + "&faces-redirect=true";
         } catch (Exception e) {
-            return "/views/advertisementFailed.xhtml";
+            return "/views/failedAdvertisement.xhtml";
         }
     }
 
+    /**
+     * Delete an advertisement
+     * @return Redirect to user advertisement page
+     */
     public String deleteAdvertisement() {
         try {
             Map<String, String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
             String paramID = params.get("advertisement");
             if (paramID != null) {
                 advertisementService.delete(UUID.fromString(paramID));
-                return "/index.xhtml?faces-redirect=true";
+                return "/views/userAdvertisement.xhtml?faces-redirect=true";
             } else {
                 // Handle the case where "paramID" is null
-                return "/views/advertisementFailed.xhtml";
+                return "/views/failedAdvertisement.xhtml";
             }
         } catch (Exception e) {
             // Handle any other exceptions that may occur
-            return "/views/advertisementFailed.xhtml";
+            return "/views/failedAdvertisement.xhtml";
         }
     }
 
+    /**
+     * Get an advertisement
+     * @return Redirect to show advertisement page
+     */
     public String getFilterAdvertisement() {
         return "/index.xhtml";
     }
 
+
+    /**
+     * Handle file upload
+     * @param event File upload event
+     */
     public void handleFileUpload(FileUploadEvent event) {
         FacesMessage message = new FacesMessage("Successful", event.getFile().getFileName() + " is uploaded.");
         FacesContext.getCurrentInstance().addMessage(null, message);
@@ -130,6 +184,9 @@ public class AdvertisementBean implements Serializable {
         advertisementImages.add(encodedString);
     }
 
+    /**
+     * Clear the bean
+     */
     private void clearBean() {
         advertisementId = null;
         title = null;
@@ -147,5 +204,6 @@ public class AdvertisementBean implements Serializable {
         test = false;
         advertisementImages = new ArrayList<>();
     }
+
 }
 

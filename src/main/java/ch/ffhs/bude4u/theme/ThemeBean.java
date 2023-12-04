@@ -26,6 +26,7 @@ public class ThemeBean implements Serializable {
     @Getter
     private Map<String, String> themeMap;
 
+
     @PostConstruct
     public void initializeThemeMap() {
         themeMap = new LinkedHashMap<>();
@@ -34,6 +35,10 @@ public class ThemeBean implements Serializable {
         themeMap.put("Arya", "arya");
     }
 
+    /**
+     * Set the selected theme in the session
+     * @return String
+     */
     public String getSelectedUserTheme() {
         session = getSession();
         String sessionTheme = (String) session.getAttribute("selectedTheme");
@@ -41,6 +46,10 @@ public class ThemeBean implements Serializable {
         return sessionTheme;
     }
 
+    /**
+     * Set the selected theme in the session
+     * @return String
+     */
     public HttpSession getSession() {
         FacesContext context = FacesContext.getCurrentInstance();
         HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
