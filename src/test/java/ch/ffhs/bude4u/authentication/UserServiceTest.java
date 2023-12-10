@@ -99,7 +99,6 @@ public class UserServiceTest {
     public void testGetUsersFromRange() {
         int startIndex = 0;
         int length = 10;
-        when(userDao.getPaginatedItems(startIndex, length));
 
         List<User> retrievedUsers = userService.getUsersFromRange(startIndex, length);
 
