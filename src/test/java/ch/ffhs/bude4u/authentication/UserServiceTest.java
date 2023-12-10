@@ -11,6 +11,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 import ch.ffhs.bude4u.utils.GenericDAO;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -23,6 +24,12 @@ public class UserServiceTest {
     public void setUp() {
         userDao = mock(UserDAO.class);
         userService = new UserService(true);
+    }
+
+    @AfterAll
+    public void cleanup() {
+        userDao = null;
+        userService = null;
     }
 
     @Test
