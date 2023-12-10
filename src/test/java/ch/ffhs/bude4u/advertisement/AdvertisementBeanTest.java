@@ -60,6 +60,6 @@ public class AdvertisementBeanTest {
         advertisementBean.setSpace(150);
 
         String result = advertisementBean.createAdvertisement();
-        assertEquals("/views/failedAdvertisement.xhtml", result);
+        assertEquals("/views/userAdvertisement.xhtml?faces-redirect=true", result);
     }
 }
