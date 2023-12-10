@@ -3,6 +3,7 @@ package ch.ffhs.bude4u.advertisement;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -20,7 +21,7 @@ public class AdvertisementServiceTest {
         advertisementService = new AdvertisementService(true);
     }
 
-    @AfterAll
+    @AfterEach
     public void cleanup() {
         advertisementService = null;
     }
