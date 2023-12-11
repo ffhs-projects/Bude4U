@@ -18,7 +18,7 @@
                         <p:outputLabel value="Filter"/>
                         <p:divider type="dashed"/>
 
-                        <h:panelGrid columns="1" style="margin-bottom: 10px">
+                        <h:panelGrid columns="1" style="margin-bottom: 10px; width: 100%">
                             <p:outputLabel for="preisvon" value="Preis von"/>
                             <p:inputNumber id="preisvon" value="#{advertisementBean.filterPriceFrom}"/>
                             <p:outputLabel for="preisbis" value="Preis bis"/>
@@ -27,7 +27,7 @@
 
                         <p:divider type="dashed"/>
 
-                        <h:panelGrid columns="1" style="margin-bottom: 10px">
+                        <h:panelGrid columns="1" style="margin-bottom: 10px; width: 100%">
                             <p:outputLabel for="zimmervon" value="Zimmer von"/>
                             <p:inputNumber id="zimmervon" value="#{advertisementBean.filterRoomFrom}"/>
                             <p:outputLabel for="zimmerbis" value="Zimmer bis"/>
@@ -36,14 +36,14 @@
 
                         <p:divider type="dashed"/>
 
-                        <h:panelGrid columns="1" style="margin-bottom: 10px">
+                        <h:panelGrid columns="1" style="margin-bottom: 10px; width: 100%">
                             <p:outputLabel for="city" value="Ort"/>
                             <p:inputText id="city" value="#{advertisementBean.filterCity}"/>
                         </h:panelGrid>
 
                         <p:divider type="dashed"/>
 
-                        <h:panelGrid columns="1" style="margin-bottom: 10px">
+                        <h:panelGrid columns="1" style="margin-bottom: 10px; width: 100%">
                             <p:outputLabel for="category" value="Kategorie"/>
                             <p:selectOneMenu id="category" value="#{advertisementBean.filterCategory}">
                                 <f:selectItem itemLabel="Beliebig" itemValue="Any"/>
@@ -54,13 +54,13 @@
                                 <f:selectItem itemLabel="Lager" itemValue="Lager"/>
                                 <f:selectItem itemLabel="Andere" itemValue="Andere"/>
                             </p:selectOneMenu>
-
-                            <p:divider type="dashed"/>
-
-                            <p:commandButton id="filter-button" value="Filter" action="#{advertisementBean.filterAdvertisement}">
-                                <f:ajax execute="@form" render="advertisements" />
-                            </p:commandButton>
                         </h:panelGrid>
+
+                        <p:divider type="dashed"/>
+
+                        <p:commandButton id="filter-button" value="Filter" action="#{advertisementBean.filterAdvertisement}">
+                            <f:ajax execute="@form" render="advertisements" />
+                        </p:commandButton>
                     </h:form>
                 </div>
             </div>
