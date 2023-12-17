@@ -39,6 +39,7 @@ public class AuthenticationBean implements Serializable {
 
     /**
      * Register a new user
+     *
      * @return String
      */
     public String register() {
@@ -66,6 +67,7 @@ public class AuthenticationBean implements Serializable {
 
     /**
      * Get the current session
+     *
      * @return HttpSession
      */
     public HttpSession getSession() {
@@ -78,6 +80,7 @@ public class AuthenticationBean implements Serializable {
 
     /**
      * Login a user
+     *
      * @return String
      */
     public String login() {
@@ -110,6 +113,7 @@ public class AuthenticationBean implements Serializable {
 
     /**
      * Logout a user
+     *
      * @return String
      */
     public String logout() {
@@ -125,6 +129,7 @@ public class AuthenticationBean implements Serializable {
 
     /**
      * Check if a user is authenticated
+     *
      * @return boolean
      */
     public boolean isAuthenticated() {
@@ -139,6 +144,7 @@ public class AuthenticationBean implements Serializable {
 
     /**
      * Get the current user
+     *
      * @return User
      */
     public String updateProfile() {
