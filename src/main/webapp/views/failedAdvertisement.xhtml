@@ -7,9 +7,13 @@
                 template="/WEB-INF/layouts/template.xhtml"
                 xmlns:p="http://primefaces.org/ui"
 >
-    <ui:define name="pageTitle"><p:outputLabel  value="Inserieren" style="font-size: 40px !important;"/></ui:define>
-    <ui:define name="status"><h:outputText value="Status: Failed"/></ui:define>
+    <ui:define name="pageTitle">
+        <p:outputLabel value="Inserieren" style="font-size: 40px !important;"/>
+    </ui:define>
+    <ui:define name="status">
+        <h:outputText value="Status: Failed"/>
+    </ui:define>
     <ui:define name="content">
-        <ui:include src="/WEB-INF/layouts/failedAdvertisement.xhtml" />
+        <ui:include src="/WEB-INF/layouts/failedAdvertisement.xhtml"/>
     </ui:define>
 </ui:composition>

@@ -7,21 +7,21 @@
         <div class="surface-card p-4 shadow-2 border-round w-full lg:w-6">
             <h:form>
                 <div class="text-center mb-5">
-                <p:outputLabel  value="Möchtest du wirklich abmelden?" style="font-size: 25px !important;"/>
+                    <p:outputLabel value="Möchtest du wirklich abmelden?" style="font-size: 25px !important;"/>
                 </div>
                 <div class="flex flex-row flex-wrap justify-content-center">
                     <div class="grid ui-fluid">
-                            <div class="sm:w-12 md:w-5 font-bold ">
-                                <p:commandButton type="submit-button" icon="pi pi-check" styleClass="ui-button-success "
-                                                 id="yesLogout" action="#{authenticationBean.logout()}"
-                                />
-                            </div>
-                            <div class="sm:w-12 md:w-2 font-bold ">
-                            </div>
-                            <div class="sm:w-12 md:w-5 font-bold ">
-                                <p:commandButton type="submit-button" icon="pi pi-times" styleClass="ui-button-danger "
-                                                 id="noLogout" action="#{navigationController.showHome()}"/>
-                            </div>
+                        <div class="sm:w-12 md:w-5 font-bold ">
+                            <p:commandButton type="submit-button" icon="pi pi-check" styleClass="ui-button-success "
+                                             id="yesLogout" action="#{authenticationBean.logout()}"
+                            />
+                        </div>
+                        <div class="sm:w-12 md:w-2 font-bold ">
+                        </div>
+                        <div class="sm:w-12 md:w-5 font-bold ">
+                            <p:commandButton type="submit-button" icon="pi pi-times" styleClass="ui-button-danger "
+                                             id="noLogout" action="#{navigationController.showHome()}"/>
+                        </div>
                     </div>
                 </div>
             </h:form>

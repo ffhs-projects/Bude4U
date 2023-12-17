@@ -61,7 +61,7 @@ public class AdvertisementBean implements Serializable {
     public AdvertisementBean() {
 
         // Fill roomsList
-        for (double i = 0; i <= 12; i+=0.5) {
+        for (double i = 0; i <= 12; i += 0.5) {
             this.roomsList.add(String.valueOf(i));
         }
 
@@ -92,6 +92,7 @@ public class AdvertisementBean implements Serializable {
 
     /**
      * Create a new advertisement
+     *
      * @return Redirect to user advertisement page
      */
     public String createAdvertisement() {
@@ -114,6 +115,7 @@ public class AdvertisementBean implements Serializable {
 
     /**
      * Update an advertisement
+     *
      * @return Redirect to show advertisement page
      */
     public String updateAdvertisement() {
@@ -142,6 +144,7 @@ public class AdvertisementBean implements Serializable {
 
     /**
      * Delete an advertisement
+     *
      * @return Redirect to user advertisement page
      */
     public String deleteAdvertisement() {
@@ -163,6 +166,7 @@ public class AdvertisementBean implements Serializable {
 
     /**
      * Get an advertisement
+     *
      * @return Redirect to show advertisement page
      */
     public String getFilterAdvertisement() {
@@ -172,6 +176,7 @@ public class AdvertisementBean implements Serializable {
 
     /**
      * Handle file upload
+     *
      * @param event File upload event
      */
     public void handleFileUpload(FileUploadEvent event) {

@@ -2,7 +2,6 @@ package ch.ffhs.bude4u.advertisement;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import jakarta.faces.context.FacesContext;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -60,6 +59,6 @@ public class AdvertisementBeanTest {
         advertisementBean.setSpace(150);
 
         String result = advertisementBean.createAdvertisement();
-        assertEquals("/views/failedAdvertisement.xhtml", result);
+        assertEquals("/views/userAdvertisement.xhtml?faces-redirect=true", result);
     }
 }

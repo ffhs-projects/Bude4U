@@ -11,6 +11,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 import ch.ffhs.bude4u.utils.GenericDAO;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -23,6 +24,12 @@ public class UserServiceTest {
     public void setUp() {
         userDao = mock(UserDAO.class);
         userService = new UserService(true);
+    }
+
+    @AfterEach
+    public void cleanup() {
+        userDao = null;
+        userService = null;
     }
 
     @Test
@@ -91,7 +98,6 @@ public class UserServiceTest {
     public void testGetUsersFromRange() {
         int startIndex = 0;
         int length = 10;
-        when(userDao.getPaginatedItems(startIndex, length));
 
         List<User> retrievedUsers = userService.getUsersFromRange(startIndex, length);
 

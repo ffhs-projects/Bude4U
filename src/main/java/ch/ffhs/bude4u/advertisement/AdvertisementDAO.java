@@ -5,6 +5,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import jakarta.persistence.Query;
+
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -46,7 +47,7 @@ public class AdvertisementDAO implements GenericDAO<Advertisement> {
         if (advertisements.isEmpty()) {
             return Optional.empty();
         } else {
-            return Optional.of(advertisements );
+            return Optional.of(advertisements);
         }
     }
 

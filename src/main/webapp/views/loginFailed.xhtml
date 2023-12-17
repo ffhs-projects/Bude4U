@@ -7,16 +7,17 @@
                 template="/WEB-INF/layouts/template.xhtml">
 
     <ui:define name="title">
-        <p:outputLabel  value="Login fehlgeschlagen" style="font-size: 25px !important;"/>
+        <p:outputLabel value="Login fehlgeschlagen" style="font-size: 25px !important;"/>
     </ui:define>
 
 
     <ui:define name="failedText">
-        <p:outputLabel  value="Benutzername oder Passwort falsch" style="font-size: 16px !important;"/>
+        <p:outputLabel value="Benutzername oder Passwort falsch" style="font-size: 16px !important;"/>
     </ui:define>
 
     <ui:define name="returnButton">
-        <p:commandButton type="submit-button" value="Nochmal versuchen" icon="pi pi-spin pi-th-large" styleClass="ui-button-primary"
+        <p:commandButton type="submit-button" value="Nochmal versuchen" icon="pi pi-spin pi-th-large"
+                         styleClass="ui-button-primary"
                          id="showloginlogout" action="#{navigationController.showLoginLogout()}"
         />
     </ui:define>

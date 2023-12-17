@@ -22,7 +22,7 @@ public class UserDAO implements GenericDAO<User> {
 
 
     /**
-     * Gets an user by id
+     * Gets a user by id
      *
      * @param id User id
      * @return User
@@ -33,7 +33,7 @@ public class UserDAO implements GenericDAO<User> {
     }
 
     /**
-     * Gets an user by name
+     * Gets a user by name
      *
      * @param name User name
      * @return User
@@ -70,7 +70,7 @@ public class UserDAO implements GenericDAO<User> {
     }
 
     /**
-     * Creates an user
+     * Creates a user
      *
      * @param user User
      */
@@ -86,7 +86,7 @@ public class UserDAO implements GenericDAO<User> {
     }
 
     /**
-     * Updates an user
+     * Updates a user
      *
      * @param user User
      */

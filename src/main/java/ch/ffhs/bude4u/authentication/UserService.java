@@ -35,7 +35,7 @@ public class UserService implements Serializable {
     }
 
     /**
-     * Gets an user by id
+     * Gets a user by id
      *
      * @param userId User id
      * @return User
@@ -55,7 +55,7 @@ public class UserService implements Serializable {
     }
 
     /**
-     * Deletes an user
+     * Deletes a user
      *
      * @param userId User id
      */
@@ -64,7 +64,7 @@ public class UserService implements Serializable {
     }
 
     /**
-     * Creates an user
+     * Creates a user
      *
      * @param user User
      */
@@ -73,7 +73,7 @@ public class UserService implements Serializable {
     }
 
     /**
-     * Updates an user
+     * Updates a user
      *
      * @param user User
      */

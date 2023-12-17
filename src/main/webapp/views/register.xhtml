@@ -7,28 +7,30 @@
                 template="/WEB-INF/layouts/template.xhtml"
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-    <ui:define name="createAccount"><p:outputLabel value="Account erstellen" style="font-size: 40px !important;"/></ui:define>
+    <ui:define name="createAccount">
+        <p:outputLabel value="Account erstellen" style="font-size: 40px !important;"/>
+    </ui:define>
 
     <ui:define name="firstname">
         <p:outputLabel for="firstname" value="Vorname"/>
         <p:message id="idFirstname" for="firstname"/>
         <p:inputText id="firstname" type="text" styleClass="w-full mb-3" placeholder="Vorname"
-                 value="#{authenticationBean.firstName}" required="true" requiredMessage="Bitte Vornamen angeben"/>
+                     value="#{authenticationBean.firstName}" required="true" requiredMessage="Bitte Vornamen angeben"/>
     </ui:define>
 
     <ui:define name="lastname">
         <p:outputLabel for="lastname" value="Nachname"/>
         <p:message id="idLastname" for="lastname"/>
         <p:inputText id="lastname" type="text" styleClass="w-full mb-3" placeholder="Nachname"
-                 value="#{authenticationBean.lastName}"  required="true" requiredMessage="Bitte Nachnamen angeben"/>
+                     value="#{authenticationBean.lastName}" required="true" requiredMessage="Bitte Nachnamen angeben"/>
     </ui:define>
 
     <ui:define name="email">
         <p:outputLabel for="email" value="Email"/>
         <p:message id="idEmail" for="email"/>
         <p:inputText id="email" type="email" styleClass="w-full mb-3" placeholder="Email"
-                 value="#{authenticationBean.username}"  required="true" requiredMessage="Bitte Email angeben">
-        <f:validateRegex pattern="^[\wW\.]+@([\w-]+\.)+[\w-]{2,4}$"/>
+                     value="#{authenticationBean.username}" required="true" requiredMessage="Bitte Email angeben">
+            <f:validateRegex pattern="^[\wW\.]+@([\w-]+\.)+[\w-]{2,4}$"/>
         </p:inputText>
     </ui:define>
 
@@ -36,7 +38,7 @@
         <p:outputLabel for="password" value="Passwort"/>
         <p:message id="idPassword" for="password"/>
         <p:password id="password" styleClass="w-full mb-3" placeholder="Passwort"
-                value="#{authenticationBean.password}"  required="true" requiredMessage="Bitte Passwort angeben">
+                    value="#{authenticationBean.password}" required="true" requiredMessage="Bitte Passwort angeben">
         </p:password>
     </ui:define>
 

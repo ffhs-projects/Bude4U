@@ -11,7 +11,6 @@ public class AdvertisementTest {
 
     private ArrayList<String> advertisementImages = new ArrayList<>();
 
-
     @Test
     public void testAdvertisementWithUUIDConstructor() {
         Advertisement advertisement = new Advertisement("Test Title", "Test Description", "01.01.2023", "Category", "Status", 100000, 3.5, 150, UUID.randomUUID(), "Strasse 1", "Stadt 2", 1234, advertisementImages);

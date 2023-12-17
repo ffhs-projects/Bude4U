@@ -8,106 +8,126 @@
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:c="http://java.sun.com/jsp/jstl/core">
 
-           <ui:define name="pageTitle"><p:outputLabel  value="Inserat bearbeiten" style="font-size: 40px !important;"/></ui:define>
-           <ui:define name="title">
-                <p:outputLabel for="title" value="Titel"/>
-                <p:message id="messageAdvertisementTitle" for="title"/>
-                <div class="ui-inputgroup pb-3">
-                    <p:inputText id="title" value="#{advertisementService.getAdvertisement(param.advertisement).get().title}" required="false" requiredMessage="Title is required"/>
-                </div>
-            </ui:define>
+    <ui:define name="pageTitle">
+        <p:outputLabel value="Inserat bearbeiten" style="font-size: 40px !important;"/>
+    </ui:define>
+    <ui:define name="title">
+        <p:outputLabel for="title" value="Titel"/>
+        <p:message id="messageAdvertisementTitle" for="title"/>
+        <div class="ui-inputgroup pb-3">
+            <p:inputText id="title" value="#{advertisementService.getAdvertisement(param.advertisement).get().title}"
+                         required="false" requiredMessage="Title is required"/>
+        </div>
+    </ui:define>
 
-            <ui:define name="rooms">
-                <p:outputLabel for="rooms" value="Zimmer"/>
-                <p:message id="idRooms" for="rooms"/>
-                <p:selectOneMenu id="rooms" value="#{advertisementService.getAdvertisement(param.advertisement).get().rooms}" required="false" requiredMessage="Number of rooms is required">
-                    <f:selectItem itemLabel="Bitte auswählen" itemValue=""/>
-                    <c:forEach var="roomCount" items="#{advertisementBean.roomsList}">
-                        <f:selectItem itemLabel="${roomCount}" itemValue="${roomCount}"/>
-                    </c:forEach>
-                </p:selectOneMenu>
-            </ui:define>
+    <ui:define name="rooms">
+        <p:outputLabel for="rooms" value="Zimmer"/>
+        <p:message id="idRooms" for="rooms"/>
+        <p:selectOneMenu id="rooms" value="#{advertisementService.getAdvertisement(param.advertisement).get().rooms}"
+                         required="false" requiredMessage="Number of rooms is required">
+            <f:selectItem itemLabel="Bitte auswählen" itemValue=""/>
+            <c:forEach var="roomCount" items="#{advertisementBean.roomsList}">
+                <f:selectItem itemLabel="${roomCount}" itemValue="${roomCount}"/>
+            </c:forEach>
+        </p:selectOneMenu>
+    </ui:define>
 
-                <ui:define name="livingSpace">
-                    <p:outputLabel for="livingSpace" value="Wohnfläche"/>
-                    <p:message id="idlivingSpace" for="livingSpace"/>
-                    <div class="ui-inputgroup">
-                        <p:inputNumber id="livingSpace" value="#{advertisementService.getAdvertisement(param.advertisement).get().livingSpace}" required="false" requiredMessage="Living space is required"/>
-                        <div class="ui-inputgroup-addon">m²</div>
-                    </div>
-                </ui:define>
+    <ui:define name="livingSpace">
+        <p:outputLabel for="livingSpace" value="Wohnfläche"/>
+        <p:message id="idlivingSpace" for="livingSpace"/>
+        <div class="ui-inputgroup">
+            <p:inputNumber id="livingSpace"
+                           value="#{advertisementService.getAdvertisement(param.advertisement).get().livingSpace}"
+                           required="false" requiredMessage="Living space is required"/>
+            <div class="ui-inputgroup-addon">m²</div>
+        </div>
+    </ui:define>
 
-                <ui:define name="description">
-                    <p:outputLabel for="description" value="Beschreibung"/>
-                    <p:message id="idDescription" for="description"/>
-                    <div class="ui-inputgroup">
-                        <div class="ui-inputgroup-addon">
-                            <i class="pi pi-user">
-                            </i>
-                        </div>
-                        <p:inputTextarea id="description" rows="12" cols="90" placeholder="Beschreibung" value="#{advertisementService.getAdvertisement(param.advertisement).get().description}" required="false" requiredMessage="Bitte Beschreibung angeben"/>
-                    </div>
-                </ui:define>
+    <ui:define name="description">
+        <p:outputLabel for="description" value="Beschreibung"/>
+        <p:message id="idDescription" for="description"/>
+        <div class="ui-inputgroup">
+            <div class="ui-inputgroup-addon">
+                <i class="pi pi-user">
+                </i>
+            </div>
+            <p:inputTextarea id="description" rows="12" cols="90" placeholder="Beschreibung"
+                             value="#{advertisementService.getAdvertisement(param.advertisement).get().description}"
+                             required="false" requiredMessage="Bitte Beschreibung angeben"/>
+        </div>
+    </ui:define>
 
-                <ui:define name="category">
-                    <p:outputLabel for="category" value="Kategorie"/>
-                    <p:message id="idAdvCategory" for="category"/>
-                    <p:selectOneMenu id="category" value="#{advertisementService.getAdvertisement(param.advertisement).get().category}" required="false" requiredMessage="Bitte Kategorie angeben">
-                        <c:forEach var="categoryCount" items="#{advertisementBean.categoryList}">
-                            <f:selectItem itemLabel="${categoryCount}" itemValue="${categoryCount}"/>
-                        </c:forEach>
-                    </p:selectOneMenu>
-                </ui:define>
+    <ui:define name="category">
+        <p:outputLabel for="category" value="Kategorie"/>
+        <p:message id="idAdvCategory" for="category"/>
+        <p:selectOneMenu id="category"
+                         value="#{advertisementService.getAdvertisement(param.advertisement).get().category}"
+                         required="false" requiredMessage="Bitte Kategorie angeben">
+            <c:forEach var="categoryCount" items="#{advertisementBean.categoryList}">
+                <f:selectItem itemLabel="${categoryCount}" itemValue="${categoryCount}"/>
+            </c:forEach>
+        </p:selectOneMenu>
+    </ui:define>
 
-                <ui:define name="street">
-                    <p:outputLabel for="street" value="Strasse und Nummer"/>
-                    <p:message id="idStreet" for="street"/>
-                    <div class="ui-inputgroup pb-3">
-                        <p:inputText id="street" placeholder="Musterstrasse" value="#{advertisementService.getAdvertisement(param.advertisement).get().street}" required="true" requiredMessage="Bitte Strasse angeben" />
-                    </div>
-                </ui:define>
+    <ui:define name="street">
+        <p:outputLabel for="street" value="Strasse und Nummer"/>
+        <p:message id="idStreet" for="street"/>
+        <div class="ui-inputgroup pb-3">
+            <p:inputText id="street" placeholder="Musterstrasse"
+                         value="#{advertisementService.getAdvertisement(param.advertisement).get().street}"
+                         required="true" requiredMessage="Bitte Strasse angeben"/>
+        </div>
+    </ui:define>
 
-                <ui:define name="city">
-                    <p:outputLabel for="city" value="Stadt"/>
-                    <p:message id="idCity" for="city"/>
-                    <div class="ui-inputgroup pb-3">
-                        <p:inputText id="city" placeholder="Musterhausen" value="#{advertisementService.getAdvertisement(param.advertisement).get().city}" required="true" requiredMessage="Bitte Stadt angeben" />
-                    </div>
-                </ui:define>
+    <ui:define name="city">
+        <p:outputLabel for="city" value="Stadt"/>
+        <p:message id="idCity" for="city"/>
+        <div class="ui-inputgroup pb-3">
+            <p:inputText id="city" placeholder="Musterhausen"
+                         value="#{advertisementService.getAdvertisement(param.advertisement).get().city}"
+                         required="true" requiredMessage="Bitte Stadt angeben"/>
+        </div>
+    </ui:define>
 
-                <ui:define name="postalCode">
-                    <p:outputLabel for="postalCode" value="Postleitzahl"/>
-                    <p:message id="idPostalCode" for="postalCode"/>
-                    <div class="ui-inputgroup">
-                        <p:inputNumber id="postalCode" value="#{advertisementService.getAdvertisement(param.advertisement).get().postalCode}" placeholder="1234" required="true" requiredMessage="Bitte PLZ angeben" />
-                    </div>
-                </ui:define>
+    <ui:define name="postalCode">
+        <p:outputLabel for="postalCode" value="Postleitzahl"/>
+        <p:message id="idPostalCode" for="postalCode"/>
+        <div class="ui-inputgroup">
+            <p:inputNumber id="postalCode"
+                           value="#{advertisementService.getAdvertisement(param.advertisement).get().postalCode}"
+                           placeholder="1234" required="true" requiredMessage="Bitte PLZ angeben"/>
+        </div>
+    </ui:define>
 
-                <ui:define name="buyprice">
-                    <p:outputLabel for="price" value="Preis"/>
-                    <p:message id="idBuyPrice" for="price"/>
-                    <div class="ui-inputgroup">
-                        <div class="ui-inputgroup-addon">CHF</div>
-                        <p:inputNumber id="price" value="#{advertisementService.getAdvertisement(param.advertisement).get().price}" required="false" requiredMessage="Bitte Preis angeben" />
-                    </div>
-                </ui:define>
+    <ui:define name="buyprice">
+        <p:outputLabel for="price" value="Preis"/>
+        <p:message id="idBuyPrice" for="price"/>
+        <div class="ui-inputgroup">
+            <div class="ui-inputgroup-addon">CHF</div>
+            <p:inputNumber id="price" value="#{advertisementService.getAdvertisement(param.advertisement).get().price}"
+                           required="false" requiredMessage="Bitte Preis angeben"/>
+        </div>
+    </ui:define>
 
-                <ui:define name="date">
-                   <p:outputLabel for="datumDescription" value="Datum der Veröffentlichung"/>
-                   <p:inputText id="datumDescription" value="#{advertisementService.getAdvertisement(param.advertisement).get().date}" disabled="true"/>
-                </ui:define>
+    <ui:define name="date">
+        <p:outputLabel for="datumDescription" value="Datum der Veröffentlichung"/>
+        <p:inputText id="datumDescription"
+                     value="#{advertisementService.getAdvertisement(param.advertisement).get().date}" disabled="true"/>
+    </ui:define>
 
-                <ui:define name="fileupload">
-                    <p:outputLabel id="fileUpload" value="Bild hochladen"/>
-                </ui:define>
+    <ui:define name="fileupload">
+        <p:outputLabel id="fileUpload" value="Bild hochladen"/>
+    </ui:define>
 
-                <ui:define name="sendButton">
-                   <p:commandButton id="submit-button" action="#{advertisementBean.updateAdvertisement()}" value="Aktualisieren" icon="pi pi-upload" styleClass="ui-button-raised ui-button-success" update="@form">
-                      <f:param name="advertisement" value="#{advertisementService.getAdvertisement(param.advertisement).get().id}"/>
-                  </p:commandButton>
-                </ui:define>
+    <ui:define name="sendButton">
+        <p:commandButton id="submit-button" action="#{advertisementBean.updateAdvertisement()}" value="Aktualisieren"
+                         icon="pi pi-upload" styleClass="ui-button-raised ui-button-success" update="@form">
+            <f:param name="advertisement"
+                     value="#{advertisementService.getAdvertisement(param.advertisement).get().id}"/>
+        </p:commandButton>
+    </ui:define>
 
     <ui:define name="content">
-        <ui:include src="/WEB-INF/layouts/forms/createAdvertisement.xhtml" />
+        <ui:include src="/WEB-INF/layouts/forms/createAdvertisement.xhtml"/>
     </ui:define>
 </ui:composition>

@@ -2,8 +2,10 @@
                 xmlns:ui="jakarta.faces.facelets"
                 template="/WEB-INF/layouts/template.xhtml"
                 xmlns:p="http://primefaces.org/ui">
-    <ui:define name="pageTitle"><p:outputLabel  value="Inserate" style="font-size: 40px !important;"/></ui:define>
+    <ui:define name="pageTitle">
+        <p:outputLabel value="Inserate" style="font-size: 40px !important;"/>
+    </ui:define>
     <ui:define name="content">
-        <ui:include src="/WEB-INF/layouts/home.xhtml" />
+        <ui:include src="/WEB-INF/layouts/home.xhtml"/>
     </ui:define>
 </ui:composition>

@@ -37,6 +37,7 @@ public class ThemeBean implements Serializable {
 
     /**
      * Set the selected theme in the session
+     *
      * @return String
      */
     public String getSelectedUserTheme() {
@@ -48,6 +49,7 @@ public class ThemeBean implements Serializable {
 
     /**
      * Set the selected theme in the session
+     *
      * @return String
      */
     public HttpSession getSession() {

@@ -13,73 +13,73 @@
 </c:if>
 <c:if test="#{advertisementService.getAdvertisementsByUserId(session.getAttribute('userId')).get() != null}">
     <h:panelGroup id="advertisements">
-    <ui:repeat value="#{advertisementService.getAdvertisementsByUserId(session.getAttribute('userId')).get()}"
-               var="advertisement">
+        <ui:repeat value="#{advertisementService.getAdvertisementsByUserId(session.getAttribute('userId')).get()}"
+                   var="advertisement">
 
-                    <div class="surface-card mb-4 shadow-2 border-round">
-                        <div class="grid ui-fluid">
-                                <div class="sm:w-3 md:w-3 pl-4 pr-4 pt-4">
-                                    <p:outputLabel value="#{advertisement.title}" class="mt-0 text-xl font-bold"/>
-                                        <h:graphicImage value="#{ advertisement.getMainImage()}" class="img-fluid" alt="header"
-                                                        style="max-width: 100%; height: auto;"/>
-                                </div>
-                                <div class="sm:w-6 md:w-6 p-2">
-                                    <div class="col-12 md:col-12">
-                                        <p:outputLabel value="Zimmer: #{advertisement.rooms}"
-                                                       class="mt-0 text-3xl font-bold"/>
-                                    </div>
-                                    <div class="col-12 md:col-12">
-                                        <p:outputLabel value="Preis: CHF #{advertisement.price}"
-                                                      class="text-2xl font-bold"/>
-                                    </div>
-                                    <div class="col-12 md:col-12">
-                                        <p:outputLabel value="Beschreibung: #{advertisement.description}"/>
-                                    </div>
-                                </div>
-
-                                <div class="sm:w-3 md:w-3 p-3">
-                                        <div class="col-12 md:col-12">
-                                            <div class="col-12 md:col-12">
-                                                <p:commandButton id="submit-button" action="#{navigationController.editAdvertise()}"
-                                                                 value="Bearbeiten"
-                                                                 icon="pi pi-file-edit" styleClass="ui-button-raised ui-button-primary">
-                                                    <f:param name="advertisement"
-                                                             value="#{advertisementService.getAdvertisement(advertisement.id).get().id}"/>
-                                                </p:commandButton>
-                                            </div>
-
-                                            <div class="col-12 md:col-12">
-                                                <p:commandButton action="#{advertisementBean.deleteAdvertisement()}" value="Löschen"
-                                                                 icon="pi pi-user"
-                                                                 styleClass="ui-button-raised ui-button-danger">
-                                                    <f:param name="advertisement"
-                                                             value="#{advertisementService.getAdvertisement(advertisement.id).get().id}"/>
-                                                </p:commandButton>
-                                            </div>
-                                            <p:divider type="dashed"/>
-                                            <div class="col-12 md:col-12">
-                                                <p:outputLabel value="Veröffentlichung: #{advertisement.date}"/>
-                                            </div>
-                                            <div class="col-12 md:col-12">
-                                                <p:outputLabel value="Kategorie: #{advertisement.category}"/>
-                                            </div>
-                                            <div class="col-12 md:col-12">
-                                                <i class="pi pi-home"/>
-                                                <p:outputLabel value="  #{advertisement.rooms} Zimmer" />
-                                            </div>
-                                            <div class="col-12 md:col-12">
-                                                <i class="pi pi-box"/>
-                                                <p:outputLabel value="  #{advertisement.space}m² Wohnfläche"/>
-                                            </div>
-                                            <div class="col-12 md:col-12">
-                                                <p:outputLabel value="Status: #{advertisement.status}"/>
-                                            </div>
-                                        </div>
-                                </div>
-                                </div>
+            <div class="surface-card mb-4 shadow-2 border-round">
+                <div class="grid ui-fluid">
+                    <div class="sm:w-3 md:w-3 pl-4 pr-4 pt-4">
+                        <p:outputLabel value="#{advertisement.title}" class="mt-0 text-xl font-bold"/>
+                        <h:graphicImage value="#{ advertisement.getMainImage()}" class="img-fluid" alt="header"
+                                        style="max-width: 100%; height: auto;"/>
+                    </div>
+                    <div class="sm:w-6 md:w-6 p-2">
+                        <div class="col-12 md:col-12">
+                            <p:outputLabel value="Zimmer: #{advertisement.rooms}"
+                                           class="mt-0 text-3xl font-bold"/>
                         </div>
+                        <div class="col-12 md:col-12">
+                            <p:outputLabel value="Preis: CHF #{advertisement.price}"
+                                           class="text-2xl font-bold"/>
+                        </div>
+                        <div class="col-12 md:col-12">
+                            <p:outputLabel value="Beschreibung: #{advertisement.description}"/>
+                        </div>
+                    </div>
 
-    </ui:repeat>
+                    <div class="sm:w-3 md:w-3 p-3">
+                        <div class="col-12 md:col-12">
+                            <div class="col-12 md:col-12">
+                                <p:commandButton id="submit-button" action="#{navigationController.editAdvertise()}"
+                                                 value="Bearbeiten"
+                                                 icon="pi pi-file-edit" styleClass="ui-button-raised ui-button-primary">
+                                    <f:param name="advertisement"
+                                             value="#{advertisementService.getAdvertisement(advertisement.id).get().id}"/>
+                                </p:commandButton>
+                            </div>
+
+                            <div class="col-12 md:col-12">
+                                <p:commandButton action="#{advertisementBean.deleteAdvertisement()}" value="Löschen"
+                                                 icon="pi pi-user"
+                                                 styleClass="ui-button-raised ui-button-danger">
+                                    <f:param name="advertisement"
+                                             value="#{advertisementService.getAdvertisement(advertisement.id).get().id}"/>
+                                </p:commandButton>
+                            </div>
+                            <p:divider type="dashed"/>
+                            <div class="col-12 md:col-12">
+                                <p:outputLabel value="Veröffentlichung: #{advertisement.date}"/>
+                            </div>
+                            <div class="col-12 md:col-12">
+                                <p:outputLabel value="Kategorie: #{advertisement.category}"/>
+                            </div>
+                            <div class="col-12 md:col-12">
+                                <i class="pi pi-home"/>
+                                <p:outputLabel value="  #{advertisement.rooms} Zimmer"/>
+                            </div>
+                            <div class="col-12 md:col-12">
+                                <i class="pi pi-box"/>
+                                <p:outputLabel value="  #{advertisement.space}m² Wohnfläche"/>
+                            </div>
+                            <div class="col-12 md:col-12">
+                                <p:outputLabel value="Status: #{advertisement.status}"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </ui:repeat>
     </h:panelGroup>
 </c:if>
 

@@ -58,7 +58,7 @@ public class UserStub implements GenericDAO<User> {
     }
 
     /**
-     * Creates an user
+     * Creates a user
      *
      * @param user User
      */
@@ -68,7 +68,7 @@ public class UserStub implements GenericDAO<User> {
     }
 
     /**
-     * Updates an user
+     * Updates a user
      *
      * @param user User
      */

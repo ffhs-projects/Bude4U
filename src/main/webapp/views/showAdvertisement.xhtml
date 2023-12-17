@@ -8,11 +8,13 @@
                 template="/WEB-INF/layouts/template.xhtml">
 
     <ui:define name="pageTitle">
-        <p:outputLabel  value="#{advertisementService.getAdvertisement(param.advertisement).get().title}" style="font-size: 40px !important;"/>
+        <p:outputLabel value="#{advertisementService.getAdvertisement(param.advertisement).get().title}"
+                       style="font-size: 40px !important;"/>
     </ui:define>
 
     <ui:define name="title">
-        <p:outputLabel  value="#{advertisementService.getAdvertisement(param.advertisement).get().title}" style="font-size: 40px !important;"/>
+        <p:outputLabel value="#{advertisementService.getAdvertisement(param.advertisement).get().title}"
+                       style="font-size: 40px !important;"/>
     </ui:define>
 
     <ui:define name="image">
@@ -37,7 +39,7 @@
 
     <ui:define name="price">
         <p:outputLabel value="CHF #{advertisementService.getAdvertisement(param.advertisement).get().price} / Monat"
-                      class="text-2xl font-bold"/>
+                       class="text-2xl font-bold"/>
     </ui:define>
 
     <ui:define name="status">
@@ -51,12 +53,13 @@
 
     <ui:define name="address">
         <p:outputLabel
-                value="Adresse: #{advertisementService.getAdvertisement(param.advertisement).get().street} in #{advertisementService.getAdvertisement(param.advertisement).get().postalCode} #{advertisementService.getAdvertisement(param.advertisement).get().city}" style="font-size: 18px !important;"/>
+                value="Adresse: #{advertisementService.getAdvertisement(param.advertisement).get().street} in #{advertisementService.getAdvertisement(param.advertisement).get().postalCode} #{advertisementService.getAdvertisement(param.advertisement).get().city}"
+                style="font-size: 18px !important;"/>
     </ui:define>
 
     <ui:define name="rooms">
         <i class="pi pi-home"/>
-        <p:outputLabel value="  #{advertisementService.getAdvertisement(param.advertisement).get().rooms} Zimmer" />
+        <p:outputLabel value="  #{advertisementService.getAdvertisement(param.advertisement).get().rooms} Zimmer"/>
     </ui:define>
 
     <ui:define name="space">
@@ -70,7 +73,8 @@
     </ui:define>
 
     <ui:define name="advertiser">
-        <p:outputLabel value="Verkäufer: #{userService.getUserById(advertisementService.getAdvertisement(param.advertisement).get().advertiserId).get().username}"/>
+        <p:outputLabel
+                value="Verkäufer: #{userService.getUserById(advertisementService.getAdvertisement(param.advertisement).get().advertiserId).get().username}"/>
     </ui:define>
 
     <ui:define name="content">

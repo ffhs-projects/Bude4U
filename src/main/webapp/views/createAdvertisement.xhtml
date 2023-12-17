@@ -8,12 +8,15 @@
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:c="http://java.sun.com/jsp/jstl/core">
 
-    <ui:define name="pageTitle"><p:outputLabel  value="Inserat erstellen" style="font-size: 40px !important;"/></ui:define>
+    <ui:define name="pageTitle">
+        <p:outputLabel value="Inserat erstellen" style="font-size: 40px !important;"/>
+    </ui:define>
     <ui:define name="title">
         <p:outputLabel for="title" value="Titel"/>
         <p:message id="messageAdvertisementTitle" for="title"/>
         <div class="ui-inputgroup pb-3">
-            <p:inputText id="title" placeholder="Titel" value="#{advertisementBean.title}" required="true" requiredMessage="Bitte Titel angeben"/>
+            <p:inputText id="title" placeholder="Titel" value="#{advertisementBean.title}" required="true"
+                         requiredMessage="Bitte Titel angeben"/>
         </div>
     </ui:define>
 
@@ -21,7 +24,8 @@
         <p:outputLabel for="rooms" value="Zimmer"/>
         <p:message id="idRooms" for="rooms"/>
         <div class="ui-inputgroup pb-3">
-            <p:selectOneMenu id="rooms" value="#{advertisementBean.rooms}" required="true" requiredMessage="Bitte Zimmer angeben">
+            <p:selectOneMenu id="rooms" value="#{advertisementBean.rooms}" required="true"
+                             requiredMessage="Bitte Zimmer angeben">
                 <f:selectItem itemLabel="Bitte auswählen" itemValue=""/>
                 <c:forEach var="roomCount" items="#{advertisementBean.roomsList}">
                     <f:selectItem itemLabel="${roomCount}" itemValue="${roomCount}"/>
@@ -34,7 +38,8 @@
         <p:outputLabel for="livingSpace" value="Wohnfläche"/>
         <p:message id="idlivingSpace" for="livingSpace"/>
         <div class="ui-inputgroup">
-            <p:inputNumber id="livingSpace" value="#{advertisementBean.space}" required="true" requiredMessage="Bitte Wohnfläche angeben."/>
+            <p:inputNumber id="livingSpace" value="#{advertisementBean.space}" required="true"
+                           requiredMessage="Bitte Wohnfläche angeben."/>
             <div class="ui-inputgroup-addon">m²</div>
         </div>
     </ui:define>
@@ -46,7 +51,9 @@
             <div class="ui-inputgroup-addon">
                 <i class="pi pi-user">
                 </i></div>
-            <p:inputTextarea id="description" rows="12" cols="90" placeholder="Beschreibung" value="#{advertisementBean.description}" required="true" requiredMessage="Bitte Beschreibung angeben"/>
+            <p:inputTextarea id="description" rows="12" cols="90" placeholder="Beschreibung"
+                             value="#{advertisementBean.description}" required="true"
+                             requiredMessage="Bitte Beschreibung angeben"/>
         </div>
 
     </ui:define>
@@ -54,7 +61,8 @@
     <ui:define name="category">
         <p:outputLabel for="categorySelect" value="Kategorie"/>
         <p:message id="idCategory" for="categorySelect"/>
-        <p:selectOneMenu id="categorySelect" value="#{advertisementBean.categoryList[0]}" required="true" requiredMessage="Bitte Kategorie angeben">
+        <p:selectOneMenu id="categorySelect" value="#{advertisementBean.categoryList[0]}" required="true"
+                         requiredMessage="Bitte Kategorie angeben">
             <c:forEach var="categoryCount" items="#{advertisementBean.categoryList}">
                 <f:selectItem itemLabel="${categoryCount}" itemValue="${categoryCount}"/>
             </c:forEach>
@@ -65,7 +73,8 @@
         <p:outputLabel for="street" value="Strasse und Nummer"/>
         <p:message id="idStreet" for="street"/>
         <div class="ui-inputgroup pb-3">
-            <p:inputText id="street" placeholder="Musterstrasse" value="#{advertisementBean.street}" required="true" requiredMessage="Bitte Strasse angeben" />
+            <p:inputText id="street" placeholder="Musterstrasse" value="#{advertisementBean.street}" required="true"
+                         requiredMessage="Bitte Strasse angeben"/>
         </div>
     </ui:define>
 
@@ -73,7 +82,8 @@
         <p:outputLabel for="city" value="Stadt"/>
         <p:message id="idCity" for="city"/>
         <div class="ui-inputgroup pb-3">
-            <p:inputText id="city" placeholder="Musterhausen" value="#{advertisementBean.city}" required="true" requiredMessage="Bitte Stadt angeben"/>
+            <p:inputText id="city" placeholder="Musterhausen" value="#{advertisementBean.city}" required="true"
+                         requiredMessage="Bitte Stadt angeben"/>
         </div>
     </ui:define>
 
@@ -81,7 +91,8 @@
         <p:outputLabel for="postalCode" value="Postleitzahl"/>
         <p:message id="idPostalCode" for="postalCode"/>
         <div class="ui-inputgroup">
-            <p:inputNumber id="postalCode" value="#{advertisementBean.postalCode}" placeholder="8000" required="true" requiredMessage="Bitte PLZ angeben">
+            <p:inputNumber id="postalCode" value="#{advertisementBean.postalCode}" placeholder="8000" required="true"
+                           requiredMessage="Bitte PLZ angeben">
                 <f:validateLength minimum="4" maximum="4"/>
             </p:inputNumber>
         </div>
@@ -92,7 +103,8 @@
         <p:message id="idBuyPrice" for="price"/>
         <div class="ui-inputgroup">
             <div class="ui-inputgroup-addon">CHF</div>
-            <p:inputNumber id="price" value="#{advertisementBean.price}" required="true" requiredMessage="Bitte Preis angeben" />
+            <p:inputNumber id="price" value="#{advertisementBean.price}" required="true"
+                           requiredMessage="Bitte Preis angeben"/>
         </div>
     </ui:define>
 
@@ -102,15 +114,17 @@
     </ui:define>
 
     <ui:define name="fileupload">
-        <p:outputLabel id="fileUpload" value="Bild hochladen" />
+        <p:outputLabel id="fileUpload" value="Bild hochladen"/>
     </ui:define>
 
     <ui:define name="sendButton">
-        <p:commandButton id="submit-button" value="Veröffentlichen" icon="pi pi-upload" action="#{advertisementBean.createAdvertisement}" update="@form" styleClass="ui-button-success"/>
+        <p:commandButton id="submit-button" value="Veröffentlichen" icon="pi pi-upload"
+                         action="#{advertisementBean.createAdvertisement}" update="@form"
+                         styleClass="ui-button-success"/>
     </ui:define>
 
     <ui:define name="content">
-        <ui:include src="/WEB-INF/layouts/forms/createAdvertisement.xhtml" />
+        <ui:include src="/WEB-INF/layouts/forms/createAdvertisement.xhtml"/>
     </ui:define>
 
 </ui:composition>
