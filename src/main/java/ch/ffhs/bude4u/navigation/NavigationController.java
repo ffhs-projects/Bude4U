@@ -19,14 +19,14 @@ public class NavigationController implements Serializable {
     AuthenticationBean authBean;
 
     /**
-     * -- GETTER --
      * Get if authenticated
-     * return if authenticated
+     * return is authenticated
      */
     private boolean authenticated = false;
 
     /**
      * Shows the home page
+     *
      * @return Home page
      */
     public String showHome() {
@@ -35,6 +35,7 @@ public class NavigationController implements Serializable {
 
     /**
      * Shows the login page
+     *
      * @return Login page
      */
     public String showLogin() {
@@ -43,6 +44,7 @@ public class NavigationController implements Serializable {
 
     /**
      * Shows the logout page
+     *
      * @return Logout page
      */
     public String showLoginLogout() {
@@ -51,6 +53,7 @@ public class NavigationController implements Serializable {
 
     /**
      * Shows the advertisement page
+     *
      * @return Advertisement page
      */
     public String userAdvertisements() {
@@ -59,6 +62,7 @@ public class NavigationController implements Serializable {
 
     /**
      * Shows the create advertisement page
+     *
      * @return Create advertisement page
      */
     public String createAdvertisement() {
@@ -67,6 +71,7 @@ public class NavigationController implements Serializable {
 
     /**
      * Shows the edit advertisement page
+     *
      * @return Edit advertisement page
      */
     public String editAdvertise() {
@@ -77,6 +82,7 @@ public class NavigationController implements Serializable {
 
     /**
      * Shows the show advertisement page
+     *
      * @return Show advertisement page
      */
     public String showAdvertisement() {
@@ -87,6 +93,7 @@ public class NavigationController implements Serializable {
 
     /**
      * Shows the register page
+     *
      * @return Register page
      */
     public String showRegister() {
@@ -95,6 +102,7 @@ public class NavigationController implements Serializable {
 
     /**
      * Shows the user profile page
+     *
      * @return User profile page
      */
     public String showUserProfile() {
