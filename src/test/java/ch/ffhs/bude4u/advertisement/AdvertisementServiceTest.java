@@ -60,7 +60,7 @@ public class AdvertisementServiceTest {
 
     @Test
     public void testCreateAdvertisement() {
-        Advertisement newAdvertisement = new Advertisement("New House", "Description", "01.01.2023", "Haus", "offen", 100000, 5.5, 142, UUID.randomUUID(), "Strasse 1", "Stadt 2", 1234,  advertisementImages);
+        Advertisement newAdvertisement = new Advertisement("New House", "Description", "01.01.2023", "Haus", "offen", 100000, 5.5, 142, UUID.randomUUID(), "Strasse 1", "Stadt 2", 1234, advertisementImages);
         advertisementService.createAdvertisement(newAdvertisement);
         Optional<List<Advertisement>> allAdvertisements = advertisementService.getAllAdvertisements();
         assertTrue(allAdvertisements.stream().anyMatch(x -> x.contains(newAdvertisement)));
@@ -69,7 +69,7 @@ public class AdvertisementServiceTest {
     @Test
     public void testUpdateAdvertisement() {
         String id = "f8c3de3d-1fea-4d7c-a8b0-29f63c4c3455";
-        Advertisement updatedAdvertisement = new Advertisement(id,"Updated House", "Updated Description", "01.01.2023", "Haus", "offen", 100000, 5.5, 142, UUID.randomUUID(), "Strasse 1", "Stadt 2", 1234, advertisementImages );
+        Advertisement updatedAdvertisement = new Advertisement(id, "Updated House", "Updated Description", "01.01.2023", "Haus", "offen", 100000, 5.5, 142, UUID.randomUUID(), "Strasse 1", "Stadt 2", 1234, advertisementImages);
         advertisementService.updateAdvertisement(updatedAdvertisement);
         Optional<Advertisement> advertisement = advertisementService.getAdvertisement(id);
         assertTrue(advertisement.isPresent());
